@@ -6,6 +6,7 @@ import { AuthorAlphaComponent } from './author-alpha/author-alpha.component';
 import { CategoryAlphaComponent } from './category-alpha/category-alpha.component';
 import { SearchAlphaComponent } from './search-alpha/search-alpha.component';
 import { ArchiveAlphaComponent } from './archive-alpha/archive-alpha.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ArchiveAlphaComponent } from './archive-alpha/archive-alpha.component';
     ArchiveAlphaComponent
   ],
   imports: [
+    BrowserModule,
     MoleculeModule
   ],
   providers: [],
