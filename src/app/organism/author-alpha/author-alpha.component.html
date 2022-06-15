@@ -4,13 +4,13 @@
       <div class="row">
         <div class="col-md-8">
            <!-- Post Author Alpha Molecule-->
-          <app-post-author-alpha></app-post-author-alpha>
+          <app-post-author-alpha [author]="authorDetail"></app-post-author-alpha>
           <h4 class="spanborder">
             <span>Latest Posts</span>
           </h4>
           
           <!-- Latest Post -->
-          <app-post-alpha></app-post-alpha>
+          <app-post-alpha  [postData]="postArr"></app-post-alpha>
 
           <ul class="page-numbers heading">
             <li><span aria-current="page" class="page-numbers current">1</span></li>
@@ -31,7 +31,7 @@
               <span>Hightlight posts</span>
             </h5>
            <!-- Add popular molecule-->
-            <app-culture-alpha></app-culture-alpha>
+           <app-culture-alpha  [items]="cultureArr"></app-culture-alpha>
           </div>
         </div>
         <!--col-md-4-->
@@ -41,6 +41,6 @@
   </div>
 
    <!-- Ads Section -->
-   <app-ads></app-ads>
+   <app-ads [itemAd] = "Ad"></app-ads>
   <!--content-widget-->
 </main>

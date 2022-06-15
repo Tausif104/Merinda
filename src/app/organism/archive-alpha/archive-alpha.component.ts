@@ -6,6 +6,10 @@ import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
   styleUrls: ['./archive-alpha.component.scss']
 })
 export class ArchiveAlphaComponent implements OnInit, OnDestroy {
+  Ad = {
+    "adImg": "/assets/images/sample/adds-2.png",
+    "link":"#"
+  }
   dateAddress = {
     "city":"Steven Job",
     "designation":"OneZero",

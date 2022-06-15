@@ -8,300 +8,31 @@
             <span>"Culture"</span>
           </h4>
 
-          <article class="row justify-content-between mb-5 mr-0">
+          <article class="row justify-content-between mb-5 mr-0" *ngFor="let data of searchArchive">
             <div class="col-md-9">
               <div class="align-self-center">
-                <div class="capsSubtle mb-2">Editors‘ Pick</div>
+                <div class="capsSubtle mb-2">{{data.category}}</div>
                 <h3 class="entry-title mb-3">
                   <a href="/single"
-                    >Home Internet Is Becoming a Luxury for the Wealthy</a
+                    >{{data.title}}</a
                   >
                 </h3>
                 <div class="entry-excerpt">
                   <p>
-                    And black on meretriciously regardless well fearless
-                    irksomely as about hideous wistful bat less oh much and
-                    occasional useful rat darn jeepers far.
+                    {{data.desc}}
                   </p>
                 </div>
-                <div class="entry-meta align-items-center">
-                  <a href="/author">Dave Gershgorn</a> in
-                  <a href="/archive">OneZero</a><br />
-                  <span>May 21</span>
-                  <span class="middotDivider"></span>
-                  <span class="readingTime" title="3 min read">5 min read</span>
-                  <span class="svgIcon svgIcon--star">
-                    <svg class="svgIcon-use" width="15" height="15">
-                      <path
-                        d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z"
-                      ></path>
-                    </svg>
-                  </span>
-                </div>
+                 <!-- Add date-address-alpha -->
+                 <app-date-address-alpha [item]="data.date_address"></app-date-address-alpha>
+                
               </div>
             </div>
             <div
               class="col-md-3 bgcover"
-              style="background-image: url(http://via.placeholder.com/800x495)"
+              [style]="data.img"
             ></div>
           </article>
-          <article class="row justify-content-between mb-5 mr-0">
-            <div class="col-md-9">
-              <div class="align-self-center">
-                <div class="capsSubtle mb-2">based on your reading history</div>
-                <h3 class="entry-title mb-3">
-                  <a href="/single">Why Lack of Sleep is So Bad For You</a>
-                </h3>
-                <div class="entry-excerpt">
-                  <p>
-                    A lack of sleep is linked to an incredibly wide range of
-                    ailments, from heart disease and Type 2 diabetes to obesity,
-                    depression, poor cognitive function, and even Alzheimer’s
-                    disease..
-                  </p>
-                </div>
-                <div class="entry-meta align-items-center">
-                  <a href="/author">Darcy Reeder</a> in
-                  <a href="/archive">OneZero</a><br />
-                  <span>Jun 17</span>
-                  <span class="middotDivider"></span>
-                  <span class="readingTime" title="3 min read">3 min read</span>
-                  <span class="svgIcon svgIcon--star">
-                    <svg class="svgIcon-use" width="15" height="15">
-                      <path
-                        d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z"
-                      ></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-3 bgcover"
-              style="background-image: url(http://via.placeholder.com/512x512)"
-            ></div>
-          </article>
-          <article class="row justify-content-between mb-5 mr-0">
-            <div class="col-md-9">
-              <div class="align-self-center">
-                <div class="capsSubtle mb-2">Culture</div>
-                <h3 class="entry-title mb-3">
-                  <a href="/single"
-                    >Regulators Just Put a Target on Apple’s Back</a
-                  >
-                </h3>
-                <div class="entry-excerpt">
-                  <p>
-                    Excellence is the most important habit you can curate in
-                    life because it requires doing things you don’t want to do
-                    and getting uncomfortable on a daily basis.
-                  </p>
-                </div>
-                <div class="entry-meta align-items-center">
-                  <a href="/author">Azimi Ókalo</a> in
-                  <a href="/archive">Freedom</a><br />
-                  <span>May 12</span>
-                  <span class="middotDivider"></span>
-                  <span class="readingTime" title="3 min read">8 min read</span>
-                  <span class="svgIcon svgIcon--star">
-                    <svg class="svgIcon-use" width="15" height="15">
-                      <path
-                        d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z"
-                      ></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-3 bgcover"
-              style="background-image: url(http://via.placeholder.com/512x512)"
-            ></div>
-          </article>
-          <article class="row justify-content-between mb-5 mr-0">
-            <div class="col-md-9">
-              <div class="align-self-center">
-                <div class="capsSubtle mb-2">Technology</div>
-                <h3 class="entry-title mb-3">
-                  <a href="/single"
-                    >Apple Is Designing for a Post-Facebook World</a
-                  >
-                </h3>
-                <div class="entry-excerpt">
-                  <p>
-                    And black on meretriciously regardless well fearless
-                    irksomely as about hideous wistful bat less oh much and
-                    occasional useful rat darn jeepers far.
-                  </p>
-                </div>
-                <div class="entry-meta align-items-center">
-                  <a href="/author">Dave Gershgorn</a> in
-                  <a href="/archive">OneZero</a><br />
-                  <span>Jun 12</span>
-                  <span class="middotDivider"></span>
-                  <span class="readingTime" title="3 min read">7 min read</span>
-                  <span class="svgIcon svgIcon--star">
-                    <svg class="svgIcon-use" width="15" height="15">
-                      <path
-                        d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z"
-                      ></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-3 bgcover"
-              style="background-image: url(http://via.placeholder.com/512x512)"
-            ></div>
-          </article>
-          <article class="row justify-content-between mb-5 mr-0">
-            <div class="col-md-9">
-              <div class="align-self-center">
-                <div class="capsSubtle mb-2">based on your reading history</div>
-                <h3 class="entry-title mb-3">
-                  <a href="/single"
-                    >What Really Happens to AirPods When They Die</a
-                  >
-                </h3>
-                <div class="entry-excerpt">
-                  <p>
-                    At WWDC, Apple debuted a slew of new features that let users
-                    connect with their families and friends right inside Apple’s
-                    apps — no social.
-                  </p>
-                </div>
-                <div class="entry-meta align-items-center">
-                  <a href="/author">Johan Doan</a> in
-                  <a href="/archive">Lifestyle</a><br />
-                  <span>May 15</span>
-                  <span class="middotDivider"></span>
-                  <span class="readingTime" title="3 min read">5 min read</span>
-                  <span class="svgIcon svgIcon--star">
-                    <svg class="svgIcon-use" width="15" height="15">
-                      <path
-                        d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z"
-                      ></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-3 bgcover"
-              style="background-image: url(http://via.placeholder.com/512x512)"
-            ></div>
-          </article>
-          <article class="row justify-content-between mb-5 mr-0">
-            <div class="col-md-9">
-              <div class="align-self-center">
-                <div class="capsSubtle mb-2">Editors‘ Pick</div>
-                <h3 class="entry-title mb-3">
-                  <a href="/single"
-                    >Home Internet Is Becoming a Luxury for the Wealthy</a
-                  >
-                </h3>
-                <div class="entry-excerpt">
-                  <p>
-                    And black on meretriciously regardless well fearless
-                    irksomely as about hideous wistful bat less oh much and
-                    occasional useful rat darn jeepers far.
-                  </p>
-                </div>
-                <div class="entry-meta align-items-center">
-                  <a href="/author">Dave Gershgorn</a> in
-                  <a href="/archive">OneZero</a><br />
-                  <span>May 21</span>
-                  <span class="middotDivider"></span>
-                  <span class="readingTime" title="3 min read">5 min read</span>
-                  <span class="svgIcon svgIcon--star">
-                    <svg class="svgIcon-use" width="15" height="15">
-                      <path
-                        d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z"
-                      ></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-3 bgcover"
-              style="background-image: url(http://via.placeholder.com/800x495)"
-            ></div>
-          </article>
-          <article class="row justify-content-between mb-5 mr-0">
-            <div class="col-md-9">
-              <div class="align-self-center">
-                <div class="capsSubtle mb-2">based on your reading history</div>
-                <h3 class="entry-title mb-3">
-                  <a href="/single">Why Lack of Sleep is So Bad For You</a>
-                </h3>
-                <div class="entry-excerpt">
-                  <p>
-                    A lack of sleep is linked to an incredibly wide range of
-                    ailments, from heart disease and Type 2 diabetes to obesity,
-                    depression, poor cognitive function, and even Alzheimer’s
-                    disease..
-                  </p>
-                </div>
-                <div class="entry-meta align-items-center">
-                  <a href="/author">Darcy Reeder</a> in
-                  <a href="/archive">OneZero</a><br />
-                  <span>Jun 17</span>
-                  <span class="middotDivider"></span>
-                  <span class="readingTime" title="3 min read">3 min read</span>
-                  <span class="svgIcon svgIcon--star">
-                    <svg class="svgIcon-use" width="15" height="15">
-                      <path
-                        d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z"
-                      ></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-3 bgcover"
-              style="background-image: url(http://via.placeholder.com/512x512)"
-            ></div>
-          </article>
-          <article class="row justify-content-between mb-5 mr-0">
-            <div class="col-md-9">
-              <div class="align-self-center">
-                <div class="capsSubtle mb-2">Culture</div>
-                <h3 class="entry-title mb-3">
-                  <a href="/single"
-                    >Regulators Just Put a Target on Apple’s Back</a
-                  >
-                </h3>
-                <div class="entry-excerpt">
-                  <p>
-                    Excellence is the most important habit you can curate in
-                    life because it requires doing things you don’t want to do
-                    and getting uncomfortable on a daily basis.
-                  </p>
-                </div>
-                <div class="entry-meta align-items-center">
-                  <a href="/author">Azimi Ókalo</a> in
-                  <a href="/archive">Freedom</a><br />
-                  <span>May 12</span>
-                  <span class="middotDivider"></span>
-                  <span class="readingTime" title="3 min read">8 min read</span>
-                  <span class="svgIcon svgIcon--star">
-                    <svg class="svgIcon-use" width="15" height="15">
-                      <path
-                        d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z"
-                      ></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-md-3 bgcover"
-              style="background-image: url(http://via.placeholder.com/512x512)"
-            ></div>
-          </article>
+          
           <ul class="page-numbers heading">
             <li>
               <span aria-current="page" class="page-numbers current">1</span>
@@ -326,7 +57,7 @@
               <span>Popular in Culture</span>
             </h5>
             <!-- Add popular-culture molecule-->
-            <app-culture-alpha></app-culture-alpha>
+            <app-culture-alpha  [items]="cultureArr"></app-culture-alpha>
           </div>
         </div>
         <!--col-md-4-->
@@ -336,6 +67,6 @@
   </div>
 
  <!-- Ads Section -->
- <app-ads></app-ads>
+ <app-ads [itemAd] = "Ad"></app-ads>
   <!--content-widget-->
 </main>

@@ -83,9 +83,8 @@
               <span>Trending</span>
             </h4>
             <!-- Add popular-culture molecule-->
-            <app-culture-alpha></app-culture-alpha>
+            <app-culture-alpha  [items]="cultureArr"></app-culture-alpha> 
           </div>
-
           <a class="link-green" href="/archive">See all trending<svg class="svgIcon-use" width="19" height="19">
               <path d="M7.6 5.138L12.03 9.5 7.6 13.862l-.554-.554L10.854 9.5 7.046 5.692" fill-rule="evenodd">
               </path>
@@ -176,7 +175,7 @@
           </h2>
          
           <!-- Recent post -->
-          <app-post-alpha></app-post-alpha>
+          <app-post-alpha  [postData]="postArray"></app-post-alpha>
 
           <ul class="page-numbers heading">
             <li><span aria-current="page" class="page-numbers current">1</span></li>
@@ -188,7 +187,6 @@
             <li><a class="page-numbers" href="#">98</a></li>
             <li><a class="next page-numbers" href="#"><i class="icon-right-open-big"></i></a></li>
           </ul>
-
         </div>
         <!--col-md-8-->
         <div class="col-md-4 pl-md-5 sticky-sidebar">
@@ -197,17 +195,17 @@
               <span>Popular</span>
             </h4>
             <!-- Add popular molecule-->
-            <app-culture-alpha></app-culture-alpha>
+            <app-culture-alpha [items]="cultureArr"></app-culture-alpha>          
           </div>
         </div>
-        <!--col-md-4-->
       </div>
+        <!--col-md-4-->
     </div>
-    <!--content-widget-->
   </div>
+    <!--content-widget-->
  
   <!-- Ads Section -->
-  <app-ads></app-ads>
+  <app-ads [itemAd] = "Ad"></app-ads>
 
   
   <!--content-widget-->

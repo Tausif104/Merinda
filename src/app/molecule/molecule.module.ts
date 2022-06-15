@@ -6,12 +6,13 @@ import { AdsComponent } from './ads/ads.component';
 import { CultureAlphaComponent } from './culture-alpha/culture-alpha.component';
 import { PostAuthorAlphaComponent } from './post-author-alpha/post-author-alpha.component';
 import { DateAddressAlphaComponent } from './date-address-alpha/date-address-alpha.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 const Components = [HeaderAlphaComponent, FooterAlphaComponent,PostAlphaComponent,AdsComponent,CultureAlphaComponent,PostAuthorAlphaComponent,DateAddressAlphaComponent];
 
 @NgModule({
   declarations: [...Components],
-  imports: [],
+  imports: [BrowserModule],
   providers: [],
   exports: [...Components],
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-culture-alpha',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./culture-alpha.component.scss']
 })
 export class CultureAlphaComponent implements OnInit {
-
+  @Input() items: any;
   constructor() { }
 
   ngOnInit(): void {

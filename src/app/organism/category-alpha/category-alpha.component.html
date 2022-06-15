@@ -34,7 +34,7 @@
           <div class="divider"></div>
 
           <!-- Recent post -->
-          <app-post-alpha></app-post-alpha>
+          <app-post-alpha  [postData]="postArr"></app-post-alpha>
 
           <ul class="page-numbers heading">
             <li>
@@ -60,7 +60,7 @@
               <span>Popular in Culture</span>
             </h5>
              <!-- Add popular-culture molecule-->
-             <app-culture-alpha></app-culture-alpha>
+             <app-culture-alpha  [items]="cultureArr"></app-culture-alpha>
           </div>
         </div>
         <!--col-md-4-->
@@ -70,7 +70,7 @@
   </div>
 
   <!-- Ads Section -->
-  <app-ads></app-ads>
+  <app-ads [itemAd] = "Ad"></app-ads>
 
   <!--content-widget-->
 </main>

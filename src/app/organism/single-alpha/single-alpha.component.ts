@@ -6,6 +6,12 @@ import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
   styleUrls: ['./single-alpha.component.scss']
 })
 export class SingleAlphaComponent implements OnInit, OnDestroy {
+  authorDetail = {
+    "img":"assets/images/author-avata-1.jpg",
+    "name":"Ryan Mark",
+    "desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet ut ligula et semper. Aenean consectetur, est id gravida venenatis.",
+    "social":[{"social":"Facebook","link":"#"},{"social":"Twitter","link":"#"},{"social":"Google +","link":"#"}]
+  }
   relatedPostArr = [ 
     {
       'title':"Is ‘Interactive Storytelling’ the Future of Media?",
