@@ -29,3 +29,31 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Generate Component Eg.
 
 `ng generate component organism/test-alpha -m organism`
+
+
+# Roadmap
+
+## Route structure
+
+index       -> /
+
+categories  -> /category/${slug-name}
+            -> /category/${slug-name}?page=${page}
+
+post-detail -> /post/${slug-name}
+
+author      -> /author/${author-name}
+
+## Common page setup
+
+- Updating meta tags with related data
+- Updating page title with related data
+- Updating meta robot tags with related data
+- Updating canonical link tag with related data
+
+
+## Setup GraphQL with Codegen
+
+
+
+
