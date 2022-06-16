@@ -1,0 +1,19 @@
+query PostsByLocal ($locale: I18NLocaleCode) {
+  posts (locale: $locale) {
+    data {
+      attributes {
+        Content
+        Title
+        Meta_Description
+        locale
+        Category {
+          data {
+            attributes {
+              Name
+            }
+          }
+        }
+      }
+    }
+  }
+}

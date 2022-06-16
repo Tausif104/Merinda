@@ -54,6 +54,20 @@ author      -> /author/${author-name}
 
 ## Setup GraphQL with Codegen
 
+To generate services after editing or creating the graphql files under `src/app/service` just hit `npm run codegen`
+
+## Strapi Data Models
+
+We have two main variables to define contents
+ - Locale: To define language
+ - Channel: To define the source of the contents. Seperate different website contents.
+
+Main models;
+
+- Locale
+- Post
+- Category
+- Author
 
 
 

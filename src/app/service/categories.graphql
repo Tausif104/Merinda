@@ -1,0 +1,10 @@
+query Categories ($locale: I18NLocaleCode) {
+  categories(locale: $locale) {
+    data {
+      id
+      attributes {
+        Name
+      }
+    }
+  }
+}
