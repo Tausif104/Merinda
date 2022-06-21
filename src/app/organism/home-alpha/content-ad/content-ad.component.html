@@ -1,0 +1,32 @@
+<div class="content-widget">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="row justify-content-between">
+            <article class="col-md-6" *ngFor="let item of contentAdArr;">
+              <div class="mb-3 d-flex row">
+                <figure class="col-md-5"><a href="single"><img src="{{item.img}}"
+                      alt="post-title"></a></figure>
+                <div class="entry-content col-md-7 pl-md-0">
+                  <h5 class="entry-title mb-3"><a href="single">{{item.title}}</a></h5>
+                  <div class="entry-excerpt">
+                    <p>
+                      {{item.desc}}
+                    </p>
+                  </div>
+                  <!-- Add date-address-alpha -->
+                  <app-date-address-alpha [item]="item.date_address"></app-date-address-alpha>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="sidebar-widget ads">
+            <a href="#"><img src="/assets/images/sample/adds-1.png" alt="ads"></a>
+          </div>
+        </div>
+      </div>
+      <div class="divider-2"></div>
+    </div>
+  </div>

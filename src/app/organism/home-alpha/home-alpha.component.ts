@@ -16,6 +16,20 @@ export class HomeAlphaComponent implements OnInit, OnDestroy {
     "date": "July 15",
     "time": "5 min read"
    };
+
+  widgetData = {
+    "category":"EDITORS' PICK",
+    "title":"What I Wish I'd Known When I Made a Drastic Career Change",
+    "desc":"Eight people who took the plunge share the biggest challenges and surprises of starting over. We spend a considerable portion of our time using a web browser and may sometimes need to get a screenshot of a full page in your browser.",
+    "img": "background-image: url(http://via.placeholder.com/800x495)",
+  };
+
+  editorData = {
+    "title":"Home Internet Is Becoming a Luxury for the Wealthy",
+    "desc":"And black on meretriciously regardless well fearless irksomely as about hideous wistful bat less oh much and occasional useful rat darn jeepers far.",
+    "img": "http://via.placeholder.com/1240x700",
+  };
+
   postArr = [ 
     {
       'title':"I Learned How to Die Before I Knew How to Live",
@@ -63,7 +77,8 @@ export class HomeAlphaComponent implements OnInit, OnDestroy {
     },
   
   ]
-  postArray = [ 
+
+  recentArray = [ 
     {
       "category":"EDITORS' PICK",
       'title':"Home Internet Is Becoming a Luxury for the Wealthy",
@@ -218,6 +233,7 @@ export class HomeAlphaComponent implements OnInit, OnDestroy {
        "subData" : [],
     },
   ]
+
   cultureArr = [
     {
       "title":"President and the emails. Who will guard the guards?",
@@ -257,6 +273,23 @@ export class HomeAlphaComponent implements OnInit, OnDestroy {
     },
   ]
 
+  editorArr = [
+    {
+      "category":"",
+      'title':"The Night My Doorbell Camera Captured a Shooting",
+       "img": "http://via.placeholder.com/512x700",
+    },
+    {
+      "category":"",
+      'title':"Privacy Is Just the Beginning of the Debate Over Tech",
+       "img": "http://via.placeholder.com/512x512",
+    },
+    {
+      "category":"BASED ON YOUR READING HISTORY",
+      'title':"Want To Make Millions? Then Act Like a Millionaire",
+       "img": "http://via.placeholder.com/512x700",
+    },
+   ]
   constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {
