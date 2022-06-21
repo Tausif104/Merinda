@@ -1,0 +1,19 @@
+query PostsByCategory ($id: ID, $locale: I18NLocaleCode) {
+  category(id: $id, locale: $locale) {
+    data {
+      attributes {
+        Name
+        Meta
+        Meta_Description
+        posts {
+          data {
+            attributes {
+							Title
+              Meta_Description
+            }
+          }
+        }
+      }
+    }
+  }
+}
