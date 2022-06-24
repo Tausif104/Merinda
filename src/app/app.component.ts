@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { get } from 'scriptjs';
 import { CategoriesGQL, LocalesGQL, PostsByCategoryGQL } from 'src/generated/graphql';
+import { TranslateCacheService } from 'ngx-translate-cache';
 
 @Component({
   selector: 'app-root',
@@ -9,31 +11,42 @@ import { CategoriesGQL, LocalesGQL, PostsByCategoryGQL } from 'src/generated/gra
 })
 export class AppComponent implements OnInit {
   title = 'blog';
+  browserLang:any;
+  constructor(
+    private localeGQL: LocalesGQL,
+    private postsByCategoryGQL: PostsByCategoryGQL,
+    private categoriesGQL: CategoriesGQL,
+    private translate: TranslateService,
+    translateCacheService: TranslateCacheService
 
-  constructor(private localeGQL: LocalesGQL, private postsByCategoryGQL: PostsByCategoryGQL, private categoriesGQL: CategoriesGQL) {}
+    ) {
+      translateCacheService.init();
+      translate.addLangs(['en', 'nl']);
+      this.browserLang = translateCacheService.getCachedLanguage() || translate.getBrowserLang();
+      translate.use(this.browserLang.match(/en|nl/) ? this.browserLang : 'en');
+  }
 
   ngOnInit(): void {
     get('/assets/js/scripts.js', () => {
       //Google Maps library has been loaded...
     });
-
-    let defaultLocale = ""
+ 
+    let defaultLocale = this.browserLang;
+    localStorage.setItem('lang', this.browserLang)
+    
     let defaultCategoryId = ""
     this.localeGQL.fetch().subscribe((locales) => {
-      const localeCodes = locales.data.i18NLocales?.data.map((data) => {
-        console.log(data.attributes?.name);
+      const localeCodes = locales.data.i18NLocales?.data.map((data) => {     
         return data.attributes?.code
       }) || [];
-
-      defaultLocale = localeCodes[0] || ""
-      console.log({ locales });
+      defaultLocale = this.browserLang ||localeCodes[0] || "";
 
       this.categoriesGQL.fetch({
         locale: defaultLocale
       }).subscribe((response) => {
-        defaultCategoryId = response.data.categories?.data[0].id || "";
-
-        console.log({categories: response.data.categories});
+        if(response.data.categories?.data.length){
+          defaultCategoryId = response.data.categories?.data[0].id || "";
+         }
         
         this.postsByCategoryGQL.fetch({
           id: defaultCategoryId,
@@ -43,7 +56,7 @@ export class AppComponent implements OnInit {
           const categoryMetaDescription = response.data.category?.data?.attributes?.Meta_Description;
 
           const categoryPosts = response.data.category?.data?.attributes?.posts;
-          console.log({ categoryPosts });
+          
         });
       });
     });

@@ -81,16 +81,16 @@
         <div class="border p-5 bg-lightblue mb-5">
           <div class="row justify-content-between">
             <div class="col-md-5 mb-2 mb-md-0">
-              <h5 class="font-weight-bold secondfont mb-3 mt-0">Become a member</h5>
-              <p class="small-text">Get the latest news right in your inbox. We never spam!</p>
+              <h5 class="font-weight-bold secondfont mb-3 mt-0">{{"Become a member" | translate}}</h5>
+              <p class="small-text">{{"Get the latest news right in your inbox. We never spam!" | translate}}</p>
             </div>
             <div class="col-md-7">
               <div class="row">
                 <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Enter your e-mail address">
+                  <input type="text" class="form-control" placeholder="{{'Enter your e-mail address' | translate}}">
                 </div>
                 <div class="col-md-12 mt-2">
-                  <button type="submit" class="btn btn-success btn-block">Subscribe</button>
+                  <button type="submit" class="btn btn-success btn-block">{{"Subscribe" | translate}}</button>
                 </div>
               </div>
             </div>
@@ -119,7 +119,7 @@
     <!--Begin post related-->
     <div class="related-posts mb-5">
       <h4 class="spanborder text-center">
-        <span>Related Posts</span>
+        <span>{{"Related Posts" | translate}}</span>
       </h4>
       <div class="row justify-content-between">
         <div class="divider-2"></div>
@@ -145,34 +145,34 @@
       <section id="comments">
         <div class="comments-inner clr">
           <div id="respond" class="comment-respond">
-            <h3 id="reply-title" class="comment-reply-title">Leave a Reply</h3>
+            <h3 id="reply-title" class="comment-reply-title">{{"Leave a Reply" | translate}}</h3>
             <form action="#" method="post" id="commentform" class="comment-form" novalidate="">
               <p class="comment-notes">
-                <span id="email-notes">Your email address will not be published.</span> Required fields are marked <span
+                <span id="email-notes">{{"Your email address will not be published" | translate}}.</span> {{"Required fields are marked" | translate}} <span
                   class="required">*</span>
               </p>
               <p class="comment-form-comment">
-                <label for="comment">Comment</label>
+                <label for="comment">{{"Comment" | translate}}</label>
                 <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525"
                   required="required"></textarea>
               </p>
               <div class="row">
                 <div class="comment-form-author col-sm-12 col-md-6">
                   <p>
-                    <label for="author">Name*</label>
+                    <label for="author">{{"Name" | translate}}*</label>
                     <input id="author" name="author" type="text" value="" size="30" aria-required="true">
                   </p>
                 </div>
                 <div class="comment-form-email col-sm-12 col-md-6">
                   <p>
-                    <label for="email">Email*</label>
+                    <label for="email">{{"Email" | translate}}*</label>
                     <input id="email" name="email" type="email" value="" size="30" aria-required="true">
                   </p>
                 </div>
               </div>
               <p class="form-submit">
                 <input name="submit" type="submit" id="submit" class="submit btn btn-success btn-block"
-                  value="Post Comment">
+                  value="{{'Post Comment' |translate}}">
               </p>
             </form>
           </div>

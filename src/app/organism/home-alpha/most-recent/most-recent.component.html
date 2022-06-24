@@ -1,8 +1,9 @@
+
 <div class="container">
     <div class="row">
         <div class="col-md-8">
             <h2 class="spanborder h4">
-                <span>Most Recent</span>
+                <span>{{"Most Recent" | translate}}</span>
             </h2>
             <!-- Recent post -->
             <app-post-alpha [postData]="recentArr"></app-post-alpha>
@@ -21,7 +22,7 @@
         <div class="col-md-4 pl-md-5 sticky-sidebar">
             <div class="sidebar-widget latest-tpl-4">
                 <h4 class="spanborder">
-                    <span>Popular</span>
+                    <span>{{"Popular" |translate}}</span>
                 </h4>
                 <!-- Add popular molecule-->
                 <app-culture-alpha [items]="popularArr"></app-culture-alpha>
