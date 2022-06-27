@@ -48,79 +48,163 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type Category = {
-  __typename?: 'Category';
-  Meta?: Maybe<Scalars['String']>;
+export type CategoryCb = {
+  __typename?: 'CategoryCb';
   Meta_Description?: Maybe<Scalars['String']>;
   Name?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   locale?: Maybe<Scalars['String']>;
-  localizations?: Maybe<CategoryRelationResponseCollection>;
-  posts?: Maybe<PostRelationResponseCollection>;
+  localizations?: Maybe<CategoryCbRelationResponseCollection>;
+  post_cbs?: Maybe<PostCbRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 
-export type CategoryLocalizationsArgs = {
-  filters?: InputMaybe<CategoryFiltersInput>;
+export type CategoryCbLocalizationsArgs = {
+  filters?: InputMaybe<CategoryCbFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
-export type CategoryPostsArgs = {
-  filters?: InputMaybe<PostFiltersInput>;
+export type CategoryCbPost_CbsArgs = {
+  filters?: InputMaybe<PostCbFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type CategoryEntity = {
-  __typename?: 'CategoryEntity';
-  attributes?: Maybe<Category>;
+export type CategoryCbEntity = {
+  __typename?: 'CategoryCbEntity';
+  attributes?: Maybe<CategoryCb>;
   id?: Maybe<Scalars['ID']>;
 };
 
-export type CategoryEntityResponse = {
-  __typename?: 'CategoryEntityResponse';
-  data?: Maybe<CategoryEntity>;
+export type CategoryCbEntityResponse = {
+  __typename?: 'CategoryCbEntityResponse';
+  data?: Maybe<CategoryCbEntity>;
 };
 
-export type CategoryEntityResponseCollection = {
-  __typename?: 'CategoryEntityResponseCollection';
-  data: Array<CategoryEntity>;
+export type CategoryCbEntityResponseCollection = {
+  __typename?: 'CategoryCbEntityResponseCollection';
+  data: Array<CategoryCbEntity>;
   meta: ResponseCollectionMeta;
 };
 
-export type CategoryFiltersInput = {
-  Meta?: InputMaybe<StringFilterInput>;
+export type CategoryCbFiltersInput = {
   Meta_Description?: InputMaybe<StringFilterInput>;
   Name?: InputMaybe<StringFilterInput>;
-  and?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
+  and?: InputMaybe<Array<InputMaybe<CategoryCbFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<CategoryFiltersInput>;
-  not?: InputMaybe<CategoryFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
-  posts?: InputMaybe<PostFiltersInput>;
+  localizations?: InputMaybe<CategoryCbFiltersInput>;
+  not?: InputMaybe<CategoryCbFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CategoryCbFiltersInput>>>;
+  post_cbs?: InputMaybe<PostCbFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
-export type CategoryInput = {
-  Meta?: InputMaybe<Scalars['String']>;
+export type CategoryCbInput = {
   Meta_Description?: InputMaybe<Scalars['String']>;
   Name?: InputMaybe<Scalars['String']>;
-  posts?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  post_cbs?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type CategoryRelationResponseCollection = {
-  __typename?: 'CategoryRelationResponseCollection';
-  data: Array<CategoryEntity>;
+export type CategoryCbRelationResponseCollection = {
+  __typename?: 'CategoryCbRelationResponseCollection';
+  data: Array<CategoryCbEntity>;
+};
+
+export type CategoryLb = {
+  __typename?: 'CategoryLb';
+  Meta_Description?: Maybe<Scalars['String']>;
+  Name?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<CategoryLbRelationResponseCollection>;
+  post_lbs?: Maybe<PostLbRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type CategoryLbLocalizationsArgs = {
+  filters?: InputMaybe<CategoryLbFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type CategoryLbPost_LbsArgs = {
+  filters?: InputMaybe<PostLbFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type CategoryLbEntity = {
+  __typename?: 'CategoryLbEntity';
+  attributes?: Maybe<CategoryLb>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type CategoryLbEntityResponse = {
+  __typename?: 'CategoryLbEntityResponse';
+  data?: Maybe<CategoryLbEntity>;
+};
+
+export type CategoryLbEntityResponseCollection = {
+  __typename?: 'CategoryLbEntityResponseCollection';
+  data: Array<CategoryLbEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type CategoryLbFiltersInput = {
+  Meta_Description?: InputMaybe<StringFilterInput>;
+  Name?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<CategoryLbFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<CategoryLbFiltersInput>;
+  not?: InputMaybe<CategoryLbFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CategoryLbFiltersInput>>>;
+  post_lbs?: InputMaybe<PostLbFiltersInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type CategoryLbInput = {
+  Meta_Description?: InputMaybe<Scalars['String']>;
+  Name?: InputMaybe<Scalars['String']>;
+  post_lbs?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type CategoryLbRelationResponseCollection = {
+  __typename?: 'CategoryLbRelationResponseCollection';
+  data: Array<CategoryLbEntity>;
+};
+
+export type ComponentPostPostComponent = {
+  __typename?: 'ComponentPostPostComponent';
+  Content: Scalars['String'];
+  Meta_Description: Scalars['String'];
+  Title: Scalars['String'];
+  id: Scalars['ID'];
+};
+
+export type ComponentPostPostComponentInput = {
+  Content?: InputMaybe<Scalars['String']>;
+  Meta_Description?: InputMaybe<Scalars['String']>;
+  Title?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 export type DateTimeFilterInput = {
@@ -175,7 +259,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = Category | I18NLocale | Post | SchedulerScheduler | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = CategoryCb | CategoryLb | ComponentPostPostComponent | I18NLocale | PostCb | PostHf | PostLb | SchedulerScheduler | SectionsCb | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -307,19 +391,30 @@ export type LongFilterInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createCategory?: Maybe<CategoryEntityResponse>;
-  createCategoryLocalization?: Maybe<CategoryEntityResponse>;
-  createPost?: Maybe<PostEntityResponse>;
-  createPostLocalization?: Maybe<PostEntityResponse>;
+  createCategoryCb?: Maybe<CategoryCbEntityResponse>;
+  createCategoryCbLocalization?: Maybe<CategoryCbEntityResponse>;
+  createCategoryLb?: Maybe<CategoryLbEntityResponse>;
+  createCategoryLbLocalization?: Maybe<CategoryLbEntityResponse>;
+  createPostCb?: Maybe<PostCbEntityResponse>;
+  createPostCbLocalization?: Maybe<PostCbEntityResponse>;
+  createPostHf?: Maybe<PostHfEntityResponse>;
+  createPostHfLocalization?: Maybe<PostHfEntityResponse>;
+  createPostLb?: Maybe<PostLbEntityResponse>;
+  createPostLbLocalization?: Maybe<PostLbEntityResponse>;
   createSchedulerScheduler?: Maybe<SchedulerSchedulerEntityResponse>;
+  createSectionsCb?: Maybe<SectionsCbEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
-  deleteCategory?: Maybe<CategoryEntityResponse>;
-  deletePost?: Maybe<PostEntityResponse>;
+  deleteCategoryCb?: Maybe<CategoryCbEntityResponse>;
+  deleteCategoryLb?: Maybe<CategoryLbEntityResponse>;
+  deletePostCb?: Maybe<PostCbEntityResponse>;
+  deletePostHf?: Maybe<PostHfEntityResponse>;
+  deletePostLb?: Maybe<PostLbEntityResponse>;
   deleteSchedulerScheduler?: Maybe<SchedulerSchedulerEntityResponse>;
+  deleteSectionsCb?: Maybe<SectionsCbEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Delete an existing role */
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
@@ -336,10 +431,14 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
-  updateCategory?: Maybe<CategoryEntityResponse>;
+  updateCategoryCb?: Maybe<CategoryCbEntityResponse>;
+  updateCategoryLb?: Maybe<CategoryLbEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
-  updatePost?: Maybe<PostEntityResponse>;
+  updatePostCb?: Maybe<PostCbEntityResponse>;
+  updatePostHf?: Maybe<PostHfEntityResponse>;
+  updatePostLb?: Maybe<PostLbEntityResponse>;
   updateSchedulerScheduler?: Maybe<SchedulerSchedulerEntityResponse>;
+  updateSectionsCb?: Maybe<SectionsCbEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Update an existing role */
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
@@ -349,27 +448,66 @@ export type Mutation = {
 };
 
 
-export type MutationCreateCategoryArgs = {
-  data: CategoryInput;
+export type MutationCreateCategoryCbArgs = {
+  data: CategoryCbInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
-export type MutationCreateCategoryLocalizationArgs = {
-  data?: InputMaybe<CategoryInput>;
+export type MutationCreateCategoryCbLocalizationArgs = {
+  data?: InputMaybe<CategoryCbInput>;
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
-export type MutationCreatePostArgs = {
-  data: PostInput;
+export type MutationCreateCategoryLbArgs = {
+  data: CategoryLbInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
-export type MutationCreatePostLocalizationArgs = {
-  data?: InputMaybe<PostInput>;
+export type MutationCreateCategoryLbLocalizationArgs = {
+  data?: InputMaybe<CategoryLbInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreatePostCbArgs = {
+  data: PostCbInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreatePostCbLocalizationArgs = {
+  data?: InputMaybe<PostCbInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreatePostHfArgs = {
+  data: PostHfInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreatePostHfLocalizationArgs = {
+  data?: InputMaybe<PostHfInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreatePostLbArgs = {
+  data: PostLbInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreatePostLbLocalizationArgs = {
+  data?: InputMaybe<PostLbInput>;
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
@@ -377,6 +515,11 @@ export type MutationCreatePostLocalizationArgs = {
 
 export type MutationCreateSchedulerSchedulerArgs = {
   data: SchedulerSchedulerInput;
+};
+
+
+export type MutationCreateSectionsCbArgs = {
+  data: SectionsCbInput;
 };
 
 
@@ -395,19 +538,42 @@ export type MutationCreateUsersPermissionsUserArgs = {
 };
 
 
-export type MutationDeleteCategoryArgs = {
+export type MutationDeleteCategoryCbArgs = {
   id: Scalars['ID'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
-export type MutationDeletePostArgs = {
+export type MutationDeleteCategoryLbArgs = {
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeletePostCbArgs = {
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeletePostHfArgs = {
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeletePostLbArgs = {
   id: Scalars['ID'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type MutationDeleteSchedulerSchedulerArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteSectionsCbArgs = {
   id: Scalars['ID'];
 };
 
@@ -467,8 +633,15 @@ export type MutationResetPasswordArgs = {
 };
 
 
-export type MutationUpdateCategoryArgs = {
-  data: CategoryInput;
+export type MutationUpdateCategoryCbArgs = {
+  data: CategoryCbInput;
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationUpdateCategoryLbArgs = {
+  data: CategoryLbInput;
   id: Scalars['ID'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
@@ -480,8 +653,22 @@ export type MutationUpdateFileInfoArgs = {
 };
 
 
-export type MutationUpdatePostArgs = {
-  data: PostInput;
+export type MutationUpdatePostCbArgs = {
+  data: PostCbInput;
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationUpdatePostHfArgs = {
+  data: PostHfInput;
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationUpdatePostLbArgs = {
+  data: PostLbInput;
   id: Scalars['ID'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
@@ -489,6 +676,12 @@ export type MutationUpdatePostArgs = {
 
 export type MutationUpdateSchedulerSchedulerArgs = {
   data: SchedulerSchedulerInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateSectionsCbArgs = {
+  data: SectionsCbInput;
   id: Scalars['ID'];
 };
 
@@ -534,71 +727,192 @@ export type PaginationArg = {
   start?: InputMaybe<Scalars['Int']>;
 };
 
-export type Post = {
-  __typename?: 'Post';
-  Category?: Maybe<CategoryEntityResponse>;
-  Content?: Maybe<Scalars['String']>;
-  Meta_Description?: Maybe<Scalars['String']>;
-  Title?: Maybe<Scalars['String']>;
+export type PostCb = {
+  __typename?: 'PostCb';
+  category_cb?: Maybe<CategoryCbEntityResponse>;
   createdAt?: Maybe<Scalars['DateTime']>;
+  fields?: Maybe<ComponentPostPostComponent>;
   locale?: Maybe<Scalars['String']>;
-  localizations?: Maybe<PostRelationResponseCollection>;
+  localizations?: Maybe<PostCbRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
+  sections_cbs?: Maybe<SectionsCbRelationResponseCollection>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 
-export type PostLocalizationsArgs = {
-  filters?: InputMaybe<PostFiltersInput>;
+export type PostCbLocalizationsArgs = {
+  filters?: InputMaybe<PostCbFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type PostEntity = {
-  __typename?: 'PostEntity';
-  attributes?: Maybe<Post>;
+
+export type PostCbSections_CbsArgs = {
+  filters?: InputMaybe<SectionsCbFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type PostCbEntity = {
+  __typename?: 'PostCbEntity';
+  attributes?: Maybe<PostCb>;
   id?: Maybe<Scalars['ID']>;
 };
 
-export type PostEntityResponse = {
-  __typename?: 'PostEntityResponse';
-  data?: Maybe<PostEntity>;
+export type PostCbEntityResponse = {
+  __typename?: 'PostCbEntityResponse';
+  data?: Maybe<PostCbEntity>;
 };
 
-export type PostEntityResponseCollection = {
-  __typename?: 'PostEntityResponseCollection';
-  data: Array<PostEntity>;
+export type PostCbEntityResponseCollection = {
+  __typename?: 'PostCbEntityResponseCollection';
+  data: Array<PostCbEntity>;
   meta: ResponseCollectionMeta;
 };
 
-export type PostFiltersInput = {
-  Category?: InputMaybe<CategoryFiltersInput>;
-  Content?: InputMaybe<StringFilterInput>;
-  Meta_Description?: InputMaybe<StringFilterInput>;
-  Title?: InputMaybe<StringFilterInput>;
-  and?: InputMaybe<Array<InputMaybe<PostFiltersInput>>>;
+export type PostCbFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PostCbFiltersInput>>>;
+  category_cb?: InputMaybe<CategoryCbFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<PostFiltersInput>;
-  not?: InputMaybe<PostFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<PostFiltersInput>>>;
+  localizations?: InputMaybe<PostCbFiltersInput>;
+  not?: InputMaybe<PostCbFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<PostCbFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  sections_cbs?: InputMaybe<SectionsCbFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type PostCbInput = {
+  category_cb?: InputMaybe<Scalars['ID']>;
+  fields?: InputMaybe<ComponentPostPostComponentInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  sections_cbs?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+};
+
+export type PostCbRelationResponseCollection = {
+  __typename?: 'PostCbRelationResponseCollection';
+  data: Array<PostCbEntity>;
+};
+
+export type PostHf = {
+  __typename?: 'PostHf';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  fields?: Maybe<ComponentPostPostComponent>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<PostHfRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type PostHfLocalizationsArgs = {
+  filters?: InputMaybe<PostHfFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type PostHfEntity = {
+  __typename?: 'PostHfEntity';
+  attributes?: Maybe<PostHf>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type PostHfEntityResponse = {
+  __typename?: 'PostHfEntityResponse';
+  data?: Maybe<PostHfEntity>;
+};
+
+export type PostHfEntityResponseCollection = {
+  __typename?: 'PostHfEntityResponseCollection';
+  data: Array<PostHfEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type PostHfFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PostHfFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<PostHfFiltersInput>;
+  not?: InputMaybe<PostHfFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<PostHfFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
-export type PostInput = {
-  Category?: InputMaybe<Scalars['ID']>;
-  Content?: InputMaybe<Scalars['String']>;
-  Meta_Description?: InputMaybe<Scalars['String']>;
-  Title?: InputMaybe<Scalars['String']>;
+export type PostHfInput = {
+  fields?: InputMaybe<ComponentPostPostComponentInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type PostRelationResponseCollection = {
-  __typename?: 'PostRelationResponseCollection';
-  data: Array<PostEntity>;
+export type PostHfRelationResponseCollection = {
+  __typename?: 'PostHfRelationResponseCollection';
+  data: Array<PostHfEntity>;
+};
+
+export type PostLb = {
+  __typename?: 'PostLb';
+  category_lb?: Maybe<CategoryLbEntityResponse>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  fields?: Maybe<ComponentPostPostComponent>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<PostLbRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type PostLbLocalizationsArgs = {
+  filters?: InputMaybe<PostLbFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type PostLbEntity = {
+  __typename?: 'PostLbEntity';
+  attributes?: Maybe<PostLb>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type PostLbEntityResponse = {
+  __typename?: 'PostLbEntityResponse';
+  data?: Maybe<PostLbEntity>;
+};
+
+export type PostLbEntityResponseCollection = {
+  __typename?: 'PostLbEntityResponseCollection';
+  data: Array<PostLbEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type PostLbFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PostLbFiltersInput>>>;
+  category_lb?: InputMaybe<CategoryLbFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<PostLbFiltersInput>;
+  not?: InputMaybe<PostLbFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<PostLbFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type PostLbInput = {
+  category_lb?: InputMaybe<Scalars['ID']>;
+  fields?: InputMaybe<ComponentPostPostComponentInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type PostLbRelationResponseCollection = {
+  __typename?: 'PostLbRelationResponseCollection';
+  data: Array<PostLbEntity>;
 };
 
 export enum PublicationState {
@@ -608,14 +922,22 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
-  categories?: Maybe<CategoryEntityResponseCollection>;
-  category?: Maybe<CategoryEntityResponse>;
+  categoryCb?: Maybe<CategoryCbEntityResponse>;
+  categoryCbs?: Maybe<CategoryCbEntityResponseCollection>;
+  categoryLb?: Maybe<CategoryLbEntityResponse>;
+  categoryLbs?: Maybe<CategoryLbEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
-  post?: Maybe<PostEntityResponse>;
-  posts?: Maybe<PostEntityResponseCollection>;
+  postCb?: Maybe<PostCbEntityResponse>;
+  postCbs?: Maybe<PostCbEntityResponseCollection>;
+  postHf?: Maybe<PostHfEntityResponse>;
+  postHfs?: Maybe<PostHfEntityResponseCollection>;
+  postLb?: Maybe<PostLbEntityResponse>;
+  postLbs?: Maybe<PostLbEntityResponseCollection>;
   schedulerScheduler?: Maybe<SchedulerSchedulerEntityResponseCollection>;
+  sectionsCb?: Maybe<SectionsCbEntityResponse>;
+  sectionsCbs?: Maybe<SectionsCbEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>;
@@ -625,8 +947,14 @@ export type Query = {
 };
 
 
-export type QueryCategoriesArgs = {
-  filters?: InputMaybe<CategoryFiltersInput>;
+export type QueryCategoryCbArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryCategoryCbsArgs = {
+  filters?: InputMaybe<CategoryCbFiltersInput>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
@@ -634,9 +962,18 @@ export type QueryCategoriesArgs = {
 };
 
 
-export type QueryCategoryArgs = {
+export type QueryCategoryLbArgs = {
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryCategoryLbsArgs = {
+  filters?: InputMaybe<CategoryLbFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -652,14 +989,44 @@ export type QueryI18NLocalesArgs = {
 };
 
 
-export type QueryPostArgs = {
+export type QueryPostCbArgs = {
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
-export type QueryPostsArgs = {
-  filters?: InputMaybe<PostFiltersInput>;
+export type QueryPostCbsArgs = {
+  filters?: InputMaybe<PostCbFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryPostHfArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryPostHfsArgs = {
+  filters?: InputMaybe<PostHfFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryPostLbArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryPostLbsArgs = {
+  filters?: InputMaybe<PostLbFiltersInput>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
@@ -670,6 +1037,19 @@ export type QueryPostsArgs = {
 export type QuerySchedulerSchedulerArgs = {
   filters?: InputMaybe<SchedulerSchedulerFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QuerySectionsCbArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QuerySectionsCbsArgs = {
+  filters?: InputMaybe<SectionsCbFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -759,6 +1139,55 @@ export type SchedulerSchedulerInput = {
   scheduleType?: InputMaybe<Scalars['String']>;
   scheduledDatetime?: InputMaybe<Scalars['DateTime']>;
   uid?: InputMaybe<Scalars['String']>;
+};
+
+export type SectionsCb = {
+  __typename?: 'SectionsCb';
+  Name?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  post_cb?: Maybe<PostCbEntityResponse>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type SectionsCbEntity = {
+  __typename?: 'SectionsCbEntity';
+  attributes?: Maybe<SectionsCb>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type SectionsCbEntityResponse = {
+  __typename?: 'SectionsCbEntityResponse';
+  data?: Maybe<SectionsCbEntity>;
+};
+
+export type SectionsCbEntityResponseCollection = {
+  __typename?: 'SectionsCbEntityResponseCollection';
+  data: Array<SectionsCbEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type SectionsCbFiltersInput = {
+  Name?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<SectionsCbFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<SectionsCbFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<SectionsCbFiltersInput>>>;
+  post_cb?: InputMaybe<PostCbFiltersInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type SectionsCbInput = {
+  Name?: InputMaybe<Scalars['String']>;
+  post_cb?: InputMaybe<Scalars['ID']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type SectionsCbRelationResponseCollection = {
+  __typename?: 'SectionsCbRelationResponseCollection';
+  data: Array<SectionsCbEntity>;
 };
 
 export type StringFilterInput = {
@@ -1076,36 +1505,48 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type CategoriesQueryVariables = Exact<{
+export type CategoryCbsQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 }>;
 
 
-export type CategoriesQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', id?: string | null, attributes?: { __typename?: 'Category', Name?: string | null } | null }> } | null };
+export type CategoryCbsQuery = { __typename?: 'Query', categoryCbs?: { __typename?: 'CategoryCbEntityResponseCollection', data: Array<{ __typename?: 'CategoryCbEntity', id?: string | null, attributes?: { __typename?: 'CategoryCb', Name?: string | null } | null }> } | null };
 
 export type LocalesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type LocalesQuery = { __typename?: 'Query', i18NLocales?: { __typename?: 'I18NLocaleEntityResponseCollection', data: Array<{ __typename?: 'I18NLocaleEntity', attributes?: { __typename?: 'I18NLocale', name?: string | null, code?: string | null } | null }> } | null };
 
-export type PostsByCategoryQueryVariables = Exact<{
+export type PostsByCategoryCbQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
+}>;
+
+
+export type PostsByCategoryCbQuery = { __typename?: 'Query', categoryCb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', locale?: string | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Meta_Description: string } | null } | null }> } | null } | null } | null } | null };
+
+export type PostsBySectionQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  section?: InputMaybe<IdFilterInput>;
+}>;
+
+
+export type PostsBySectionQuery = { __typename?: 'Query', postCbs?: { __typename?: 'PostCbEntityResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string } | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null } | null } | null } | null } | null }> } | null };
+
+export type PostCbsByLocalQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 }>;
 
 
-export type PostsByCategoryQuery = { __typename?: 'Query', category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Name?: string | null, Meta?: string | null, Meta_Description?: string | null, posts?: { __typename?: 'PostRelationResponseCollection', data: Array<{ __typename?: 'PostEntity', attributes?: { __typename?: 'Post', Title?: string | null, Meta_Description?: string | null } | null }> } | null } | null } | null } | null };
+export type PostCbsByLocalQuery = { __typename?: 'Query', postCbs?: { __typename?: 'PostCbEntityResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string } | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null } | null } | null } | null } | null }> } | null };
 
-export type PostsByLocalQueryVariables = Exact<{
-  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-}>;
+export type SectionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PostsByLocalQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', attributes?: { __typename?: 'Post', Content?: string | null, Title?: string | null, Meta_Description?: string | null, locale?: string | null, Category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', Name?: string | null } | null } | null } | null } | null }> } | null };
+export type SectionsQuery = { __typename?: 'Query', sectionsCbs?: { __typename?: 'SectionsCbEntityResponseCollection', data: Array<{ __typename?: 'SectionsCbEntity', id?: string | null, attributes?: { __typename?: 'SectionsCb', Name?: string | null } | null }> } | null };
 
-export const CategoriesDocument = gql`
-    query Categories($locale: I18NLocaleCode) {
-  categories(locale: $locale) {
+export const CategoryCbsDocument = gql`
+    query CategoryCbs($locale: I18NLocaleCode) {
+  categoryCbs(locale: $locale) {
     data {
       id
       attributes {
@@ -1119,8 +1560,8 @@ export const CategoriesDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class CategoriesGQL extends Apollo.Query<CategoriesQuery, CategoriesQueryVariables> {
-    document = CategoriesDocument;
+  export class CategoryCbsGQL extends Apollo.Query<CategoryCbsQuery, CategoryCbsQueryVariables> {
+    document = CategoryCbsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -1149,18 +1590,57 @@ export const LocalesDocument = gql`
       super(apollo);
     }
   }
-export const PostsByCategoryDocument = gql`
-    query PostsByCategory($id: ID, $locale: I18NLocaleCode) {
-  category(id: $id, locale: $locale) {
+export const PostsByCategoryCbDocument = gql`
+    query PostsByCategoryCb($id: ID) {
+  categoryCb(id: $id) {
     data {
       attributes {
         Name
-        Meta
         Meta_Description
-        posts {
+        post_cbs {
           data {
             attributes {
-              Title
+              locale
+              fields {
+                Title
+                Meta_Description
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PostsByCategoryCbGQL extends Apollo.Query<PostsByCategoryCbQuery, PostsByCategoryCbQueryVariables> {
+    document = PostsByCategoryCbDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PostsBySectionDocument = gql`
+    query PostsBySection($locale: I18NLocaleCode, $section: IDFilterInput) {
+  postCbs(locale: $locale, filters: {sections_cbs: {id: $section}}) {
+    data {
+      attributes {
+        fields {
+          Title
+          Content
+          Meta_Description
+        }
+        updatedAt
+        createdAt
+        publishedAt
+        category_cb {
+          data {
+            attributes {
+              Name
               Meta_Description
             }
           }
@@ -1174,26 +1654,31 @@ export const PostsByCategoryDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class PostsByCategoryGQL extends Apollo.Query<PostsByCategoryQuery, PostsByCategoryQueryVariables> {
-    document = PostsByCategoryDocument;
+  export class PostsBySectionGQL extends Apollo.Query<PostsBySectionQuery, PostsBySectionQueryVariables> {
+    document = PostsBySectionDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
-export const PostsByLocalDocument = gql`
-    query PostsByLocal($locale: I18NLocaleCode) {
-  posts(locale: $locale) {
+export const PostCbsByLocalDocument = gql`
+    query PostCbsByLocal($locale: I18NLocaleCode) {
+  postCbs(locale: $locale) {
     data {
       attributes {
-        Content
-        Title
-        Meta_Description
-        locale
-        Category {
+        fields {
+          Title
+          Content
+          Meta_Description
+        }
+        updatedAt
+        createdAt
+        publishedAt
+        category_cb {
           data {
             attributes {
               Name
+              Meta_Description
             }
           }
         }
@@ -1206,8 +1691,31 @@ export const PostsByLocalDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class PostsByLocalGQL extends Apollo.Query<PostsByLocalQuery, PostsByLocalQueryVariables> {
-    document = PostsByLocalDocument;
+  export class PostCbsByLocalGQL extends Apollo.Query<PostCbsByLocalQuery, PostCbsByLocalQueryVariables> {
+    document = PostCbsByLocalDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SectionsDocument = gql`
+    query Sections {
+  sectionsCbs {
+    data {
+      id
+      attributes {
+        Name
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SectionsGQL extends Apollo.Query<SectionsQuery, SectionsQueryVariables> {
+    document = SectionsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

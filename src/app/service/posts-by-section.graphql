@@ -1,5 +1,9 @@
-query PostCbsByLocal ($locale: I18NLocaleCode) {
-  postCbs (locale: $locale) {
+query PostsBySection ($locale: I18NLocaleCode, $section: IDFilterInput) {
+  postCbs (locale: $locale filters: {
+    sections_cbs: {
+      id: $section
+    }
+  }) {
     data {
       attributes {
         fields {

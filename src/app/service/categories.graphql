@@ -1,5 +1,5 @@
-query Categories ($locale: I18NLocaleCode) {
-  categories(locale: $locale) {
+query CategoryCbs ($locale: I18NLocaleCode) {
+  categoryCbs(locale: $locale) {
     data {
       id
       attributes {

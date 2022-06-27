@@ -1,0 +1,10 @@
+query Sections {
+  sectionsCbs {
+    data {
+      id
+      attributes {
+        Name
+      }
+    }
+  }
+}

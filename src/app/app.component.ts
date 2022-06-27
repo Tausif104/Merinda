@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { get } from 'scriptjs';
-import { CategoriesGQL, LocalesGQL, PostsByCategoryGQL } from 'src/generated/graphql';
+import { CategoryCbsGQL, LocalesGQL, PostsByCategoryCbGQL, PostsBySectionGQL, SectionsCb, SectionsGQL } from 'src/generated/graphql';
 import { TranslateCacheService } from 'ngx-translate-cache';
 
 @Component({
@@ -14,11 +14,12 @@ export class AppComponent implements OnInit {
   browserLang:any;
   constructor(
     private localeGQL: LocalesGQL,
-    private postsByCategoryGQL: PostsByCategoryGQL,
-    private categoriesGQL: CategoriesGQL,
+    private postsByCategoryCbGQL: PostsByCategoryCbGQL,
+    private categoryCbsGQL: CategoryCbsGQL,
     private translate: TranslateService,
-    translateCacheService: TranslateCacheService
-
+    private translateCacheService: TranslateCacheService,
+    private postsBySectionGQL: PostsBySectionGQL,
+    private sectionsGQL: SectionsGQL
     ) {
       translateCacheService.init();
       translate.addLangs(['en', 'nl']);
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit {
       //Google Maps library has been loaded...
     });
  
-    let defaultLocale = this.browserLang;
+    let defaultLocale = this.browserLang as string;
     localStorage.setItem('lang', this.browserLang)
     
     let defaultCategoryId = ""
@@ -41,23 +42,42 @@ export class AppComponent implements OnInit {
       }) || [];
       defaultLocale = this.browserLang ||localeCodes[0] || "";
 
-      this.categoriesGQL.fetch({
+      this.categoryCbsGQL.fetch({
         locale: defaultLocale
       }).subscribe((response) => {
-        if(response.data.categories?.data.length){
-          defaultCategoryId = response.data.categories?.data[0].id || "";
+        if(response.data.categoryCbs?.data.length){
+          defaultCategoryId = response.data.categoryCbs?.data[0].id || "";
          }
         
-        this.postsByCategoryGQL.fetch({
-          id: defaultCategoryId,
-          locale: defaultLocale
+        this.postsByCategoryCbGQL.fetch({
+          id: defaultCategoryId
         }).subscribe((response) => {
-          const categoryName = response.data.category?.data?.attributes?.Name;
-          const categoryMetaDescription = response.data.category?.data?.attributes?.Meta_Description;
-
-          const categoryPosts = response.data.category?.data?.attributes?.posts;
+          const categoryName = response.data.categoryCb?.data?.attributes?.Name;
+          const categoryMetaDescription = response.data.categoryCb?.data?.attributes?.Meta_Description;
+          const categoryPosts = response.data.categoryCb?.data?.attributes?.post_cbs;
           
         });
+
+        this.sectionsGQL.fetch().subscribe((response) => {
+          const editorsPickSection = response.data.sectionsCbs?.data.find((data) => {
+            data.attributes?.Name === 'Editors Pick' || data.id === "1"
+            return data;
+          });
+
+          if (editorsPickSection) {
+            this.postsBySectionGQL.fetch({
+              locale: defaultLocale,
+              section: {
+                eq: editorsPickSection?.id
+              }
+            }). subscribe((response) => {
+              const editorsPickPosts =  response.data.postCbs?.data
+
+              console.log({editorsPickPosts});
+            });            
+          }
+        })
+
       });
     });
   }

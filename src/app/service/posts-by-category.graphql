@@ -1,15 +1,17 @@
-query PostsByCategory ($id: ID, $locale: I18NLocaleCode) {
-  category(id: $id, locale: $locale) {
+query PostsByCategoryCb ($id: ID){
+  categoryCb(id: $id) {
     data {
-      attributes {
+      attributes {  
         Name
-        Meta
         Meta_Description
-        posts {
+        post_cbs {
           data {
             attributes {
-							Title
-              Meta_Description
+              locale
+              fields {
+                Title
+                Meta_Description
+              }
             }
           }
         }
