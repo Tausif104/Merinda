@@ -1,5 +1,5 @@
 overwrite: true
-schema: "https://apexyz.com/graphql"
+schema: "https://apexyz.de/graphql"
 documents: "src/**/*.graphql"
 generates:
   src/generated/graphql.ts:

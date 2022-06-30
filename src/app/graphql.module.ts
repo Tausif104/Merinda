@@ -22,7 +22,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   return {
-    link: concat(authMiddleware, httpLink.create({ uri: "https://content.hanfapex.de/graphql" })),
+    link: concat(authMiddleware, httpLink.create({ uri: "https://apexyz.de/graphql" })),
     cache: new InMemoryCache(),
   };
 }
