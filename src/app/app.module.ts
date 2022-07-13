@@ -40,6 +40,7 @@ import { TranslateCacheModule, TranslateCacheSettings, TranslateCacheService } f
     ],
   providers: [],
   bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule {}
 

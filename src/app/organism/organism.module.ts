@@ -7,10 +7,7 @@ import { CategoryAlphaComponent } from './category-alpha/category-alpha.componen
 import { SearchAlphaComponent } from './search-alpha/search-alpha.component';
 import { ArchiveAlphaComponent } from './archive-alpha/archive-alpha.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { EditorsPicksComponent } from './home-alpha/editors-picks/editors-picks.component';
-import { MostRecentComponent } from './home-alpha/most-recent/most-recent.component';
-import { ContentWidgetComponent } from './home-alpha/content-widget/content-widget.component';
-import { ContentAdComponent } from './home-alpha/content-ad/content-ad.component';
+import { ImagePathPipe } from '../pipe/image.pipe';
 
 @NgModule({
   declarations: [
@@ -20,15 +17,12 @@ import { ContentAdComponent } from './home-alpha/content-ad/content-ad.component
     CategoryAlphaComponent,
     SearchAlphaComponent,
     ArchiveAlphaComponent,
-    EditorsPicksComponent,
-    MostRecentComponent,
-    ContentWidgetComponent,
-    ContentAdComponent,
   ],
   imports: [
     BrowserModule,
-    MoleculeModule,
+    MoleculeModule
   ],
   providers: [],
+  exports: []
 })
 export class OrganismModule {}

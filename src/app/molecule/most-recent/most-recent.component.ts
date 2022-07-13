@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { renderImage } from 'src/app/utils/image-parse';
+import { PostCbEntity } from 'src/generated/graphql';
 
 @Component({
   selector: 'app-most-recent',
@@ -6,13 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./most-recent.component.scss']
 })
 export class MostRecentComponent implements OnInit {
+  @Input() posts: PostCbEntity[];
 
-  @Input() recentArr: any; 
-  @Input() popularArr:any;
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+  }
+
+  getPostImage(post: PostCbEntity) {
+    return renderImage(post);
   }
 
 }

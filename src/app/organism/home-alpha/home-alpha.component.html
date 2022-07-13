@@ -1,17 +1,86 @@
 <main id="content">
   <div class="section-featured featured-style-1">
-    <app-editors-picks [editorPicksArr]="editorArr" [trendingArr]="cultureArr" [editorPickAddress]="editorPick" [editor]="editorData"></app-editors-picks>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-9 col-xl-9">
+          <h2 class="spanborder h4">
+            <span>{{"Editor's Picks" | translate }}</span>
+          </h2>
+          <app-editors-picks *ngIf="editorsPickPosts.length" [posts]="editorsPickPosts"></app-editors-picks>
+        </div>
+        <!--end editor's pick-->
+
+        <div class="col-sm-12 col-md-3 col-xl-3">
+          <div class="sidebar-widget latest-tpl-4">
+            <h4 class="spanborder">
+              <span>{{"Trending" | translate}}</span>
+            </h4>
+            <!-- Add popular-culture molecule-->
+            <app-culture-alpha [posts]="trendingPosts"></app-culture-alpha>
+          </div>
+          <a class="link-green" href="/archive">{{"See all trending" | translate}}<svg class="svgIcon-use" width="19"
+              height="19">
+              <path d="M7.6 5.138L12.03 9.5 7.6 13.862l-.554-.554L10.854 9.5 7.046 5.692" fill-rule="evenodd">
+              </path>
+            </svg>
+          </a>
+        </div>
+        <!--end trending-->
+
+        <!--end row-->
+        <div class="divider"></div>
+      </div>
+    </div>
+    <!--end container-->
   </div>
+
   <!--section-featured-->
-    <app-content-widget [widget]="widgetData" [editorPickAddress]="editorPick"></app-content-widget>
+  <app-hero-alpha *ngIf="heroPost" [post]="heroPost"></app-hero-alpha>
   <!--content-widget-->
-    <app-content-ad [contentAdArr]="postArr"></app-content-ad>
+
+
+  <div class="content-widget">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10">
+          <app-content-ad [posts]="trendingPosts"></app-content-ad>
+        </div>
+        <div class="col-md-2">
+          <div class="sidebar-widget ads">
+            <a href="#"><img src="/assets/images/sample/adds-1.png" alt="ads"></a>
+          </div>
+        </div>
+      </div>
+      <div class="divider-2"></div>
+    </div>
+  </div>
+
   <!--content-widget-->
   <div class="content-widget">
-    <app-most-recent [recentArr]="recentArray" [popularArr]="cultureArr"></app-most-recent>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="spanborder h4">
+            <span>{{"Most Recent" | translate}}</span>
+          </h2>
+          <app-most-recent [posts]="trendingPosts"></app-most-recent>
+        </div>
+        <!--col-md-8-->
+        <div class="col-md-4 pl-md-5 sticky-sidebar">
+          <div class="sidebar-widget latest-tpl-4">
+            <h4 class="spanborder">
+              <span>{{"Popular" |translate}}</span>
+            </h4>
+            <!-- Add popular molecule-->
+            <app-culture-alpha [posts]="trendingPosts"></app-culture-alpha>
+          </div>
+        </div>
+      </div>
+      <!--col-md-4-->
+    </div>
   </div>
-    <!--content-widget-->
+  <!--content-widget-->
   <!-- Ads Section -->
-  <app-ads [itemAd] = "Ad"></app-ads>
+  <app-ads [itemAd]="[]"></app-ads>
   <!--content-widget-->
 </main>

@@ -1,72 +1,66 @@
-<ng-container *ngIf = "postData.length">
-  <ng-container *ngFor = "let data of postData">
-  <article class="row justify-content-between mb-5 mr-0" >
-    <div class="col-md-9">
-      <div class="align-self-center">
-        <div class="capsSubtle mb-2">{{data.category}}</div>
-        <h3 class="entry-title mb-3">
-          <a href="single">{{data.title}}</a>
-        </h3>
-        <div class="entry-excerpt">
-          <p>
-            {{data.desc}}
-          </p>
-        </div>
-        <div class="entry-meta align-items-center">
-          <a href="/author">{{data.date_address.author}}</a> in <a href="/archive">{{data.date_address.designation}}</a
-          ><br />
-          <span>{{data.date_address.date}}</span>
-          <span class="middotDivider"></span>
-          <span class="readingTime" title="3 min read">{{data.date_address.time}}</span>
-          <span class="svgIcon svgIcon--star">
-            <svg class="svgIcon-use" width="15" height="15">
-              <path
-                d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z"
-              ></path>
-            </svg>
-          </span>
-        </div>
-      </div>
-    </div>
-    <div
-      class="col-md-3 bgcover"
-      [style]="data.img"
-    ></div>
-  </article>
-  
-  
-  <div class="row justify-content-between" *ngIf = "data.subData">
-    <div class="divider-2"></div>
-    <article class="col-md-6" *ngFor = "let subdata of data.subData">
-      <div class="mb-3 d-flex row">
-        <figure class="col-md-5">
-          <a href="single"
-            ><img [src]="subdata.img" alt="post-title"
-          /></a>
-        </figure>
-        <div class="entry-content col-md-7 pl-md-0">
-          <h5 class="entry-title mb-3">
-            <a href="single">{{subdata.title}}</a>
-          </h5>
+<ng-container *ngIf="postData.length">
+  <ng-container *ngFor="let data of postData">
+    <article class="row justify-content-between mb-5 mr-0">
+      <div class="col-md-9">
+        <div class="align-self-center">
+          <div class="capsSubtle mb-2">{{data.category}}</div>
+          <h3 class="entry-title mb-3">
+            <a href="single">{{data.title}}</a>
+          </h3>
+          <div class="entry-excerpt">
+            <p>
+              {{data.desc}}
+            </p>
+          </div>
           <div class="entry-meta align-items-center">
-            <a href="/author">{{data.date_address.author}}</a> in <a href="/archive">{{data.date_address.designation}}</a
-            ><br />
+            <a href="/author">{{data.date_address.author}}</a> in <a
+              href="/archive">{{data.date_address.designation}}</a><br />
             <span>{{data.date_address.date}}</span>
             <span class="middotDivider"></span>
             <span class="readingTime" title="3 min read">{{data.date_address.time}}</span>
             <span class="svgIcon svgIcon--star">
               <svg class="svgIcon-use" width="15" height="15">
                 <path
-                  d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z"
-                ></path>
+                  d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z">
+                </path>
               </svg>
             </span>
           </div>
         </div>
       </div>
+      <div class="col-md-3 bgcover" [style]="data.img"></div>
     </article>
-    
-  </div>
-</ng-container>
-</ng-container>
 
+
+    <div class="row justify-content-between" *ngIf="data.subData">
+      <div class="divider-2"></div>
+      <article class="col-md-6" *ngFor="let subdata of data.subData">
+        <div class="mb-3 d-flex row">
+          <figure class="col-md-5">
+            <a href="single"><img [src]="subdata.img" alt="post-title" /></a>
+          </figure>
+          <div class="entry-content col-md-7 pl-md-0">
+            <h5 class="entry-title mb-3">
+              <a href="single">{{subdata.title}}</a>
+            </h5>
+            <div class="entry-meta align-items-center">
+              <a href="/author">{{data.date_address.author}}</a> in <a
+                href="/archive">{{data.date_address.designation}}</a><br />
+              <span>{{data.date_address.date}}</span>
+              <span class="middotDivider"></span>
+              <span class="readingTime" title="3 min read">{{data.date_address.time}}</span>
+              <span class="svgIcon svgIcon--star">
+                <svg class="svgIcon-use" width="15" height="15">
+                  <path
+                    d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z">
+                  </path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </ng-container>
+</ng-container>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DateAddressAlphaComponent } from './date-address-alpha.component';
+import { EntryMetaAlphaComponent } from './entry-meta-alpha.component';
 
-describe('DateAddressAlphaComponent', () => {
-  let component: DateAddressAlphaComponent;
-  let fixture: ComponentFixture<DateAddressAlphaComponent>;
+describe('EntryMetaAlphaComponent', () => {
+  let component: EntryMetaAlphaComponent;
+  let fixture: ComponentFixture<EntryMetaAlphaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DateAddressAlphaComponent ]
+      declarations: [ EntryMetaAlphaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DateAddressAlphaComponent);
+    fixture = TestBed.createComponent(EntryMetaAlphaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

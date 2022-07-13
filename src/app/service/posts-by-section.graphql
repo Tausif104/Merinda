@@ -1,24 +1,52 @@
-query PostsBySection ($locale: I18NLocaleCode, $section: IDFilterInput) {
-  postCbs (locale: $locale filters: {
-    sections_cbs: {
-      id: $section
-    }
-  }) {
+query PostCbsBySection ($id: ID, $locale: String){
+  sectionsCb(id: $id) {
     data {
       attributes {
-        fields {
-          Title
-          Content
-          Meta_Description
-        }
-        updatedAt
-        createdAt
-        publishedAt
-        category_cb {
+        post_cbs (
+          filters:{
+            locale: {
+              eq: $locale
+            }
+          }
+        ) {
           data {
             attributes {
-              Name
-              Meta_Description
+              publishedAt
+              category_cb {
+                data {
+                  attributes {
+                    Name
+                    Meta_Description
+                  }
+                }
+              }
+              fields{
+                Title
+                Meta_Description
+                Content
+                Slug
+                Estimation
+                Image {
+                  data {
+                    attributes{
+                      url
+                      previewUrl
+                      alternativeText
+                      caption
+                      name
+                      size
+                    }
+                  }
+                }
+              }
+              user {
+                data{
+                  attributes{
+                    firstname
+                    lastname
+                  }
+                }
+              }
             }
           }
         }

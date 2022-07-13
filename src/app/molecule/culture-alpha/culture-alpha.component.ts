@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PostCbEntity } from 'src/generated/graphql';
 
 @Component({
   selector: 'app-culture-alpha',
@@ -6,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./culture-alpha.component.scss']
 })
 export class CultureAlphaComponent implements OnInit {
-  @Input() items: any;
+  @Input() posts: PostCbEntity[] = []; 
   constructor() { }
 
   ngOnInit(): void {

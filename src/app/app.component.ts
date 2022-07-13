@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { get } from 'scriptjs';
-import { CategoryCbsGQL, LocalesGQL, PostsByCategoryCbGQL, PostsBySectionGQL, SectionsCb, SectionsGQL } from 'src/generated/graphql';
+import { CategoryCbsGQL, LocalesGQL, PostsByCategoryCbGQL, SectionsGQL } from 'src/generated/graphql';
 import { TranslateCacheService } from 'ngx-translate-cache';
 
 @Component({
@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
     private categoryCbsGQL: CategoryCbsGQL,
     private translate: TranslateService,
     private translateCacheService: TranslateCacheService,
-    private postsBySectionGQL: PostsBySectionGQL,
     private sectionsGQL: SectionsGQL
     ) {
       translateCacheService.init();
@@ -58,25 +57,25 @@ export class AppComponent implements OnInit {
           
         });
 
-        this.sectionsGQL.fetch().subscribe((response) => {
-          const editorsPickSection = response.data.sectionsCbs?.data.find((data) => {
-            data.attributes?.Name === 'Editors Pick' || data.id === "1"
-            return data;
-          });
+      //   this.sectionsGQL.fetch().subscribe((response) => {
+      //     const editorsPickSection = response.data.sectionsCbs?.data.find((data) => {
+      //       data.attributes?.Name === 'Editors Pick' || data.id === "1"
+      //       return data;
+      //     });
 
-          if (editorsPickSection) {
-            this.postsBySectionGQL.fetch({
-              locale: defaultLocale,
-              section: {
-                eq: editorsPickSection?.id
-              }
-            }). subscribe((response) => {
-              const editorsPickPosts =  response.data.postCbs?.data
+      //     if (editorsPickSection) {
+      //       this.postsBySectionGQL.fetch({
+      //         locale: defaultLocale,
+      //         section: {
+      //           eq: editorsPickSection?.id
+      //         }
+      //       }). subscribe((response) => {
+      //         const editorsPickPosts =  response.data.postCbs?.data
 
-              console.log({editorsPickPosts});
-            });            
-          }
-        })
+      //         console.log({editorsPickPosts});
+      //       });            
+      //     }
+      //   })
 
       });
     });

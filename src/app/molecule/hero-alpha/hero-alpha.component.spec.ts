@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContentWidgetComponent } from './content-widget.component';
+import { HeroAlphaComponent } from './hero-alpha.component';
 
-describe('ContentWidgetComponent', () => {
-  let component: ContentWidgetComponent;
-  let fixture: ComponentFixture<ContentWidgetComponent>;
+describe('HeroAlphaComponent', () => {
+  let component: HeroAlphaComponent;
+  let fixture: ComponentFixture<HeroAlphaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContentWidgetComponent ]
+      declarations: [ HeroAlphaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContentWidgetComponent);
+    fixture = TestBed.createComponent(HeroAlphaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

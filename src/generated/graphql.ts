@@ -58,6 +58,7 @@ export type CategoryCb = {
   post_cbs?: Maybe<PostCbRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+  url_path_id?: Maybe<Scalars['String']>;
 };
 
 
@@ -106,6 +107,7 @@ export type CategoryCbFiltersInput = {
   post_cbs?: InputMaybe<PostCbFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url_path_id?: InputMaybe<StringFilterInput>;
 };
 
 export type CategoryCbInput = {
@@ -113,6 +115,7 @@ export type CategoryCbInput = {
   Name?: InputMaybe<Scalars['String']>;
   post_cbs?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+  url_path_id?: InputMaybe<Scalars['String']>;
 };
 
 export type CategoryCbRelationResponseCollection = {
@@ -130,6 +133,7 @@ export type CategoryLb = {
   post_lbs?: Maybe<PostLbRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+  url_path_id?: Maybe<Scalars['String']>;
 };
 
 
@@ -178,6 +182,7 @@ export type CategoryLbFiltersInput = {
   post_lbs?: InputMaybe<PostLbFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url_path_id?: InputMaybe<StringFilterInput>;
 };
 
 export type CategoryLbInput = {
@@ -185,6 +190,7 @@ export type CategoryLbInput = {
   Name?: InputMaybe<Scalars['String']>;
   post_lbs?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+  url_path_id?: InputMaybe<Scalars['String']>;
 };
 
 export type CategoryLbRelationResponseCollection = {
@@ -195,14 +201,29 @@ export type CategoryLbRelationResponseCollection = {
 export type ComponentPostPostComponent = {
   __typename?: 'ComponentPostPostComponent';
   Content: Scalars['String'];
+  Estimation?: Maybe<Scalars['Int']>;
+  Image?: Maybe<UploadFileRelationResponseCollection>;
   Meta_Description: Scalars['String'];
+  Raw?: Maybe<Scalars['String']>;
+  Slug?: Maybe<Scalars['String']>;
   Title: Scalars['String'];
   id: Scalars['ID'];
 };
 
+
+export type ComponentPostPostComponentImageArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
 export type ComponentPostPostComponentInput = {
   Content?: InputMaybe<Scalars['String']>;
+  Estimation?: InputMaybe<Scalars['Int']>;
+  Image?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   Meta_Description?: InputMaybe<Scalars['String']>;
+  Raw?: InputMaybe<Scalars['String']>;
+  Slug?: InputMaybe<Scalars['String']>;
   Title?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -259,7 +280,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = CategoryCb | CategoryLb | ComponentPostPostComponent | I18NLocale | PostCb | PostHf | PostLb | SchedulerScheduler | SectionsCb | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = CategoryCb | CategoryLb | ComponentPostPostComponent | I18NLocale | PostCb | PostHf | PostLb | SchedulerScheduler | SectionsCb | UploadFile | UrlAliasPath | UrlAliasPattern | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -404,6 +425,8 @@ export type Mutation = {
   createSchedulerScheduler?: Maybe<SchedulerSchedulerEntityResponse>;
   createSectionsCb?: Maybe<SectionsCbEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
+  createUrlAliasPath?: Maybe<UrlAliasPathEntityResponse>;
+  createUrlAliasPattern?: Maybe<UrlAliasPatternEntityResponse>;
   /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
@@ -416,6 +439,8 @@ export type Mutation = {
   deleteSchedulerScheduler?: Maybe<SchedulerSchedulerEntityResponse>;
   deleteSectionsCb?: Maybe<SectionsCbEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
+  deleteUrlAliasPath?: Maybe<UrlAliasPathEntityResponse>;
+  deleteUrlAliasPattern?: Maybe<UrlAliasPatternEntityResponse>;
   /** Delete an existing role */
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
   /** Update an existing user */
@@ -440,6 +465,8 @@ export type Mutation = {
   updateSchedulerScheduler?: Maybe<SchedulerSchedulerEntityResponse>;
   updateSectionsCb?: Maybe<SectionsCbEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
+  updateUrlAliasPath?: Maybe<UrlAliasPathEntityResponse>;
+  updateUrlAliasPattern?: Maybe<UrlAliasPatternEntityResponse>;
   /** Update an existing role */
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
   /** Update an existing user */
@@ -528,6 +555,16 @@ export type MutationCreateUploadFileArgs = {
 };
 
 
+export type MutationCreateUrlAliasPathArgs = {
+  data: UrlAliasPathInput;
+};
+
+
+export type MutationCreateUrlAliasPatternArgs = {
+  data: UrlAliasPatternInput;
+};
+
+
 export type MutationCreateUsersPermissionsRoleArgs = {
   data: UsersPermissionsRoleInput;
 };
@@ -579,6 +616,16 @@ export type MutationDeleteSectionsCbArgs = {
 
 
 export type MutationDeleteUploadFileArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteUrlAliasPathArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteUrlAliasPatternArgs = {
   id: Scalars['ID'];
 };
 
@@ -692,6 +739,18 @@ export type MutationUpdateUploadFileArgs = {
 };
 
 
+export type MutationUpdateUrlAliasPathArgs = {
+  data: UrlAliasPathInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateUrlAliasPatternArgs = {
+  data: UrlAliasPatternInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateUsersPermissionsRoleArgs = {
   data: UsersPermissionsRoleInput;
   id: Scalars['ID'];
@@ -737,6 +796,8 @@ export type PostCb = {
   publishedAt?: Maybe<Scalars['DateTime']>;
   sections_cbs?: Maybe<SectionsCbRelationResponseCollection>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+  url_path_id?: Maybe<Scalars['String']>;
+  user?: Maybe<UsersPermissionsUserEntityResponse>;
 };
 
 
@@ -784,6 +845,8 @@ export type PostCbFiltersInput = {
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   sections_cbs?: InputMaybe<SectionsCbFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url_path_id?: InputMaybe<StringFilterInput>;
+  user?: InputMaybe<UsersPermissionsUserFiltersInput>;
 };
 
 export type PostCbInput = {
@@ -791,6 +854,8 @@ export type PostCbInput = {
   fields?: InputMaybe<ComponentPostPostComponentInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   sections_cbs?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  url_path_id?: InputMaybe<Scalars['String']>;
+  user?: InputMaybe<Scalars['ID']>;
 };
 
 export type PostCbRelationResponseCollection = {
@@ -806,6 +871,7 @@ export type PostHf = {
   localizations?: Maybe<PostHfRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+  url_path_id?: Maybe<Scalars['String']>;
 };
 
 
@@ -843,11 +909,13 @@ export type PostHfFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<PostHfFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url_path_id?: InputMaybe<StringFilterInput>;
 };
 
 export type PostHfInput = {
   fields?: InputMaybe<ComponentPostPostComponentInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+  url_path_id?: InputMaybe<Scalars['String']>;
 };
 
 export type PostHfRelationResponseCollection = {
@@ -864,6 +932,7 @@ export type PostLb = {
   localizations?: Maybe<PostLbRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+  url_path_id?: Maybe<Scalars['String']>;
 };
 
 
@@ -902,12 +971,14 @@ export type PostLbFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<PostLbFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url_path_id?: InputMaybe<StringFilterInput>;
 };
 
 export type PostLbInput = {
   category_lb?: InputMaybe<Scalars['ID']>;
   fields?: InputMaybe<ComponentPostPostComponentInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+  url_path_id?: InputMaybe<Scalars['String']>;
 };
 
 export type PostLbRelationResponseCollection = {
@@ -940,6 +1011,10 @@ export type Query = {
   sectionsCbs?: Maybe<SectionsCbEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
+  urlAliasPath?: Maybe<UrlAliasPathEntityResponse>;
+  urlAliasPaths?: Maybe<UrlAliasPathEntityResponseCollection>;
+  urlAliasPattern?: Maybe<UrlAliasPatternEntityResponse>;
+  urlAliasPatterns?: Maybe<UrlAliasPatternEntityResponseCollection>;
   usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>;
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
@@ -1066,6 +1141,30 @@ export type QueryUploadFilesArgs = {
 };
 
 
+export type QueryUrlAliasPathArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryUrlAliasPathsArgs = {
+  filters?: InputMaybe<UrlAliasPathFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryUrlAliasPatternArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryUrlAliasPatternsArgs = {
+  filters?: InputMaybe<UrlAliasPatternFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryUsersPermissionsRoleArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -1145,9 +1244,18 @@ export type SectionsCb = {
   __typename?: 'SectionsCb';
   Name?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  post_cb?: Maybe<PostCbEntityResponse>;
+  post_cbs?: Maybe<PostCbRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+  url_path_id?: Maybe<Scalars['String']>;
+};
+
+
+export type SectionsCbPost_CbsArgs = {
+  filters?: InputMaybe<PostCbFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type SectionsCbEntity = {
@@ -1174,15 +1282,17 @@ export type SectionsCbFiltersInput = {
   id?: InputMaybe<IdFilterInput>;
   not?: InputMaybe<SectionsCbFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<SectionsCbFiltersInput>>>;
-  post_cb?: InputMaybe<PostCbFiltersInput>;
+  post_cbs?: InputMaybe<PostCbFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url_path_id?: InputMaybe<StringFilterInput>;
 };
 
 export type SectionsCbInput = {
   Name?: InputMaybe<Scalars['String']>;
-  post_cb?: InputMaybe<Scalars['ID']>;
+  post_cbs?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+  url_path_id?: InputMaybe<Scalars['String']>;
 };
 
 export type SectionsCbRelationResponseCollection = {
@@ -1289,6 +1399,105 @@ export type UploadFileInput = {
   size?: InputMaybe<Scalars['Float']>;
   url?: InputMaybe<Scalars['String']>;
   width?: InputMaybe<Scalars['Int']>;
+};
+
+export type UploadFileRelationResponseCollection = {
+  __typename?: 'UploadFileRelationResponseCollection';
+  data: Array<UploadFileEntity>;
+};
+
+export type UrlAliasPath = {
+  __typename?: 'UrlAliasPath';
+  contenttype: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  generated?: Maybe<Scalars['Boolean']>;
+  path: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type UrlAliasPathEntity = {
+  __typename?: 'UrlAliasPathEntity';
+  attributes?: Maybe<UrlAliasPath>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type UrlAliasPathEntityResponse = {
+  __typename?: 'UrlAliasPathEntityResponse';
+  data?: Maybe<UrlAliasPathEntity>;
+};
+
+export type UrlAliasPathEntityResponseCollection = {
+  __typename?: 'UrlAliasPathEntityResponseCollection';
+  data: Array<UrlAliasPathEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type UrlAliasPathFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<UrlAliasPathFiltersInput>>>;
+  contenttype?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  generated?: InputMaybe<BooleanFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<UrlAliasPathFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UrlAliasPathFiltersInput>>>;
+  path?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type UrlAliasPathInput = {
+  contenttype?: InputMaybe<Scalars['String']>;
+  generated?: InputMaybe<Scalars['Boolean']>;
+  path?: InputMaybe<Scalars['String']>;
+};
+
+export type UrlAliasPattern = {
+  __typename?: 'UrlAliasPattern';
+  code: Scalars['String'];
+  contenttype: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  label: Scalars['String'];
+  languages: Scalars['JSON'];
+  pattern: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type UrlAliasPatternEntity = {
+  __typename?: 'UrlAliasPatternEntity';
+  attributes?: Maybe<UrlAliasPattern>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type UrlAliasPatternEntityResponse = {
+  __typename?: 'UrlAliasPatternEntityResponse';
+  data?: Maybe<UrlAliasPatternEntity>;
+};
+
+export type UrlAliasPatternEntityResponseCollection = {
+  __typename?: 'UrlAliasPatternEntityResponseCollection';
+  data: Array<UrlAliasPatternEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type UrlAliasPatternFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<UrlAliasPatternFiltersInput>>>;
+  code?: InputMaybe<StringFilterInput>;
+  contenttype?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  label?: InputMaybe<StringFilterInput>;
+  languages?: InputMaybe<JsonFilterInput>;
+  not?: InputMaybe<UrlAliasPatternFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UrlAliasPatternFiltersInput>>>;
+  pattern?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type UrlAliasPatternInput = {
+  code?: InputMaybe<Scalars['String']>;
+  contenttype?: InputMaybe<Scalars['String']>;
+  label?: InputMaybe<Scalars['String']>;
+  languages?: InputMaybe<Scalars['JSON']>;
+  pattern?: InputMaybe<Scalars['String']>;
 };
 
 export type UsersPermissionsCreateRolePayload = {
@@ -1447,9 +1656,12 @@ export type UsersPermissionsUser = {
   confirmed?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
+  firstname?: Maybe<Scalars['String']>;
+  lastname?: Maybe<Scalars['String']>;
   provider?: Maybe<Scalars['String']>;
   role?: Maybe<UsersPermissionsRoleEntityResponse>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+  url_path_id?: Maybe<Scalars['String']>;
   username: Scalars['String'];
 };
 
@@ -1477,7 +1689,9 @@ export type UsersPermissionsUserFiltersInput = {
   confirmed?: InputMaybe<BooleanFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   email?: InputMaybe<StringFilterInput>;
+  firstname?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
+  lastname?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<UsersPermissionsUserFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
   password?: InputMaybe<StringFilterInput>;
@@ -1485,6 +1699,7 @@ export type UsersPermissionsUserFiltersInput = {
   resetPasswordToken?: InputMaybe<StringFilterInput>;
   role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url_path_id?: InputMaybe<StringFilterInput>;
   username?: InputMaybe<StringFilterInput>;
 };
 
@@ -1493,10 +1708,13 @@ export type UsersPermissionsUserInput = {
   confirmationToken?: InputMaybe<Scalars['String']>;
   confirmed?: InputMaybe<Scalars['Boolean']>;
   email?: InputMaybe<Scalars['String']>;
+  firstname?: InputMaybe<Scalars['String']>;
+  lastname?: InputMaybe<Scalars['String']>;
   password?: InputMaybe<Scalars['String']>;
   provider?: InputMaybe<Scalars['String']>;
   resetPasswordToken?: InputMaybe<Scalars['String']>;
   role?: InputMaybe<Scalars['ID']>;
+  url_path_id?: InputMaybe<Scalars['String']>;
   username?: InputMaybe<Scalars['String']>;
 };
 
@@ -1524,13 +1742,13 @@ export type PostsByCategoryCbQueryVariables = Exact<{
 
 export type PostsByCategoryCbQuery = { __typename?: 'Query', categoryCb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', locale?: string | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Meta_Description: string } | null } | null }> } | null } | null } | null } | null };
 
-export type PostsBySectionQueryVariables = Exact<{
-  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-  section?: InputMaybe<IdFilterInput>;
+export type PostCbsBySectionQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type PostsBySectionQuery = { __typename?: 'Query', postCbs?: { __typename?: 'PostCbEntityResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string } | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null } | null } | null } | null } | null }> } | null };
+export type PostCbsBySectionQuery = { __typename?: 'Query', sectionsCb?: { __typename?: 'SectionsCbEntityResponse', data?: { __typename?: 'SectionsCbEntity', attributes?: { __typename?: 'SectionsCb', post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Meta_Description: string, Content: string, Slug?: string | null, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null, alternativeText?: string | null, caption?: string | null, name: string, size: number } | null }> } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null } | null } | null } | null } | null }> } | null } | null } | null } | null };
 
 export type PostCbsByLocalQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
@@ -1624,24 +1842,50 @@ export const PostsByCategoryCbDocument = gql`
       super(apollo);
     }
   }
-export const PostsBySectionDocument = gql`
-    query PostsBySection($locale: I18NLocaleCode, $section: IDFilterInput) {
-  postCbs(locale: $locale, filters: {sections_cbs: {id: $section}}) {
+export const PostCbsBySectionDocument = gql`
+    query PostCbsBySection($id: ID, $locale: String) {
+  sectionsCb(id: $id) {
     data {
       attributes {
-        fields {
-          Title
-          Content
-          Meta_Description
-        }
-        updatedAt
-        createdAt
-        publishedAt
-        category_cb {
+        post_cbs(filters: {locale: {eq: $locale}}) {
           data {
             attributes {
-              Name
-              Meta_Description
+              publishedAt
+              category_cb {
+                data {
+                  attributes {
+                    Name
+                    Meta_Description
+                  }
+                }
+              }
+              fields {
+                Title
+                Meta_Description
+                Content
+                Slug
+                Estimation
+                Image {
+                  data {
+                    attributes {
+                      url
+                      previewUrl
+                      alternativeText
+                      caption
+                      name
+                      size
+                    }
+                  }
+                }
+              }
+              user {
+                data {
+                  attributes {
+                    firstname
+                    lastname
+                  }
+                }
+              }
             }
           }
         }
@@ -1654,8 +1898,8 @@ export const PostsBySectionDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class PostsBySectionGQL extends Apollo.Query<PostsBySectionQuery, PostsBySectionQueryVariables> {
-    document = PostsBySectionDocument;
+  export class PostCbsBySectionGQL extends Apollo.Query<PostCbsBySectionQuery, PostCbsBySectionQueryVariables> {
+    document = PostCbsBySectionDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

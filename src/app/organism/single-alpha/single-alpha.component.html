@@ -125,17 +125,16 @@
         <div class="divider-2"></div>
         <article class="col-md-4" *ngFor="let item of relatedPostArr;">
           <div class="mb-3 d-flex row">
-            <figure class="col-md-5"><a href="/single"><img src="{{item.img}}"
-                  alt="post-title"></a></figure>
+            <figure class="col-md-5"><a href="/single"><img src="{{item.img}}" alt="post-title"></a></figure>
             <div class="entry-content col-md-7 pl-md-0">
               <h5 class="entry-title mb-3"><a href="/single">{{item.title}}</a>
               </h5>
-               <!-- Add date-address-alpha -->
-               <app-date-address-alpha [item]="item.date_address"></app-date-address-alpha>
+              <!-- Add date-address-alpha -->
+              <app-entry-meta-alpha [post]="{}"></app-entry-meta-alpha>
             </div>
           </div>
         </article>
-       
+
       </div>
     </div>
     <!--End post related-->
@@ -148,8 +147,8 @@
             <h3 id="reply-title" class="comment-reply-title">{{"Leave a Reply" | translate}}</h3>
             <form action="#" method="post" id="commentform" class="comment-form" novalidate="">
               <p class="comment-notes">
-                <span id="email-notes">{{"Your email address will not be published" | translate}}.</span> {{"Required fields are marked" | translate}} <span
-                  class="required">*</span>
+                <span id="email-notes">{{"Your email address will not be published" | translate}}.</span>
+                {{"Required fields are marked" | translate}} <span class="required">*</span>
               </p>
               <p class="comment-form-comment">
                 <label for="comment">{{"Comment" | translate}}</label>
