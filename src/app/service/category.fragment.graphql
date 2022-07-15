@@ -1,0 +1,87 @@
+fragment CategoryCbEntityResponseCollectionFragment on CategoryCbEntityResponseCollection {
+  data {
+    attributes {
+      popular_post_cbs {
+        data {
+          attributes {
+            fields {
+              Title
+              Meta_Description
+              Content
+              Estimation
+              Image {
+                data {
+                  attributes {
+                    url
+                    previewUrl
+                    alternativeText
+                    caption
+                    name
+                    size
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      Name
+      Meta_Description
+      Image {
+        data {
+          attributes {
+            url
+            name
+            alternativeText
+            size
+            previewUrl
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment CategoryCbEntityResponseFragment on CategoryCbEntityResponse {
+  data {
+    attributes {
+      popular_post_cbs {
+        data {
+          attributes {
+            fields {
+              Title
+              Meta_Description
+              Content
+              Estimation
+              Image {
+                data {
+                  attributes {
+                    url
+                    previewUrl
+                    alternativeText
+                    caption
+                    name
+                    size
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      Name
+      Meta_Description
+      Image {
+        data {
+          attributes {
+            url
+            name
+            alternativeText
+            size
+            previewUrl
+          }
+        }
+      }
+    }
+  }
+}

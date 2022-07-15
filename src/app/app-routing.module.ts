@@ -18,15 +18,15 @@ const routes: Routes = [
         component: HomeAlphaComponent, // child route component that the router renders
       },
       {
-        path: 'single',
+        path: 'post/:slug',
         component: SingleAlphaComponent, // child route component that the router renders
       },
       {
-        path: 'author',
+        path: 'author/:slug',
         component: AuthorAlphaComponent, // child route component that the router renders
       },
       {
-        path: 'category',
+        path: 'category/:slug',
         component: CategoryAlphaComponent, // child route component that the router renders
       },
       {

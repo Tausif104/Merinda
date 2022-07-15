@@ -1,16 +1,20 @@
-<div class="box box-author m_b_2rem">
-    <div class="post-author row-flex">
-      <div class="author-img">
-        <img alt="author avatar" [src]="author.img" class="avatar">
+<div class="box box-author m_b_2rem" *ngIf="author">
+  <div class="post-author row-flex">
+    <div class="author-img">
+      <img alt="author avatar" [src]="getImage(author)" class="avatar">
+    </div>
+    <div class="author-content">
+      <div class="top-author">
+        <h5 class="heading-font">
+          <a [href]="getLink(author)" [title]="author.attributes?.firstname"
+            rel="author">{{author.attributes?.firstname}}</a>
+        </h5>
       </div>
-      <div class="author-content">
-        <div class="top-author">
-          <h5 class="heading-font"><a href="/author" title="Ryan" rel="author">{{author.name}}</a></h5>
-        </div>
-        <p class="d-none d-md-block">{{author.desc}}</p>
-        <div class="content-social-author" *ngIf="author.social">
-          <a target="_blank" class="author-social" *ngFor="let data of author.social" [href]="data.link">{{data.social}} </a>
-        </div>
-      </div>
+      <p class="d-none d-md-block">{{author.attributes?.lastname}}</p>
+      <!-- <div class="content-social-author" *ngIf="author.social">
+        <a target="_blank" class="author-social" *ngFor="let data of author.social" [href]="data.link">{{data.social}}
+        </a>
+      </div> -->
     </div>
   </div>
+</div>

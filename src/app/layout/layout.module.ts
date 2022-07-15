@@ -6,7 +6,7 @@ import { LayoutAlphaComponent } from './layout-alpha/layout-alpha.component';
 
 @NgModule({
   declarations: [LayoutAlphaComponent],
-  imports: [RouterModule, MoleculeModule],
+  imports: [RouterModule, MoleculeModule, BrowserModule],
   providers: [],
 })
 export class LayoutModule {}

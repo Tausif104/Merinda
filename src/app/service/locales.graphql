@@ -1,10 +1,10 @@
 query Locales {
   i18NLocales {
     data {
-        attributes {
-            name
-            code
-        }
+      attributes {
+        name
+        code
+      }
     }
   }
 }

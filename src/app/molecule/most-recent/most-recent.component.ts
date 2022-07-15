@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { renderImage } from 'src/app/utils/image-parse';
-import { PostCbEntity } from 'src/generated/graphql';
+import { renderImage } from 'src/app/utils/render-image';
+import { PostCbEntity, UploadFileEntity } from 'src/generated/graphql';
 
 @Component({
   selector: 'app-most-recent',
@@ -16,7 +16,7 @@ export class MostRecentComponent implements OnInit {
   }
 
   getPostImage(post: PostCbEntity) {
-    return renderImage(post);
+    return renderImage(post.attributes?.fields?.Image?.data as UploadFileEntity[]);
   }
 
 }

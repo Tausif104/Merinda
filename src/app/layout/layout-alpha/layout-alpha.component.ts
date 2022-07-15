@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryCbEntity, CategoryCbsGQL } from 'src/generated/graphql';
 
 @Component({
   selector: 'app-layout-alpha',
@@ -6,7 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout-alpha.component.scss'],
 })
 export class LayoutAlphaComponent implements OnInit {
-  constructor() {}
+  public categories: CategoryCbEntity[] = [];
 
-  ngOnInit(): void {}
+  constructor(
+    private categoryCbsGQL: CategoryCbsGQL
+  ) {}
+
+  ngOnInit(): void {
+    this.categoryCbsGQL.fetch({
+      locale: 'en'
+    }).subscribe((response) => {
+      this.categories = response.data.categoryCbs?.data as CategoryCbEntity[];
+      console.log(this.categories);
+    });
+  }
 }

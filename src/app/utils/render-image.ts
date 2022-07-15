@@ -1,9 +1,8 @@
 import { environment } from "src/environments/environment";
-import { PostCbEntity } from "src/generated/graphql";
+import { PostCbEntity, UploadFileEntity } from "src/generated/graphql";
 
-export const renderImage = (post: PostCbEntity) => {
-    const data = post.attributes?.fields?.Image?.data;
-    if (!data) {
+export const renderImage = (data: UploadFileEntity[]) => {
+    if (!data.length) {
         return '';
     }
 

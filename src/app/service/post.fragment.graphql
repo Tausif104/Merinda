@@ -1,0 +1,111 @@
+fragment PostCbEntityResponseCollectionFragment on PostCbEntityResponseCollection {
+  data {
+    attributes {
+      Slug
+      category_cb {
+        ...CategoryCbEntityResponseFragment
+      }
+      user {
+        data {
+          attributes {
+            firstname
+            lastname
+            image {
+              data {
+                attributes {
+                  width
+                  height
+                  url
+                  previewUrl
+                }
+              }
+            }
+          }
+        }
+      }
+      fields {
+        Title
+        Content
+        Meta_Description
+        Estimation
+        Image {
+          data {
+            attributes {
+              width
+              height
+              url
+              previewUrl
+            }
+          }
+        }
+      }
+      updatedAt
+      createdAt
+      publishedAt
+      category_cb {
+        data {
+          attributes {
+            Name
+            Meta_Description
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment PostCbEntityResponseFragment on PostCbEntityResponse {
+  data {
+    attributes {
+      Slug
+      category_cb {
+        ...CategoryCbEntityResponseFragment
+      }
+      user {
+        data {
+          attributes {
+            firstname
+            lastname
+            image {
+              data {
+                attributes {
+                  width
+                  height
+                  url
+                  previewUrl
+                }
+              }
+            }
+          }
+        }
+      }
+      fields {
+        Title
+        Content
+        Meta_Description
+        Estimation
+        Image {
+          data {
+            attributes {
+              width
+              height
+              url
+              previewUrl
+            }
+          }
+        }
+      }
+      updatedAt
+      createdAt
+      publishedAt
+      category_cb {
+        data {
+          attributes {
+            Name
+            Meta_Description
+          }
+        }
+      }
+    }
+  }
+}

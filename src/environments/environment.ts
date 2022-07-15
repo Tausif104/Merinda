@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: "https://apexyz.de"
+  baseUrl: "https://apexyz.de",
+  pageSize: 10
 };
 
 /*

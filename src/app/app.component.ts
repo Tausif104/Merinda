@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { get } from 'scriptjs';
-import { CategoryCbsGQL, LocalesGQL, PostsByCategoryCbGQL, SectionsGQL } from 'src/generated/graphql';
+import { CategoryCbsGQL, LocalesGQL } from 'src/generated/graphql';
 import { TranslateCacheService } from 'ngx-translate-cache';
 
 @Component({
@@ -14,11 +14,9 @@ export class AppComponent implements OnInit {
   browserLang:any;
   constructor(
     private localeGQL: LocalesGQL,
-    private postsByCategoryCbGQL: PostsByCategoryCbGQL,
     private categoryCbsGQL: CategoryCbsGQL,
     private translate: TranslateService,
     private translateCacheService: TranslateCacheService,
-    private sectionsGQL: SectionsGQL
     ) {
       translateCacheService.init();
       translate.addLangs(['en', 'nl']);
@@ -44,18 +42,18 @@ export class AppComponent implements OnInit {
       this.categoryCbsGQL.fetch({
         locale: defaultLocale
       }).subscribe((response) => {
-        if(response.data.categoryCbs?.data.length){
-          defaultCategoryId = response.data.categoryCbs?.data[0].id || "";
-         }
+        // if(response.data.categoryCbs?.data.length){
+        //   defaultCategoryId = response.data.categoryCbs?.data[0].id || "";
+        //  }
         
-        this.postsByCategoryCbGQL.fetch({
-          id: defaultCategoryId
-        }).subscribe((response) => {
-          const categoryName = response.data.categoryCb?.data?.attributes?.Name;
-          const categoryMetaDescription = response.data.categoryCb?.data?.attributes?.Meta_Description;
-          const categoryPosts = response.data.categoryCb?.data?.attributes?.post_cbs;
+        // this.postsByCategoryCbGQL.fetch({
+        //   id: defaultCategoryId
+        // }).subscribe((response) => {
+        //   const categoryName = response.data.categoryCb?.data?.attributes?.Name;
+        //   const categoryMetaDescription = response.data.categoryCb?.data?.attributes?.Meta_Description;
+        //   const categoryPosts = response.data.categoryCb?.data?.attributes?.post_cbs;
           
-        });
+        // });
 
       //   this.sectionsGQL.fetch().subscribe((response) => {
       //     const editorsPickSection = response.data.sectionsCbs?.data.find((data) => {

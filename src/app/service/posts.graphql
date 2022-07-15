@@ -1,24 +1,34 @@
-query PostCbsByLocal ($locale: I18NLocaleCode) {
-  postCbs (locale: $locale) {
-    data {
-      attributes {
-        fields {
-          Title
-          Content
-          Meta_Description
-        }
-        updatedAt
-        createdAt
-        publishedAt
-        category_cb {
-          data {
-            attributes {
-              Name
-              Meta_Description
-            }
-          }
+query PostCbs(
+  $locale: I18NLocaleCode!
+  $sectionId: ID
+  $categoryId: ID
+  $page: Int!
+  $pageSize: Int!
+  $slug: String,
+  $userId: ID
+) {
+  postCbs(
+    locale: $locale
+    filters: {
+      sections_cbs: { id: { eq: $sectionId } }
+      category_cb: { id: { eq: $categoryId } }
+      Slug: { eq: $slug }
+      user: {
+        id: {
+          eq: $userId
         }
       }
     }
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
+    meta {
+      pagination {
+        total
+        page
+        pageSize
+        pageCount
+      }
+    }
+    ...PostCbEntityResponseCollectionFragment
   }
 }

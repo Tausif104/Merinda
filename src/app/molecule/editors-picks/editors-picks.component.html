@@ -1,12 +1,19 @@
 <div class="row">
   <div class="col-sm-12 col-md-6">
     <article class="first mb-3" *ngIf="firstPost">
-      <figure><a href="single"><img [src]="getPostImage(firstPost)" alt="post-title"></a>
+      <figure>
+        <a [href]="buildLink(firstPost)">
+          <img [src]="getPostImage(firstPost)" alt="post-title">
+        </a>
       </figure>
-      <h3 class="entry-title mb-3"><a href="single">{{firstPost.attributes?.fields?.Title}}</a></h3>
+      <h3 class="entry-title mb-3">
+        <a [href]="buildLink(firstPost)">
+          {{firstPost.attributes?.fields?.Title}}
+        </a>
+      </h3>
       <div class="entry-excerpt">
         <p> {{firstPost.attributes?.fields?.Meta_Description}} </p>
-      </div>
+      </div>OrganismModule
       <app-entry-meta-alpha [post]="firstPost"></app-entry-meta-alpha>
     </article>
     <a class="btn btn-green d-inline-block mb-4 mb-md-0" href="/archive">{{"All Featured" | translate}}</a>
@@ -14,10 +21,15 @@
   <div class="col-sm-12 col-md-6">
     <article class="post-has-bg">
       <div class="mb-3 d-flex row" *ngFor="let post of posts | slice: 1;">
-        <figure class="col-4 col-md-4"><a href="single"><img [src]="getPostImage(post)" alt="post-title"></a>
+        <figure class="col-4 col-md-4">
+          <a href="single">
+            <img [src]="getPostImage(post)" alt="post-title">
+          </a>
         </figure>
         <div class="entry-content col-8 col-md-8 pl-md-0">
-          <h5 class="entry-title mb-3"><a href="single">{{post.attributes?.fields?.Title}}</a></h5>
+          <h5 class="entry-title mb-3">
+            <a href="single">{{post.attributes?.fields?.Title}}</a>
+          </h5>
           <!-- Add date-address-alpha -->
           <app-entry-meta-alpha [post]="post"></app-entry-meta-alpha>
         </div>

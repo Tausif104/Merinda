@@ -1,0 +1,22 @@
+query CategoryCb($categoryId: ID, $page: Int, $pageSize: Int, $locale: String) {
+  postCbs(
+    filters: {
+      category_cb: { id: { eq: $categoryId } }
+      locale: { eq: $locale }
+    }
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
+    ...PostCbEntityResponseCollectionFragment
+    meta {
+      pagination {
+        total
+        pageCount
+        pageSize
+        page
+      }
+    }
+  }
+  categoryCb(id: $categoryId) {
+    ...CategoryCbEntityResponseFragment
+  }
+}

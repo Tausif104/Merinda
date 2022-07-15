@@ -1,0 +1,11 @@
+query PostCb(
+  $locale: I18NLocaleCode
+  $postId: ID!
+) {
+  postCb(
+    locale: $locale
+    id: $postId
+  ) {
+  	...PostCbEntityResponseFragment
+  }
+}

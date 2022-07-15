@@ -1,4 +1,6 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PostCbEntity, PostCbsGQL, UsersPermissionsUserEntity } from 'src/generated/graphql';
 
 @Component({
   selector: 'app-single-alpha',
@@ -6,49 +8,37 @@ import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
   styleUrls: ['./single-alpha.component.scss']
 })
 export class SingleAlphaComponent implements OnInit, OnDestroy {
-  authorDetail = {
-    "img":"assets/images/author-avata-1.jpg",
-    "name":"Ryan Mark",
-    "desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet ut ligula et semper. Aenean consectetur, est id gravida venenatis.",
-    "social":[{"social":"Facebook","link":"#"},{"social":"Twitter","link":"#"},{"social":"Google +","link":"#"}]
-  }
-  relatedPostArr = [ 
-    {
-      'title':"Is ‘Interactive Storytelling’ the Future of Media?",
-       "img": "http://via.placeholder.com/512x512",
-       "date_address":{
-        "city":"Furukawa",
-        "designation":"Programing",
-        "date": "March 14",
-        "time": "6 min read"
-       }
-    },
-    {
-      'title':"How NOT to get a $30k bill from Firebase",
-      "img": "http://via.placeholder.com/512x512",
-      "date_address":{
-        "city":"Glorida",
-        "designation":"Living",
-        "date": "April 14",
-        "time": "7 min read"
-       }
-    },
-    {
-      'title':"Google Can’t Figure Out What YouTube Is",
-      "img": "http://via.placeholder.com/512x512",
-      "date_address":{
-        "city":"Rayan Mark",
-        "designation":"GEN",
-        "date": "June 14",
-        "time": "8 min read"
-       }
-    },
-  
-  ]
-  constructor(private renderer: Renderer2) {}
+  post: PostCbEntity;
+  author: UsersPermissionsUserEntity;
+
+  constructor(
+    private renderer: Renderer2,
+    private route: ActivatedRoute,
+    private postCbsGQL: PostCbsGQL,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.renderer.addClass(document.body, 'single');
+    this.route.params.subscribe(params => {
+       const slug = params['slug'];
+       this.postCbsGQL.fetch({
+        slug,
+        locale: "en",
+        pageSize: 1,
+        page: 0
+       }).subscribe((response) => {
+          const posts = response.data.postCbs?.data as PostCbEntity[];
+
+          if(posts?.length) {
+            this.post = posts[0];
+            console.log(this.post);
+            this.author = this.post.attributes?.user?.data as UsersPermissionsUserEntity
+          } else {
+            this.router.navigate(['/']);
+          }
+       })
+    });
   }
 
   ngOnDestroy(): void {

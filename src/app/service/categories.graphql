@@ -1,10 +1,5 @@
-query CategoryCbs ($locale: I18NLocaleCode) {
+query CategoryCbs($locale: I18NLocaleCode) {
   categoryCbs(locale: $locale) {
-    data {
-      id
-      attributes {
-        Name
-      }
-    }
+    ...CategoryCbEntityResponseCollectionFragment
   }
 }

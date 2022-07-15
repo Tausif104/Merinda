@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { renderImage } from 'src/app/utils/image-parse';
-import { PostCbEntity } from 'src/generated/graphql';
+import { buildLink } from 'src/app/utils/build-link';
+import { renderImage } from 'src/app/utils/render-image';
+import { PostCbEntity, UploadFileEntity } from 'src/generated/graphql';
 
 @Component({
   selector: 'app-editors-picks',
@@ -16,12 +17,17 @@ export class EditorsPicksComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.posts.length) {
-      this.firstPost = this.posts[0];      
+      this.firstPost = this.posts[0];
+      console.log(this.firstPost);
     }
   }
 
   getPostImage(post: PostCbEntity) {
-    return renderImage(post);
+    return renderImage(post.attributes?.fields?.Image?.data as UploadFileEntity[]);
+  }
+
+  buildLink(post: PostCbEntity) {
+    return buildLink(post)
   }
 
 }

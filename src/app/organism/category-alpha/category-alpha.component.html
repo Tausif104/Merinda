@@ -8,7 +8,9 @@
           </h4>
           <article class="first mb-3">
             <figure>
-              <a href="/single"><img src="http://via.placeholder.com/1400x992" alt="post-title" /></a>
+              <a href="/single">
+                <img src="http://via.placeholder.com/1400x992" alt="post-title" />
+              </a>
             </figure>
             <h1 class="entry-title mb-3">
               <a href="/single">Home Internet Is Becoming a Luxury for the Wealthy</a>
@@ -27,42 +29,24 @@
           </article>
           <div class="divider"></div>
 
-          <!-- Recent post -->
-          <app-post-alpha [postData]="postArr"></app-post-alpha>
-
-          <ul class="page-numbers heading">
-            <li>
-              <span aria-current="page" class="page-numbers current">1</span>
-            </li>
-            <li><a class="page-numbers" href="#">2</a></li>
-            <li><a class="page-numbers" href="#">3</a></li>
-            <li><a class="page-numbers" href="#">4</a></li>
-            <li><a class="page-numbers" href="#">5</a></li>
-            <li><a class="page-numbers" href="#">...</a></li>
-            <li><a class="page-numbers" href="#">98</a></li>
-            <li>
-              <a class="next page-numbers" href="#"><i class="icon-right-open-big"></i></a>
-            </li>
-          </ul>
+          <app-most-recent [posts]="posts.slice(1)"></app-most-recent>
         </div>
         <!--col-md-8-->
         <div class="col-md-4 pl-md-5 sticky-sidebar">
           <div class="sidebar-widget latest-tpl-4">
-            <h5 class="spanborder widget-title">
-              <span>{{"Popular in Culture" | translate}}</span>
-            </h5>
-            <!-- Add popular-culture molecule-->
-            <app-culture-alpha [posts]="[]"></app-culture-alpha>
+            <h4 class="spanborder">
+              <span>{{"Popular" |translate}}</span>
+            </h4>
+            <!-- Add popular molecule-->
+            <app-culture-alpha [posts]="popularInCulturePosts"></app-culture-alpha>
           </div>
         </div>
-        <!--col-md-4-->
       </div>
+      <!--col-md-4-->
     </div>
-    <!--content-widget-->
   </div>
-
   <!-- Ads Section -->
-  <app-ads [itemAd]="Ad"></app-ads>
+  <app-ads [itemAd]=""></app-ads>
 
   <!--content-widget-->
 </main>

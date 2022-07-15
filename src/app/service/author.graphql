@@ -1,0 +1,24 @@
+query Author($firstname: String, $lastname: String) {
+  usersPermissionsUsers(
+    filters: { firstname: { eq: $firstname }, lastname: { eq: $lastname } }
+  ) {
+    data {
+      id
+      attributes {
+        username
+        firstname
+        lastname
+        image {
+          data {
+            attributes {
+              url
+              width
+              height
+              previewUrl
+            }
+          }
+        }
+      }
+    }
+  }
+}

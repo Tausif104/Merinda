@@ -1,4 +1,7 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { AuthorGQL, PostCbEntity, PostCbsGQL, UsersPermissionsUserEntity } from 'src/generated/graphql';
 
 @Component({
   selector: 'app-author-alpha',
@@ -6,214 +9,50 @@ import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
   styleUrls: ['./author-alpha.component.scss']
 })
 export class AuthorAlphaComponent implements OnInit, OnDestroy {
-  authorDetail = {
-    "img":"assets/images/author-avata-1.jpg",
-    "name":"Ryan Mark",
-    "desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet ut ligula et semper. Aenean consectetur, est id gravida venenatis.",
-    "social":[{"social":"Facebook","link":"#"},{"social":"Twitter","link":"#"},{"social":"Google +","link":"#"}]
-  }
-  Ad = {
-    "adImg": "/assets/images/sample/adds-2.png",
-    "link":"#"
-  }
-  postArr = [ 
-    {
-      "category":"EDITORS' PICK",
-      'title':"Home Internet Is Becoming a Luxury for the Wealthy",
-      "desc":"And black on meretriciously regardless well fearless irksomely as about hideous wistful bat less oh much and occasional useful rat darn jeepers far.",
-       "img": "http://via.placeholder.com/800x495",
-       "date_address":{
-        "img":"",
-        "city":"Dave Gershgorn",
-        "designation":"OneZero",
-        "date": "May 21",
-        "time": "5 min read",
-       },
-       "subData" : [],
-    },
-    {
-      "category":"BASED ON YOUR READING HISTORY",
-      'title':"Why Lack of Sleep is So Bad For You",
-      "desc":"A lack of sleep is linked to an incredibly wide range of ailments, from heart disease and Type 2 diabetes to obesity, depression, poor cognitive function, and even Alzheimer's disease..",
-       "img": "http://via.placeholder.com/512x512",
-       "date_address":{
-        "img":"/assets/images/author-avata-1.jpg",
-        "city":"Darcy Reeder",
-        "designation":"OneZero",
-        "date": "Jun 17",
-        "time": "3 min read",
-       },
-       "subData" : [],
-    },
-    {
-      "category":"CULTURE",
-      'title':"Regulators Just Put a Target on Apple's Back",
-      "desc":"Excellence is the most important habit you can curate in life because it requires doing things you don't want to do and getting uncomfortable on a daily basis.",
-      "img": "http://via.placeholder.com/512x512",
-      "date_address":{
-        "img":"",
-        "city":"Azimi ??kalo",
-        "designation":"Freedom",
-        "date": "May 12",
-        "time": "8 min read"
-       },
-       "subData" : [],
-    },
-    {
-      "category":"TECHNOLOGY",
-      'title':"Apple Is Designing for a Post-Facebook World",
-      "desc":"And black on meretriciously regardless well fearless irksomely as about hideous wistful bat less oh much and occasional useful rat darn jeepers far.",
-      "img": "http://via.placeholder.com/512x512",
-      "date_address":{
-        "img":"",
-        "city":"Dave Gershgorn",
-        "designation":"OneZero",
-        "date": "Jun 12",
-        "time": "7 min read",
-       },
-       "subData" : [],
-    },
-    {
-      "category":"BASED ON YOUR READING HISTORY",
-      'title':"What Really Happens to AirPods When They Die",
-      "desc":"At WWDC, Apple debuted a slew of new features that let users connect with their families and friends right inside Apple's apps'''no social.",
-      "img": "http://via.placeholder.com/512x512",
-      "date_address":{
-        "img":"",
-        "city":"Johan Doan",
-        "designation":" Lifestyle",
-        "date": "May 15",
-        "time": "5 min read",
-       },
-       "subData" : [
-        {
-          "title":"I Learned How to Die Before I Knew How to Live",
-          "img": "http://via.placeholder.com/512x512",
-          "date_address":{
-          "city":"Anna Goldfarb",
-          "designation":" Fashion",
-          "date":"March 12",
-          "time":"4 min read",
-          },
-        },
-        {
-          "title":"Is 'Interactive Storytelling' the Future of Media?",
-          "img": "http://via.placeholder.com/512x512",
-          "date_address":{
-          "city":"Furukawa",
-          "designation":"Programing",
-          "date":"March 14",
-          "time":"6 min read",
-          },
-        },
-        {
-          "title":"How NOT to get a $30k bill from Firebase",
-          "img": "http://via.placeholder.com/512x512",
-          "date_address":{
-          "city":"Glorida",
-          "designation":"Living",
-          "date":"April 14",
-          "time":"7 min read",
-          },
-        },
-        {
-          "title":"Google Can't Figure Out What YouTube Is",
-          "img": "http://via.placeholder.com/512x512",
-          "date_address":{
-          "city":"Rayan Mark",
-          "designation":"GEN",
-          "date":"Jun 14",
-          "time":"8 min read",
-          },
-        },
-      ]
-    },
-    {
-      "category":"EDITORS' PICK",
-      'title':"Home Internet Is Becoming a Luxury for the Wealthy",
-      "desc":"And black on meretriciously regardless well fearless irksomely as about hideous wistful bat less oh much and occasional useful rat darn jeepers far.",
-       "img": "http://via.placeholder.com/800x495",
-       "date_address":{
-        "img":"",
-        "city":"Dave Gershgorn",
-        "designation":"OneZero",
-        "date": "May 21",
-        "time": "5 min read"
-       },
-       "subData" : [],
-    },
-    {
-      "category":"BASED ON YOUR READING HISTORY",
-      'title':"Why Lack of Sleep is So Bad For You",
-      "desc":"A lack of sleep is linked to an incredibly wide range of ailments, from heart disease and Type 2 diabetes to obesity, depression, poor cognitive function, and even Alzheimer's disease..",
-       "img": "http://via.placeholder.com/512x512",
-       "date_address":{
-        "img":"",
-        "city":"Darcy Reeder",
-        "designation":"OneZero",
-        "date": "Jun 17",
-        "time": "3 min read"
-       },
-       "subData" : [],
-    },
-    {
-      "category":"CULTURE",
-      'title':"Regulators Just Put a Target on Apple's Back",
-      "desc":"Excellence is the most important habit you can curate in life because it requires doing things you don't want to do and getting uncomfortable on a daily basis.",
-      "img": "http://via.placeholder.com/512x512",
-      "date_address":{
-        "img":"",
-        "city":"Azimi ??kalo",
-        "designation":"Freedom",
-        "date": "May 12",
-        "time": "8 min read"
-       },
-       "subData" : [],
-    },
-  ]
+  posts: PostCbEntity[] = [];
+  author: UsersPermissionsUserEntity;
 
-  cultureArr = [
-    {
-      "title":"President and the emails. Who will guard the guards?",
-      "date_address":{
-      "city":"Alentica",
-      "designation":"Police",
-      "date": "May 14",
-      "time": "3 min read",
-      },
-    },
-    {
-      "title":"How to Silence the Persistent Ding of Modern Life",
-      "date_address":{
-      "city":"Alentica",
-      "designation":"Police",
-      "date": "Jun 12",
-      "time": "4 min read",
-      },
-    },
-    {
-      "title":"Why We Love to Watch",
-      "date_address":{
-      "city":"Alentica",
-      "designation":"Police",
-      "date": "May 15",
-      "time": "5 min read",
-      },
-    },
-    {
-      "title":"How Health Apps Let",
-      "date_address":{
-      "city":"Alentica",
-      "designation":"Police",
-      "date": "April 27",
-      "time": "6 min read",
-      },
-    },
-  ]
-  constructor(private renderer: Renderer2) {}
+  constructor(
+    private renderer: Renderer2,
+    private postCbsGQL: PostCbsGQL,
+    private route: ActivatedRoute,
+    private authorGQL: AuthorGQL,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.renderer.addClass(document.body, 'archive');
+    this.route.params.subscribe(params => {
+        const slug = params['slug'];
+        const userSlug = slug.split("_");
+
+        const firstname = userSlug[0];
+        const lastname = userSlug[1];
+
+        console.log({firstname, lastname});
+        
+        this.authorGQL.fetch({
+          firstname,
+          lastname
+        }).subscribe((response) => {
+          console.log(response.data.usersPermissionsUsers?.data);
+          
+          this.author = response.data.usersPermissionsUsers?.data[0] as UsersPermissionsUserEntity;
+          if (!this.author.id) {
+            return this.router.navigate(['/']);
+          }
+
+          return this.postCbsGQL.fetch({
+            page: 0,
+            locale: "en",
+            pageSize: environment.pageSize,
+            userId: this.author.id
+          }).subscribe((response) => {
+            this.posts = response.data.postCbs?.data as PostCbEntity[]
+          });
+        })
+
+    });
   }
 
   ngOnDestroy(): void {

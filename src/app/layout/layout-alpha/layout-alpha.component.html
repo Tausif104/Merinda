@@ -26,25 +26,16 @@
     </form>
     <nav>
       <ul>
-        <li class="current-menu-item"><a href="/">Home</a></li>
-        <li class="menu-item-has-children"><a href="/category">Categories</a>
-          <ul class="sub-menu">
-            <li><a href="/category">Politics</a></li>
-            <li><a href="/category">Health</a></li>
-            <li><a href="/category">Design</a></li>
-          </ul>
+        <li *ngFor="let category of categories" class="current-menu-item">
+          <a href="/category">{{category.attributes?.Name}}1</a>
         </li>
-        <li><a href="typography.html">Typography</a></li>
-        <li><a href="/category">Politics</a></li>
-        <li><a href="/category">Health</a></li>
-        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </div>
 </div>
 <!--Mobile navigation-->
 <div id="wrapper">
-  <app-header-alpha></app-header-alpha>
+  <app-header-alpha *ngIf="categories.length" [categories]="categories"></app-header-alpha>
   <router-outlet></router-outlet>
   <app-footer-alpha></app-footer-alpha>
 </div>

@@ -21,7 +21,9 @@
       </div>
       <div class="align-items-center ml-2 float-right">
         <select #selLang (change)="translateLanguageTo(selLang.value)">
-          <option *ngFor="let language of translate.getLangs()" [selected]="language === Setlanguage" [value]="language">{{ language }}</option>
+          <option *ngFor="let _language of translate.getLangs()" [selected]="_language === language"
+            [value]="_language">
+            {{ language }}</option>
         </select>
       </div>
     </div>
@@ -33,20 +35,8 @@
       <div class="menu-primary">
         <ul>
           <li class="current-menu-item"><a href="/">{{"Home" | translate}}</a></li>
-          <li class="menu-item-has-children"><a href="/category">{{"Categories" | translate}}</a></li>
-          <li><a href="#">{{"Typography" | translate}}</a></li>
-          <li><a href="#">{{"Politics" | translate}}</a></li>
-          <li><a href="#">{{"Health" | translate}}</a></li>
-          <li><a href="#">{{"Design" | translate}}</a></li>
-          <li><a href="#">{{"Startups" | translate}}</a></li>
-          <li><a href="#">{{"Culture" | translate}}</a></li>
-          <li><a href="#">{{"Contact" | translate}}</a></li>
-          <li class="menu-item-has-children"><a href="#">{{"More" | translate}}...</a>
-            <ul class="sub-menu">
-              <li><a href="/search">{{"Search" | translate}}</a></li>
-              <li><a href="/author">{{"Author" | translate}}</a></li>
-              <li><a href="#">404</a></li>
-            </ul>
+          <li *ngFor="let category of categories" class="current-menu-item">
+            <a href="/category">{{category.attributes?.Name}}</a>
           </li>
         </ul>
         <span></span>

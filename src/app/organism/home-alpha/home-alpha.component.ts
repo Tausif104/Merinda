@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { PostCbEntity, PostCbsBySectionGQL } from 'src/generated/graphql';
+import { environment } from 'src/environments/environment';
+import { PostCbEntity, PostCbsGQL } from 'src/generated/graphql';
 
 @Component({
   selector: 'app-home-alpha',
@@ -16,59 +17,64 @@ export class HomeAlphaComponent implements OnInit, OnDestroy {
 
   constructor(
     private renderer: Renderer2,
-    private postsCbsBySection: PostCbsBySectionGQL
+    private postsCbsGQL: PostCbsGQL
   ) {}
 
   ngOnInit(): void {
     this.renderer.addClass(document.body, 'home');
 
     // Editor's Pick Posts
-    this.postsCbsBySection.fetch({
-      id: "1",
-      locale: "en"
+    this.postsCbsGQL.fetch({
+      page: 0,
+      locale: "en",
+      pageSize: environment.pageSize,
+      sectionId: "1",
     }).subscribe((response) => {
-      this.editorsPickPosts = response.data.sectionsCb?.data?.attributes?.post_cbs?.data as PostCbEntity[]
-
-      console.log(this.editorsPickPosts);
-      
+      this.editorsPickPosts = response.data.postCbs?.data as PostCbEntity[];
     });
 
     // Trending Posts
-    this.postsCbsBySection.fetch({
-      id: "2",
-      locale: "en"
+    this.postsCbsGQL.fetch({
+      page: 0,
+      locale: "en",
+      pageSize: environment.pageSize,
+      sectionId: "2",
     }).subscribe((response) => {
-      this.trendingPosts = response.data.sectionsCb?.data?.attributes?.post_cbs?.data as PostCbEntity[]
+      this.trendingPosts = response.data.postCbs?.data as PostCbEntity[];
     });
 
     // Popular Posts
-    this.postsCbsBySection.fetch({
-      id: "3",
-      locale: "en"
+    this.postsCbsGQL.fetch({
+      page: 0,
+      locale: "en",
+      pageSize: environment.pageSize,
+      sectionId: "3",
     }).subscribe((response) => {
-      this.popularPosts = response.data.sectionsCb?.data?.attributes?.post_cbs?.data as PostCbEntity[]
+      this.popularPosts = response.data.postCbs?.data as PostCbEntity[]      
     });
 
     // Hero Post
-    this.postsCbsBySection.fetch({
-      id: "4",
-      locale: "en"
+    this.postsCbsGQL.fetch({
+      page: 0,
+      locale: "en",
+      pageSize: 1,
+      sectionId: "4",
     }).subscribe((response) => {
-      const posts = response.data.sectionsCb?.data?.attributes?.post_cbs?.data as PostCbEntity[];
+      const posts = response.data.postCbs?.data as PostCbEntity[];
 
-      console.log({posts});
-      
       if (posts.length) {
         this.heroPost = posts[0]
-      }
+      }   
     });
 
     // Posts with Referral
-    this.postsCbsBySection.fetch({
-      id: "6",
-      locale: "en"
+    this.postsCbsGQL.fetch({
+      page: 0,
+      locale: "en",
+      pageSize: environment.pageSize,
+      sectionId: "6",
     }).subscribe((response) => {
-      this.referralPosts = (response.data.sectionsCb?.data?.attributes?.post_cbs?.data as PostCbEntity[]);
+      this.referralPosts = response.data.postCbs?.data as PostCbEntity[]      
     });
   }
   
