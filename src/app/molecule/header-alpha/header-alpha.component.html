@@ -12,8 +12,9 @@
           </ul>
           <a class="author-avatar" href="#"><img src="/assets/images/author-avata-1.jpg" alt=""></a>
         </div>
-        <form action="#" method="get" class="search-form d-lg-flex float-right">
-          <a href="javascript:void(0)" class="searh-toggle">
+        <form action="#" method="get" class="search-form d-lg-flex float-right" 
+        [ngClass]="{ 'open-search': isSearchBarOpen }">
+          <a href="javascript:void(0)" class="searh-toggle" (click)="isSearchBarOpen = !isSearchBarOpen">
             <i class="icon-search"></i>
           </a>
           <input type="text" class="search_field" placeholder="Search..." value="" name="s">
@@ -23,7 +24,7 @@
         <select #selLang (change)="translateLanguageTo(selLang.value)">
           <option *ngFor="let _language of translate.getLangs()" [selected]="_language === language"
             [value]="_language">
-            {{ language }}</option>
+            {{ _language }}</option>
         </select>
       </div>
     </div>

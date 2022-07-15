@@ -1,82 +1,50 @@
-// (function($){
-//   'use strict';
+//javascript funtions
+function scrollBar() {
+    window.addEventListener('scroll', function() {
+        const topScrollbarElement = document.getElementsByClassName('top-scroll-bar')[0];
 
-//   function stickMenu() {
-//       $(".stick").scrollToFixed({
-//           preFixed: function() {
-//               $(".menu-top").animate({
-//                   height: 83
-//               }, 400, function() {
-//                   $(this).css("overflow", "visible")
-//               })
-//           },
-//           postFixed: function() {
-//               $(".menu-top").css("overflow", "hidden").animate({
-//                   height: 0
-//               }, 400)
-//           }
-//       })
-//   }
+        // calculate the percentage the user has scrolled down the page
+        var scrollPercent = 100 * window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        topScrollbarElement.style.width = scrollPercent +'%';
 
-//   function mobileMenu() {
-
-//     $('.menu-toggle-icon').on('click', function(event) {
-//       $(this).toggleClass('act');
-//         if($(this).hasClass('act')) {
-//           $('.mobi-menu').addClass('act');
-//         }
-//         else {
-//           $('.mobi-menu').removeClass('act');
-//         }
-//     });
-
-//     $('.mobi-menu .menu-item-has-children').append('<span class="sub-menu-toggle"></span>');
-
-//     $('.sub-menu-toggle').on('click', function(event) {
-//       $(this).parent('li').toggleClass('open-submenu');
-//     });
-//   }
+        // sticky header on scroll
+        stickMenu();
   
+        //back-to-top event
+        backToTop();
+    })
+}
 
-//   function backToTop() {
-//       var o = $("body").width();
-//       o > 450 && $(window).scroll(function() {
-//           $(this).scrollTop() > 100 ? $(".back-to-top").fadeIn() : $(".back-to-top").fadeOut()
-//       }), $(".back-to-top").on('click', function() {
-//           return $("html, body").animate({
-//               scrollTop: 0
-//           }, 700), !1
-//       })
-//   }
+function stickMenu() {
+  const headerElement = document.getElementsByClassName('stick')[0];
+  if(window.scrollY > 83) {
+    headerElement?.classList.add('fixed-header-position');
+  } else {
+    headerElement?.classList.remove('fixed-header-position');
+  }
+}
 
-//   function searchForm() {
-//      $(".searh-toggle").on('click', function() {       
-//          $('header .search-form').toggleClass('open-search');
-//       })
-//   }
+function backToTop() {
+  const backToTopElement = document.querySelector('.back-to-top');
 
-//   function scrollBar() {
-//     $(window).scroll(function() {
-//         // calculate the percentage the user has scrolled down the page
-//         var scrollPercent = 100 * $(window).scrollTop() / ($(document).height() - $(window).height());
-//         $('.top-scroll-bar').css('width', scrollPercent +"%"  );
+  backToTopElement.addEventListener("click", () => {
+    window.scrollTo({
+     top: 0,
+    })
+  });
 
-//     });
-//   }
+  if(window.scrollY > 100) {
+    backToTopElement.style.opacity = "1"; 
+    backToTopElement.style.pointerEvents = 'auto';
+  }
+  else {
+      backToTopElement.style.opacity = '0';
+      backToTopElement.style.pointerEvents = 'none';
+  }
+}
 
-//   function theiaSticky() {
-//     $('.sticky-sidebar').theiaStickySidebar({
-//         additionalMarginTop: 70
-//     });
-//   }
-
-//   $(window).on('load', function () {
-//     backToTop(); 
-//     mobileMenu();
-//     stickMenu();
-//     searchForm();
-//     scrollBar();
-//     theiaSticky();
-//   });
-
-// })(jQuery);
+window.addEventListener('load', () => {
+  stickMenu();
+  backToTop();
+  scrollBar();
+})

@@ -17,13 +17,13 @@
             </h4>
             <!-- Add popular-culture molecule-->
             <app-culture-alpha [posts]="trendingPosts"></app-culture-alpha>
+            <a class="link-green" href="/archive">{{"See all trending" | translate}}<svg class="svgIcon-use" width="19"
+                height="19">
+                <path d="M7.6 5.138L12.03 9.5 7.6 13.862l-.554-.554L10.854 9.5 7.046 5.692" fill-rule="evenodd">
+                </path>
+              </svg>
+            </a>
           </div>
-          <a class="link-green" href="/archive">{{"See all trending" | translate}}<svg class="svgIcon-use" width="19"
-              height="19">
-              <path d="M7.6 5.138L12.03 9.5 7.6 13.862l-.554-.554L10.854 9.5 7.046 5.692" fill-rule="evenodd">
-              </path>
-            </svg>
-          </a>
         </div>
         <!--end trending-->
 
@@ -63,7 +63,7 @@
           <h2 class="spanborder h4">
             <span>{{"Most Recent" | translate}}</span>
           </h2>
-          <app-most-recent [posts]="trendingPosts"></app-most-recent>
+          <app-most-recent [posts]="mostRecentPosts"></app-most-recent>
         </div>
         <!--col-md-8-->
         <div class="col-md-4 pl-md-5 sticky-sidebar">

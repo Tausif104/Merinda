@@ -45,6 +45,7 @@ TABLE CONTENT
 html,
 body {
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 a:hover {
@@ -574,7 +575,7 @@ input.search_field {
   position: fixed;
   bottom: 10%;
   right: 20px;
-  display: none;
+  opacity: 0;
   cursor: pointer;
   z-index: 9999;
   transform: rotate(90deg);
@@ -584,6 +585,8 @@ input.search_field {
   font-size: 12px;
   line-height: 1;
   background: rgb(255, 255, 255);
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
 }
 
 .back-to-top i {
@@ -641,6 +644,12 @@ header .logo-wrapper {
   width: 100%;
   z-index: 1;
   position: relative;
+}
+
+.fixed-header-position {
+  position: fixed;
+  top: 0;
+  background-color: #fff;
 }
 
 .searh-toggle {
@@ -1587,4 +1596,10 @@ pre {
 button.owl-prev:hover,
 button.owl-next:hover {
   background: none !important;
+}
+
+/* STICKY SIDEBAR */
+.sidebar-widget {
+  position: sticky;
+  top: 70px;
 }

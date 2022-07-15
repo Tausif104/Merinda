@@ -41,6 +41,11 @@ export class HomeAlphaComponent implements OnInit, OnDestroy {
       sectionId: "2",
     }).subscribe((response) => {
       this.trendingPosts = response.data.postCbs?.data as PostCbEntity[];
+      this.mostRecentPosts.push(this.trendingPosts[0]);
+      this.mostRecentPosts.push(this.trendingPosts[0]);
+      this.mostRecentPosts.push(this.trendingPosts[0]);
+      this.mostRecentPosts.push(this.trendingPosts[0]);
+      this.mostRecentPosts.push(this.trendingPosts[0]);
     });
 
     // Popular Posts

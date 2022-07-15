@@ -11,13 +11,13 @@
         <li><a href="#"><i class="icon-facebook"></i></a></li>
       </ul>
 
-      <a href="javascript:void(0)" class="menu-toggle-icon">
+      <a href="javascript:void(0)" [ngClass]="isOpenMenu ? 'menu-toggle-icon act' : 'menu-toggle-icon'" (click)="isOpenMenu = !isOpenMenu">
         <span class="lines"></span>
       </a>
     </div>
   </div>
 
-  <div class="mobi-menu">
+  <div [ngClass]="isOpenMenu ? 'mobi-menu act' : 'mobi-menu'">
     <div class="mobi-menu__logo">
       <h1 class="logo navbar-brand"><a href="/" class="logo">Merinda</a></h1>
     </div>
@@ -41,11 +41,5 @@
 </div>
 <!--#wrapper-->
 
-<a href="#" class="back-to-top heading"><i class="icon-left-open-big"></i><span
+<a class="back-to-top heading"><i class="icon-left-open-big"></i><span
     class="d-lg-inline d-md-none">Top</span></a>
-
-<!--Scripts-->
-<script src="/assets/js/jquery-3.6.0.min.js"></script>
-<script src="/assets/js/bootstrap.js"></script>
-<script src="/assets/js/jquery-scrolltofixed-min.js"></script>
-<script src="/assets/js/theia-sticky-sidebar.js"></script>
