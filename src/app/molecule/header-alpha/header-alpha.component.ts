@@ -10,6 +10,7 @@ import { CategoryCbEntity } from 'src/generated/graphql';
 export class HeaderAlphaComponent implements OnInit {
   language: string | null = 'en';
   @Input() categories: CategoryCbEntity[] = [];
+  isSearchBarOpen: boolean | null =  false;
 
   constructor(public translate: TranslateService) {}
 

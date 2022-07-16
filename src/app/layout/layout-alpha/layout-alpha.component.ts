@@ -8,6 +8,7 @@ import { CategoryCbEntity, CategoryCbsGQL } from 'src/generated/graphql';
 })
 export class LayoutAlphaComponent implements OnInit {
   public categories: CategoryCbEntity[] = [];
+  isOpenMenu: boolean | null = false;
 
   constructor(
     private categoryCbsGQL: CategoryCbsGQL
