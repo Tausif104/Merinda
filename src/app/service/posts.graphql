@@ -4,8 +4,9 @@ query PostCbs(
   $categoryId: ID
   $page: Int!
   $pageSize: Int!
-  $slug: String,
+  $slug: String
   $userId: ID
+  $popularCategoryId: ID
 ) {
   postCbs(
     locale: $locale
@@ -13,11 +14,8 @@ query PostCbs(
       sections_cbs: { id: { eq: $sectionId } }
       category_cb: { id: { eq: $categoryId } }
       Slug: { eq: $slug }
-      user: {
-        id: {
-          eq: $userId
-        }
-      }
+      user: { id: { eq: $userId } }
+      popular_category_cb: { id: { eq: $popularCategoryId }}
     }
     pagination: { page: $page, pageSize: $pageSize }
   ) {

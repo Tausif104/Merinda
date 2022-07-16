@@ -1,6 +1,7 @@
 <div class="entry-meta align-items-center">
   <a href="author.html">
-    {{post.attributes?.user?.data?.attributes?.username}}
+    {{post.attributes?.user?.data?.attributes?.firstname}}
+    {{post.attributes?.user?.data?.attributes?.lastname}}
   </a>
   <br />
   <span>{{post.attributes?.publishedAt | date}}</span>

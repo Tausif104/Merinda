@@ -7,10 +7,10 @@
       <div class="top-author">
         <h5 class="heading-font">
           <a [href]="getLink(author)" [title]="author.attributes?.firstname"
-            rel="author">{{author.attributes?.firstname}}</a>
+            rel="author">{{author.attributes?.firstname}} {{author.attributes?.lastname}}</a>
         </h5>
       </div>
-      <p class="d-none d-md-block">{{author.attributes?.lastname}}</p>
+      <p class="d-none d-md-block">{{author.attributes?.description}}</p>
       <!-- <div class="content-social-author" *ngIf="author.social">
         <a target="_blank" class="author-social" *ngFor="let data of author.social" [href]="data.link">{{data.social}}
         </a>

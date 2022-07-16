@@ -1686,6 +1686,7 @@ export type UsersPermissionsUser = {
   blocked?: Maybe<Scalars['Boolean']>;
   confirmed?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
   email: Scalars['String'];
   firstname?: Maybe<Scalars['String']>;
   image?: Maybe<UploadFileEntityResponse>;
@@ -1720,6 +1721,7 @@ export type UsersPermissionsUserFiltersInput = {
   confirmationToken?: InputMaybe<StringFilterInput>;
   confirmed?: InputMaybe<BooleanFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
   email?: InputMaybe<StringFilterInput>;
   firstname?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
@@ -1739,6 +1741,7 @@ export type UsersPermissionsUserInput = {
   blocked?: InputMaybe<Scalars['Boolean']>;
   confirmationToken?: InputMaybe<Scalars['String']>;
   confirmed?: InputMaybe<Scalars['Boolean']>;
+  description?: InputMaybe<Scalars['String']>;
   email?: InputMaybe<Scalars['String']>;
   firstname?: InputMaybe<Scalars['String']>;
   image?: InputMaybe<Scalars['ID']>;
@@ -1756,24 +1759,35 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type UsersPermissionsUserEntityFragmentFragment = { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, description?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null };
+
+export type UsersPermissionsUserEntityResponseFragmentFragment = { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, description?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null } | null };
+
+export type UsersPermissionsUserEntityResponseCollectionFragmentFragment = { __typename?: 'UsersPermissionsUserEntityResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, description?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null }> };
+
 export type AuthorQueryVariables = Exact<{
   firstname?: InputMaybe<Scalars['String']>;
   lastname?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type AuthorQuery = { __typename?: 'Query', usersPermissionsUsers?: { __typename?: 'UsersPermissionsUserEntityResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null }> } | null };
+export type AuthorQuery = { __typename?: 'Query', usersPermissionsUsers?: { __typename?: 'UsersPermissionsUserEntityResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, description?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null }> } | null };
+
+export type AuthorsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AuthorsQuery = { __typename?: 'Query', usersPermissionsUsers?: { __typename?: 'UsersPermissionsUserEntityResponseCollection', data: Array<{ __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, description?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null }> } | null };
 
 export type CategoryCbsQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 }>;
 
 
-export type CategoryCbsQuery = { __typename?: 'Query', categoryCbs?: { __typename?: 'CategoryCbEntityResponseCollection', data: Array<{ __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, popular_post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Meta_Description: string, Content: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null, alternativeText?: string | null, caption?: string | null, name: string, size: number } | null }> } | null } | null } | null }> } | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null }> } | null };
+export type CategoryCbsQuery = { __typename?: 'Query', categoryCbs?: { __typename?: 'CategoryCbEntityResponseCollection', data: Array<{ __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, popular_post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', Slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, description?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null }> } | null } | null } | null }> } | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null }> } | null };
 
-export type CategoryCbEntityResponseCollectionFragmentFragment = { __typename?: 'CategoryCbEntityResponseCollection', data: Array<{ __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, popular_post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Meta_Description: string, Content: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null, alternativeText?: string | null, caption?: string | null, name: string, size: number } | null }> } | null } | null } | null }> } | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null }> };
+export type CategoryCbEntityResponseCollectionFragmentFragment = { __typename?: 'CategoryCbEntityResponseCollection', data: Array<{ __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, popular_post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', Slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, description?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null }> } | null } | null } | null }> } | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null }> };
 
-export type CategoryCbEntityResponseFragmentFragment = { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, popular_post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Meta_Description: string, Content: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null, alternativeText?: string | null, caption?: string | null, name: string, size: number } | null }> } | null } | null } | null }> } | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null };
+export type CategoryCbEntityResponseFragmentFragment = { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null };
 
 export type CategoryCbQueryVariables = Exact<{
   categoryId?: InputMaybe<Scalars['ID']>;
@@ -1783,16 +1797,18 @@ export type CategoryCbQueryVariables = Exact<{
 }>;
 
 
-export type CategoryCbQuery = { __typename?: 'Query', postCbs?: { __typename?: 'PostCbEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, pageSize: number, page: number } }, data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', Slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, popular_post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Meta_Description: string, Content: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null, alternativeText?: string | null, caption?: string | null, name: string, size: number } | null }> } | null } | null } | null }> } | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null }> } | null } | null } | null }> } | null, categoryCb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, popular_post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Meta_Description: string, Content: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null, alternativeText?: string | null, caption?: string | null, name: string, size: number } | null }> } | null } | null } | null }> } | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null };
+export type CategoryCbQuery = { __typename?: 'Query', postCbs?: { __typename?: 'PostCbEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, pageCount: number, pageSize: number, page: number } }, data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', Slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, description?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null }> } | null } | null } | null }> } | null, categoryCb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null };
 
 export type LocalesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type LocalesQuery = { __typename?: 'Query', i18NLocales?: { __typename?: 'I18NLocaleEntityResponseCollection', data: Array<{ __typename?: 'I18NLocaleEntity', attributes?: { __typename?: 'I18NLocale', name?: string | null, code?: string | null } | null }> } | null };
 
-export type PostCbEntityResponseCollectionFragmentFragment = { __typename?: 'PostCbEntityResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', Slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, popular_post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Meta_Description: string, Content: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null, alternativeText?: string | null, caption?: string | null, name: string, size: number } | null }> } | null } | null } | null }> } | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null }> } | null } | null } | null }> };
+export type PostCbEntityFragmentFragment = { __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', Slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, description?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null }> } | null } | null } | null };
 
-export type PostCbEntityResponseFragmentFragment = { __typename?: 'PostCbEntityResponse', data?: { __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', Slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, popular_post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Meta_Description: string, Content: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null, alternativeText?: string | null, caption?: string | null, name: string, size: number } | null }> } | null } | null } | null }> } | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null }> } | null } | null } | null } | null };
+export type PostCbEntityResponseCollectionFragmentFragment = { __typename?: 'PostCbEntityResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', Slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, description?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null }> } | null } | null } | null }> };
+
+export type PostCbEntityResponseFragmentFragment = { __typename?: 'PostCbEntityResponse', data?: { __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', Slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, description?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null }> } | null } | null } | null } | null };
 
 export type PostCbQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
@@ -1800,7 +1816,7 @@ export type PostCbQueryVariables = Exact<{
 }>;
 
 
-export type PostCbQuery = { __typename?: 'Query', postCb?: { __typename?: 'PostCbEntityResponse', data?: { __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', Slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, popular_post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Meta_Description: string, Content: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null, alternativeText?: string | null, caption?: string | null, name: string, size: number } | null }> } | null } | null } | null }> } | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null }> } | null } | null } | null } | null } | null };
+export type PostCbQuery = { __typename?: 'Query', postCb?: { __typename?: 'PostCbEntityResponse', data?: { __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', Slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, description?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null }> } | null } | null } | null } | null } | null };
 
 export type PostCbsQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode'];
@@ -1810,37 +1826,116 @@ export type PostCbsQueryVariables = Exact<{
   pageSize: Scalars['Int'];
   slug?: InputMaybe<Scalars['String']>;
   userId?: InputMaybe<Scalars['ID']>;
+  popularCategoryId?: InputMaybe<Scalars['ID']>;
 }>;
 
 
-export type PostCbsQuery = { __typename?: 'Query', postCbs?: { __typename?: 'PostCbEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, page: number, pageSize: number, pageCount: number } }, data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', Slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, popular_post_cbs?: { __typename?: 'PostCbRelationResponseCollection', data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Meta_Description: string, Content: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null, alternativeText?: string | null, caption?: string | null, name: string, size: number } | null }> } | null } | null } | null }> } | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', attributes?: { __typename?: 'UsersPermissionsUser', firstname?: string | null, lastname?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null }> } | null } | null } | null }> } | null };
+export type PostCbsQuery = { __typename?: 'Query', postCbs?: { __typename?: 'PostCbEntityResponseCollection', meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number, page: number, pageSize: number, pageCount: number } }, data: Array<{ __typename?: 'PostCbEntity', attributes?: { __typename?: 'PostCb', Slug?: string | null, updatedAt?: any | null, createdAt?: any | null, publishedAt?: any | null, category_cb?: { __typename?: 'CategoryCbEntityResponse', data?: { __typename?: 'CategoryCbEntity', attributes?: { __typename?: 'CategoryCb', Name?: string | null, Meta_Description?: string | null, Image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, name: string, alternativeText?: string | null, size: number, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, user?: { __typename?: 'UsersPermissionsUserEntityResponse', data?: { __typename?: 'UsersPermissionsUserEntity', id?: string | null, attributes?: { __typename?: 'UsersPermissionsUser', username: string, firstname?: string | null, lastname?: string | null, description?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, previewUrl?: string | null } | null } | null } | null } | null } | null } | null, fields?: { __typename?: 'ComponentPostPostComponent', Title: string, Content: string, Meta_Description: string, Estimation?: number | null, Image?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, url: string, previewUrl?: string | null } | null }> } | null } | null } | null }> } | null };
 
+export const UsersPermissionsUserEntityFragmentFragmentDoc = gql`
+    fragment UsersPermissionsUserEntityFragment on UsersPermissionsUserEntity {
+  id
+  attributes {
+    username
+    firstname
+    lastname
+    description
+    image {
+      data {
+        attributes {
+          url
+          width
+          height
+          previewUrl
+        }
+      }
+    }
+  }
+}
+    `;
+export const UsersPermissionsUserEntityResponseCollectionFragmentFragmentDoc = gql`
+    fragment UsersPermissionsUserEntityResponseCollectionFragment on UsersPermissionsUserEntityResponseCollection {
+  data {
+    ...UsersPermissionsUserEntityFragment
+  }
+}
+    ${UsersPermissionsUserEntityFragmentFragmentDoc}`;
+export const CategoryCbEntityResponseFragmentFragmentDoc = gql`
+    fragment CategoryCbEntityResponseFragment on CategoryCbEntityResponse {
+  data {
+    attributes {
+      Name
+      Meta_Description
+      Image {
+        data {
+          attributes {
+            url
+            name
+            alternativeText
+            size
+            previewUrl
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+export const UsersPermissionsUserEntityResponseFragmentFragmentDoc = gql`
+    fragment UsersPermissionsUserEntityResponseFragment on UsersPermissionsUserEntityResponse {
+  data {
+    ...UsersPermissionsUserEntityFragment
+  }
+}
+    ${UsersPermissionsUserEntityFragmentFragmentDoc}`;
+export const PostCbEntityFragmentFragmentDoc = gql`
+    fragment PostCbEntityFragment on PostCbEntity {
+  attributes {
+    Slug
+    category_cb {
+      ...CategoryCbEntityResponseFragment
+    }
+    user {
+      ...UsersPermissionsUserEntityResponseFragment
+    }
+    fields {
+      Title
+      Content
+      Meta_Description
+      Estimation
+      Image {
+        data {
+          attributes {
+            width
+            height
+            url
+            previewUrl
+          }
+        }
+      }
+    }
+    updatedAt
+    createdAt
+    publishedAt
+    category_cb {
+      data {
+        attributes {
+          Name
+          Meta_Description
+        }
+      }
+    }
+  }
+}
+    ${CategoryCbEntityResponseFragmentFragmentDoc}
+${UsersPermissionsUserEntityResponseFragmentFragmentDoc}`;
 export const CategoryCbEntityResponseCollectionFragmentFragmentDoc = gql`
     fragment CategoryCbEntityResponseCollectionFragment on CategoryCbEntityResponseCollection {
   data {
     attributes {
       popular_post_cbs {
         data {
-          attributes {
-            fields {
-              Title
-              Meta_Description
-              Content
-              Estimation
-              Image {
-                data {
-                  attributes {
-                    url
-                    previewUrl
-                    alternativeText
-                    caption
-                    name
-                    size
-                  }
-                }
-              }
-            }
-          }
+          ...PostCbEntityFragment
         }
       }
       Name
@@ -1859,198 +1954,54 @@ export const CategoryCbEntityResponseCollectionFragmentFragmentDoc = gql`
     }
   }
 }
-    `;
-export const CategoryCbEntityResponseFragmentFragmentDoc = gql`
-    fragment CategoryCbEntityResponseFragment on CategoryCbEntityResponse {
-  data {
-    attributes {
-      popular_post_cbs {
-        data {
-          attributes {
-            fields {
-              Title
-              Meta_Description
-              Content
-              Estimation
-              Image {
-                data {
-                  attributes {
-                    url
-                    previewUrl
-                    alternativeText
-                    caption
-                    name
-                    size
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      Name
-      Meta_Description
-      Image {
-        data {
-          attributes {
-            url
-            name
-            alternativeText
-            size
-            previewUrl
-          }
-        }
-      }
-    }
-  }
-}
-    `;
+    ${PostCbEntityFragmentFragmentDoc}`;
 export const PostCbEntityResponseCollectionFragmentFragmentDoc = gql`
     fragment PostCbEntityResponseCollectionFragment on PostCbEntityResponseCollection {
   data {
-    attributes {
-      Slug
-      category_cb {
-        ...CategoryCbEntityResponseFragment
-      }
-      user {
-        data {
-          attributes {
-            firstname
-            lastname
-            image {
-              data {
-                attributes {
-                  width
-                  height
-                  url
-                  previewUrl
-                }
-              }
-            }
-          }
-        }
-      }
-      fields {
-        Title
-        Content
-        Meta_Description
-        Estimation
-        Image {
-          data {
-            attributes {
-              width
-              height
-              url
-              previewUrl
-            }
-          }
-        }
-      }
-      updatedAt
-      createdAt
-      publishedAt
-      category_cb {
-        data {
-          attributes {
-            Name
-            Meta_Description
-          }
-        }
-      }
-    }
+    ...PostCbEntityFragment
   }
 }
-    ${CategoryCbEntityResponseFragmentFragmentDoc}`;
+    ${PostCbEntityFragmentFragmentDoc}`;
 export const PostCbEntityResponseFragmentFragmentDoc = gql`
     fragment PostCbEntityResponseFragment on PostCbEntityResponse {
   data {
-    attributes {
-      Slug
-      category_cb {
-        ...CategoryCbEntityResponseFragment
-      }
-      user {
-        data {
-          attributes {
-            firstname
-            lastname
-            image {
-              data {
-                attributes {
-                  width
-                  height
-                  url
-                  previewUrl
-                }
-              }
-            }
-          }
-        }
-      }
-      fields {
-        Title
-        Content
-        Meta_Description
-        Estimation
-        Image {
-          data {
-            attributes {
-              width
-              height
-              url
-              previewUrl
-            }
-          }
-        }
-      }
-      updatedAt
-      createdAt
-      publishedAt
-      category_cb {
-        data {
-          attributes {
-            Name
-            Meta_Description
-          }
-        }
-      }
-    }
+    ...PostCbEntityFragment
   }
 }
-    ${CategoryCbEntityResponseFragmentFragmentDoc}`;
+    ${PostCbEntityFragmentFragmentDoc}`;
 export const AuthorDocument = gql`
     query Author($firstname: String, $lastname: String) {
   usersPermissionsUsers(
-    filters: {firstname: {eq: $firstname}, lastname: {eq: $lastname}}
+    filters: {firstname: {containsi: $firstname}, lastname: {containsi: $lastname}}
   ) {
-    data {
-      id
-      attributes {
-        username
-        firstname
-        lastname
-        image {
-          data {
-            attributes {
-              url
-              width
-              height
-              previewUrl
-            }
-          }
-        }
-      }
-    }
+    ...UsersPermissionsUserEntityResponseCollectionFragment
   }
 }
-    `;
+    ${UsersPermissionsUserEntityResponseCollectionFragmentFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
   })
   export class AuthorGQL extends Apollo.Query<AuthorQuery, AuthorQueryVariables> {
     document = AuthorDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AuthorsDocument = gql`
+    query Authors {
+  usersPermissionsUsers {
+    ...UsersPermissionsUserEntityResponseCollectionFragment
+  }
+}
+    ${UsersPermissionsUserEntityResponseCollectionFragmentFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AuthorsGQL extends Apollo.Query<AuthorsQuery, AuthorsQueryVariables> {
+    document = AuthorsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -2149,10 +2100,10 @@ export const PostCbDocument = gql`
     }
   }
 export const PostCbsDocument = gql`
-    query PostCbs($locale: I18NLocaleCode!, $sectionId: ID, $categoryId: ID, $page: Int!, $pageSize: Int!, $slug: String, $userId: ID) {
+    query PostCbs($locale: I18NLocaleCode!, $sectionId: ID, $categoryId: ID, $page: Int!, $pageSize: Int!, $slug: String, $userId: ID, $popularCategoryId: ID) {
   postCbs(
     locale: $locale
-    filters: {sections_cbs: {id: {eq: $sectionId}}, category_cb: {id: {eq: $categoryId}}, Slug: {eq: $slug}, user: {id: {eq: $userId}}}
+    filters: {sections_cbs: {id: {eq: $sectionId}}, category_cb: {id: {eq: $categoryId}}, Slug: {eq: $slug}, user: {id: {eq: $userId}}, popular_category_cb: {id: {eq: $popularCategoryId}}}
     pagination: {page: $page, pageSize: $pageSize}
   ) {
     meta {

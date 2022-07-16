@@ -1,0 +1,31 @@
+fragment UsersPermissionsUserEntityFragment on UsersPermissionsUserEntity {
+  id
+  attributes {
+    username
+    firstname
+    lastname
+    description
+    image {
+      data {
+        attributes {
+          url
+          width
+          height
+          previewUrl
+        }
+      }
+    }
+  }
+}
+
+fragment UsersPermissionsUserEntityResponseFragment on UsersPermissionsUserEntityResponse {
+  data {
+    ...UsersPermissionsUserEntityFragment
+  }
+}
+
+fragment UsersPermissionsUserEntityResponseCollectionFragment on UsersPermissionsUserEntityResponseCollection {
+  data {
+    ...UsersPermissionsUserEntityFragment
+  }
+}

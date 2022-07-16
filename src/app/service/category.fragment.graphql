@@ -3,26 +3,7 @@ fragment CategoryCbEntityResponseCollectionFragment on CategoryCbEntityResponseC
     attributes {
       popular_post_cbs {
         data {
-          attributes {
-            fields {
-              Title
-              Meta_Description
-              Content
-              Estimation
-              Image {
-                data {
-                  attributes {
-                    url
-                    previewUrl
-                    alternativeText
-                    caption
-                    name
-                    size
-                  }
-                }
-              }
-            }
-          }
+          ...PostCbEntityFragment
         }
       }
       Name
@@ -45,30 +26,6 @@ fragment CategoryCbEntityResponseCollectionFragment on CategoryCbEntityResponseC
 fragment CategoryCbEntityResponseFragment on CategoryCbEntityResponse {
   data {
     attributes {
-      popular_post_cbs {
-        data {
-          attributes {
-            fields {
-              Title
-              Meta_Description
-              Content
-              Estimation
-              Image {
-                data {
-                  attributes {
-                    url
-                    previewUrl
-                    alternativeText
-                    caption
-                    name
-                    size
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
       Name
       Meta_Description
       Image {

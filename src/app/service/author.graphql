@@ -1,24 +1,7 @@
 query Author($firstname: String, $lastname: String) {
   usersPermissionsUsers(
-    filters: { firstname: { eq: $firstname }, lastname: { eq: $lastname } }
+    filters: { firstname: { containsi: $firstname }, lastname: { containsi: $lastname } }
   ) {
-    data {
-      id
-      attributes {
-        username
-        firstname
-        lastname
-        image {
-          data {
-            attributes {
-              url
-              width
-              height
-              previewUrl
-            }
-          }
-        }
-      }
-    }
+    ...UsersPermissionsUserEntityResponseCollectionFragment
   }
 }
