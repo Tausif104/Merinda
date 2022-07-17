@@ -29,7 +29,7 @@
                 <div class="post-count">{{i+1 | number: '2.0-0'}}</div>
                 <div class="post-content">
                   <h5 class="entry-title mb-3">
-                    <a href="/single">{{ post.attributes?.fields?.Title }}</a>
+                    <a [href]="buildLink(post)">{{ post.attributes?.fields?.Title }}</a>
                   </h5>
                   <app-entry-meta-alpha [post]="post"></app-entry-meta-alpha>
                 </div>

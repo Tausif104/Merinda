@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { buildLink } from 'src/app/utils/build-link';
 import { PostCbEntity } from 'src/generated/graphql';
 
 @Component({
@@ -24,6 +25,10 @@ export class SearchAlphaComponent implements OnInit, OnDestroy {
 
   pageChange(page: number) {
     
+  }
+
+  buildLink(post: PostCbEntity) {
+    return buildLink(post)
   }
 
 }

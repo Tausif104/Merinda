@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { buildLink } from 'src/app/utils/build-link';
 import { environment } from 'src/environments/environment';
 import { CategoryCbEntity, CategoryCbGQL, PostCbEntity } from 'src/generated/graphql';
 
@@ -38,8 +39,9 @@ export class CategoryAlphaComponent implements OnInit, OnDestroy {
       this.renderer.removeClass(document.body, 'archive');
   }
 
-  pageChange(page: number) {
+  pageChange(page: number) {}
 
+  buildLink(post: PostCbEntity) {
+    return buildLink(post)
   }
-
 }

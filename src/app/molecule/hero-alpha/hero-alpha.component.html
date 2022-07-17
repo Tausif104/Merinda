@@ -4,7 +4,7 @@
       <div class="col-lg-6 col-md-8">
         <div class="pt-5 pb-5 pl-md-5 pr-5 align-self-center">
           <div class="capsSubtle mb-2">{{post.attributes?.category_cb?.data?.attributes?.Name}}</div>
-          <h2 class="entry-title mb-3"><a href="single">{{post.attributes?.fields?.Title}}</a></h2>
+          <h2 class="entry-title mb-3"><a [href]="buildLink(post)">{{post.attributes?.fields?.Title}}</a></h2>
           <div class="entry-excerpt">
             <p>{{post.attributes?.fields?.Meta_Description}}</p>
           </div>

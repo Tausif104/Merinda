@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { buildLink } from 'src/app/utils/build-link';
 import { environment } from 'src/environments/environment';
 import { AuthorGQL, PostCbEntity, PostCbsGQL, UsersPermissionsUserEntity } from 'src/generated/graphql';
 
@@ -60,6 +61,10 @@ export class AuthorAlphaComponent implements OnInit, OnDestroy {
 
   pageChange(number: number) {
     console.log(number);
+  }
+
+  buildLink(post: PostCbEntity) {
+    return buildLink(post)
   }
 
 }

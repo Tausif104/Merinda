@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { buildLink } from 'src/app/utils/build-link';
 import { environment } from 'src/environments/environment';
 import { PostCbEntity, PostCbsGQL } from 'src/generated/graphql';
 
@@ -85,6 +86,9 @@ export class HomeAlphaComponent implements OnInit, OnDestroy {
   }
 
   pageChange(page: number) {
+  }
 
+  buildLink(post: PostCbEntity) {
+    return buildLink(post)
   }
 }

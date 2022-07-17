@@ -1,4 +1,6 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { buildLink } from 'src/app/utils/build-link';
+import { PostCbEntity } from 'src/generated/graphql';
 
 @Component({
   selector: 'app-archive-alpha',
@@ -125,6 +127,10 @@ export class ArchiveAlphaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
       this.renderer.removeClass(document.body, 'archive');
+  }
+
+  buildLink(post: PostCbEntity) {
+    return buildLink(post)
   }
 
 }
