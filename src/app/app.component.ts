@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { get } from 'scriptjs';
 import { CategoryCbsGQL, LocalesGQL } from 'src/generated/graphql';
-import { TranslateCacheService } from 'ngx-translate-cache';
 
 @Component({
   selector: 'app-root',
@@ -16,11 +15,9 @@ export class AppComponent implements OnInit {
     private localeGQL: LocalesGQL,
     private categoryCbsGQL: CategoryCbsGQL,
     private translate: TranslateService,
-    private translateCacheService: TranslateCacheService,
     ) {
-      translateCacheService.init();
       translate.addLangs(['en', 'nl']);
-      this.browserLang = translateCacheService.getCachedLanguage() || translate.getBrowserLang();
+      this.browserLang = translate.getBrowserLang();
       translate.use(this.browserLang.match(/en|nl/) ? this.browserLang : 'en');
   }
 

@@ -1,0 +1,17 @@
+<article class="row justify-content-between mb-5 mr-0">
+  <div class="col-md-9">
+    <div class="align-self-center">
+      <div class="capsSubtle mb-2">{{post.attributes?.category_cb?.data?.attributes?.Name}}</div>
+      <h3 class="entry-title mb-3">
+        <a href="single">{{post.attributes?.fields?.Title}}</a>
+      </h3>
+      <div class="entry-excerpt">
+        <p>
+          {{post.attributes?.fields?.Meta_Description}}
+        </p>
+      </div>
+      <app-entry-meta-alpha [post]="post"></app-entry-meta-alpha>
+    </div>
+  </div>
+  <div class="col-md-3 bgcover" [ngStyle]="{'background-image': 'url(' + getPostImage(post) + ')'}"></div>
+</article>

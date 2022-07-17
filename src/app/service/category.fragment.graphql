@@ -8,6 +8,7 @@ fragment CategoryCbEntityResponseCollectionFragment on CategoryCbEntityResponseC
       }
       Name
       Meta_Description
+      Slug
       Image {
         data {
           attributes {
@@ -28,6 +29,7 @@ fragment CategoryCbEntityResponseFragment on CategoryCbEntityResponse {
     attributes {
       Name
       Meta_Description
+      Slug
       Image {
         data {
           attributes {

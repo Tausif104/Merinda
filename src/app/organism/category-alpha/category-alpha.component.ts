@@ -9,10 +9,10 @@ import { CategoryCbEntity, CategoryCbGQL, PostCbEntity } from 'src/generated/gra
 })
 export class CategoryAlphaComponent implements OnInit, OnDestroy {
   posts: PostCbEntity[];
+  postsSize: number;
   category: CategoryCbEntity;
   popularInCulturePosts: PostCbEntity[];
   page: number;
-  firstPost: PostCbEntity;
 
   constructor(
     private renderer: Renderer2,
@@ -36,6 +36,10 @@ export class CategoryAlphaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
       this.renderer.removeClass(document.body, 'archive');
+  }
+
+  pageChange(page: number) {
+
   }
 
 }

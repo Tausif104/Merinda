@@ -14,6 +14,8 @@ export class HomeAlphaComponent implements OnInit, OnDestroy {
   heroPost: PostCbEntity;
   referralPosts: PostCbEntity[] = [];
   mostRecentPosts: PostCbEntity[] = [];
+  postsSize: number;
+  page = 0;
 
   constructor(
     private renderer: Renderer2,
@@ -41,11 +43,6 @@ export class HomeAlphaComponent implements OnInit, OnDestroy {
       sectionId: "2",
     }).subscribe((response) => {
       this.trendingPosts = response.data.postCbs?.data as PostCbEntity[];
-      this.mostRecentPosts.push(this.trendingPosts[0]);
-      this.mostRecentPosts.push(this.trendingPosts[0]);
-      this.mostRecentPosts.push(this.trendingPosts[0]);
-      this.mostRecentPosts.push(this.trendingPosts[0]);
-      this.mostRecentPosts.push(this.trendingPosts[0]);
     });
 
     // Popular Posts
@@ -85,5 +82,9 @@ export class HomeAlphaComponent implements OnInit, OnDestroy {
   
   ngOnDestroy(): void {
       this.renderer.removeClass(document.body, 'home');
+  }
+
+  pageChange(page: number) {
+
   }
 }

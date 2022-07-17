@@ -1,5 +1,7 @@
-import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
-import { PostCbEntity } from 'src/generated/graphql';
+import { Component, Input, OnInit } from '@angular/core';
+import { buildLink } from 'src/app/utils/build-link';
+import { renderImage } from 'src/app/utils/render-image';
+import { PostCbEntity, UploadFileEntity, UsersPermissionsUserEntity } from 'src/generated/graphql';
 
 
 @Component({
@@ -9,11 +11,19 @@ import { PostCbEntity } from 'src/generated/graphql';
 })
 export class EntryMetaAlphaComponent implements OnInit {
   @Input() post: PostCbEntity;
+  author: UsersPermissionsUserEntity;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    this.post
+    this.author = this.post.attributes?.user?.data as UsersPermissionsUserEntity;
   }
 
+  getImage(author: UsersPermissionsUserEntity) {
+    return renderImage([author.attributes?.image?.data] as UploadFileEntity[]);
+  }
+  
+  getLink(author: UsersPermissionsUserEntity) {
+    return `/author/${author.attributes?.firstname}_${author.attributes?.lastname}`.toLowerCase();
+  }
 }

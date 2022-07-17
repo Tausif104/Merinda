@@ -1,4 +1,4 @@
-<main id="content">
+<main id="content" *ngIf="!!posts.length">
   <div class="content-widget">
     <div class="container">
       <div class="row">
@@ -6,30 +6,16 @@
           <h4 class="spanborder">
             <span>{{"Culture" | translate}}</span>
           </h4>
-          <article class="first mb-3">
-            <figure>
-              <a href="/single">
-                <img src="http://via.placeholder.com/1400x992" alt="post-title" />
-              </a>
-            </figure>
-            <h1 class="entry-title mb-3">
-              <a href="/single">Home Internet Is Becoming a Luxury for the Wealthy</a>
-            </h1>
-            <div class="entry-excerpt">
-              <p>
-                And black on meretriciously regardless well fearless irksomely
-                as about hideous wistful bat less oh much and occasional useful
-                rat darn jeepers far.
-              </p>
-            </div>
-
-            <!-- Add date-address-alpha -->
-            <app-entry-meta-alpha [post]="{}"></app-entry-meta-alpha>
-
-          </article>
+          <app-entry-gamma [post]="posts[0]"></app-entry-gamma>
           <div class="divider"></div>
 
-          <app-most-recent [posts]="posts.slice(1)"></app-most-recent>
+          <ng-container *ngFor="let post of posts">
+            <app-entry-alpha [post]="post"></app-entry-alpha>
+          </ng-container>
+
+          <ngb-pagination [collectionSize]="postsSize" (pageChange)="pageChange($event)" [(page)]="page" [maxSize]="5"
+            [rotate]="true" [boundaryLinks]="true">
+          </ngb-pagination>
         </div>
         <!--col-md-8-->
         <div class="col-md-4 pl-md-5 sticky-sidebar">
@@ -38,7 +24,17 @@
               <span>{{"Popular" |translate}}</span>
             </h4>
             <!-- Add popular molecule-->
-            <app-culture-alpha [posts]="popularInCulturePosts"></app-culture-alpha>
+            <ol>
+              <li class="d-flex" *ngFor="let post of posts; let i = index">
+                <div class="post-count">{{i+1 | number: '2.0-0'}}</div>
+                <div class="post-content">
+                  <h5 class="entry-title mb-3">
+                    <a href="/single">{{ post.attributes?.fields?.Title }}</a>
+                  </h5>
+                  <app-entry-meta-alpha [post]="post"></app-entry-meta-alpha>
+                </div>
+              </li>
+            </ol>
           </div>
         </div>
       </div>

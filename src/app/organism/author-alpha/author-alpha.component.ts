@@ -10,7 +10,10 @@ import { AuthorGQL, PostCbEntity, PostCbsGQL, UsersPermissionsUserEntity } from 
 })
 export class AuthorAlphaComponent implements OnInit, OnDestroy {
   posts: PostCbEntity[] = [];
+  page = 0;
+  postsSize = 0;
   author: UsersPermissionsUserEntity;
+  trendingPosts: PostCbEntity[] = [];
 
   constructor(
     private renderer: Renderer2,
@@ -29,14 +32,10 @@ export class AuthorAlphaComponent implements OnInit, OnDestroy {
         const firstname = userSlug[0];
         const lastname = userSlug[1];
 
-        console.log({firstname, lastname});
-        
         this.authorGQL.fetch({
           firstname,
           lastname
         }).subscribe((response) => {
-          console.log(response.data.usersPermissionsUsers?.data);
-          
           this.author = response.data.usersPermissionsUsers?.data[0] as UsersPermissionsUserEntity;
           if (!this.author.id) {
             return this.router.navigate(['/']);
@@ -48,15 +47,19 @@ export class AuthorAlphaComponent implements OnInit, OnDestroy {
             pageSize: environment.pageSize,
             userId: this.author.id
           }).subscribe((response) => {
-            this.posts = response.data.postCbs?.data as PostCbEntity[]
+            this.posts = response.data.postCbs?.data as PostCbEntity[];
+            this.postsSize = response.data.postCbs?.meta.pagination.total || 0;
           });
-        })
-
+        });
     });
   }
 
   ngOnDestroy(): void {
       this.renderer.removeClass(document.body, 'archive');
+  }
+
+  pageChange(number: number) {
+    console.log(number);
   }
 
 }

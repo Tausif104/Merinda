@@ -1,13 +1,13 @@
 <div class="entry-meta align-items-center">
-  <a href="author.html">
+  <a [href]="getLink(author)">
     {{post.attributes?.user?.data?.attributes?.firstname}}
     {{post.attributes?.user?.data?.attributes?.lastname}}
   </a>
   <br />
   <span>{{post.attributes?.publishedAt | date}}</span>
   <span class="middotDivider"></span>
-  <span class="readingTime"
-    title="{{post.attributes?.fields?.Estimation}}">{{post.attributes?.fields?.Estimation}} min read</span>
+  <span class="readingTime" title="{{post.attributes?.fields?.Estimation}}">{{post.attributes?.fields?.Estimation}} min
+    read</span>
   <span class="svgIcon svgIcon--star">
     <svg class="svgIcon-use" width="15" height="15">
       <path

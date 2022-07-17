@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditorsPicksComponent } from './editors-picks.component';
+import { EntryGammaComponent } from './entry-gamma.component';
 
-describe('EditorsPicksComponent', () => {
-  let component: EditorsPicksComponent;
-  let fixture: ComponentFixture<EditorsPicksComponent>;
+describe('EntryGammaComponent', () => {
+  let component: EntryGammaComponent;
+  let fixture: ComponentFixture<EntryGammaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditorsPicksComponent ]
+      declarations: [ EntryGammaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditorsPicksComponent);
+    fixture = TestBed.createComponent(EntryGammaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

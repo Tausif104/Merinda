@@ -7,7 +7,6 @@ import { CategoryAlphaComponent } from './category-alpha/category-alpha.componen
 import { SearchAlphaComponent } from './search-alpha/search-alpha.component';
 import { ArchiveAlphaComponent } from './archive-alpha/archive-alpha.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { ImagePathPipe } from '../pipe/image.pipe';
 
 @NgModule({
   declarations: [

@@ -8,40 +8,11 @@
             <span>"{{"Culture" | translate}}"</span>
           </h4>
 
-          <article class="row justify-content-between mb-5 mr-0" *ngFor="let data of searchArchive">
-            <div class="col-md-9">
-              <div class="align-self-center">
-                <div class="capsSubtle mb-2">{{data.category}}</div>
-                <h3 class="entry-title mb-3">
-                  <a href="/single">{{data.title}}</a>
-                </h3>
-                <div class="entry-excerpt">
-                  <p>
-                    {{data.desc}}
-                  </p>
-                </div>
-                <!-- Add date-address-alpha -->
-                <app-entry-meta-alpha [post]="{}"></app-entry-meta-alpha>
+          <app-entry-alpha *ngFor="let data of posts"  [post]="data"></app-entry-alpha>
 
-              </div>
-            </div>
-            <div class="col-md-3 bgcover" [style]="data.img"></div>
-          </article>
-
-          <ul class="page-numbers heading">
-            <li>
-              <span aria-current="page" class="page-numbers current">1</span>
-            </li>
-            <li><a class="page-numbers" href="#">2</a></li>
-            <li><a class="page-numbers" href="#">3</a></li>
-            <li><a class="page-numbers" href="#">4</a></li>
-            <li><a class="page-numbers" href="#">5</a></li>
-            <li><a class="page-numbers" href="#">...</a></li>
-            <li><a class="page-numbers" href="#">98</a></li>
-            <li>
-              <a class="next page-numbers" href="#"><i class="icon-right-open-big"></i></a>
-            </li>
-          </ul>
+          <ngb-pagination [collectionSize]="postsSize" (pageChange)="pageChange($event)" [(page)]="page" [maxSize]="5"
+            [rotate]="true" [boundaryLinks]="true">
+          </ngb-pagination>
         </div>
         <!--col-md-8-->
         <div class="col-md-4 pl-md-5 sticky-sidebar">
@@ -50,7 +21,18 @@
               <span>{{"Popular in Culture" | translate}}</span>
             </h5>
             <!-- Add popular-culture molecule-->
-            <app-culture-alpha [posts]="[]"></app-culture-alpha>
+            <ol>
+              <li class="d-flex" *ngFor="let post of posts; let i = index">
+                <div class="post-count">{{i+1 | number: '2.0-0'}}</div>
+                <div class="post-content">
+                  <h5 class="entry-title mb-3">
+                    <a href="/single">{{ post.attributes?.fields?.Title }}</a>
+                  </h5>
+                  <app-entry-meta-alpha [post]="post"></app-entry-meta-alpha>
+                </div>
+              </li>
+            </ol>
+
           </div>
         </div>
         <!--col-md-4-->
@@ -60,6 +42,6 @@
   </div>
 
   <!-- Ads Section -->
-  <app-ads [itemAd]="Ad"></app-ads>
+  <app-ads [itemAd]="[]"></app-ads>
   <!--content-widget-->
 </main>

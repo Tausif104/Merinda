@@ -38,7 +38,6 @@ specifiers:
   karma-coverage: ~2.1.0
   karma-jasmine: ~4.0.0
   karma-jasmine-html-reporter: ~1.7.0
-  ngx-translate-cache: ^9.0.2
   node-fetch: ^3.2.6
   rxjs: ~7.5.0
   scriptjs: ^2.5.9
@@ -68,7 +67,6 @@ dependencies:
   express: 4.18.1
   graphql: 16.5.0
   graphql-tag: 2.12.6_graphql@16.5.0
-  ngx-translate-cache: 9.0.2_yieweo4iw2uf2nxnl33cwkxdfu
   node-fetch: 3.2.8
   rxjs: 7.5.6
   scriptjs: 2.5.9
@@ -7081,20 +7079,6 @@ packages:
   /neo-async/2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
-
-  /ngx-translate-cache/9.0.2_yieweo4iw2uf2nxnl33cwkxdfu:
-    resolution: {integrity: sha512-DHIIJMw1KaDSwwAvBVMVWS6LQHKwNGJpXyFEh/j5Yohh5sLNvD/dUD3X7UF1qmlGnGoeuBjlDh9NEmKYbkywcQ==}
-    peerDependencies:
-      '@angular/common': ^9.1.0
-      '@angular/core': ^9.1.0
-      '@ngx-translate/core': '>8.0.0'
-      tslib: ^1.10.0
-    dependencies:
-      '@angular/common': 13.3.11_haqwxpjszxc5gvk2hboljxstse
-      '@angular/core': 13.3.11_rxjs@7.5.6+zone.js@0.11.6
-      '@ngx-translate/core': 13.0.0_haqwxpjszxc5gvk2hboljxstse
-      tslib: 2.4.0
-    dev: false
 
   /nice-napi/1.0.2:
     resolution: {integrity: sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA==}

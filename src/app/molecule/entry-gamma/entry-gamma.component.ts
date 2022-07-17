@@ -1,25 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { buildLink } from 'src/app/utils/build-link';
 import { renderImage } from 'src/app/utils/render-image';
 import { PostCbEntity, UploadFileEntity } from 'src/generated/graphql';
 
 @Component({
-  selector: 'app-editors-picks',
-  templateUrl: './editors-picks.component.html',
-  styleUrls: ['./editors-picks.component.scss']
+  selector: 'app-entry-gamma',
+  templateUrl: './entry-gamma.component.html',
+  styleUrls: ['./entry-gamma.component.scss']
 })
-export class EditorsPicksComponent implements OnInit {
+export class EntryGammaComponent implements OnInit {
 
-  @Input() posts: PostCbEntity[] = []; 
-  firstPost?: PostCbEntity; 
+  @Input() post: PostCbEntity;
 
   constructor() { }
 
   ngOnInit(): void {
-    if (this.posts.length) {
-      this.firstPost = this.posts[0];
-      console.log(this.firstPost);
-    }
   }
 
   getPostImage(post: PostCbEntity) {
@@ -29,5 +24,4 @@ export class EditorsPicksComponent implements OnInit {
   buildLink(post: PostCbEntity) {
     return buildLink(post)
   }
-
 }

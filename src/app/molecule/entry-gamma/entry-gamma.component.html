@@ -1,0 +1,16 @@
+<article class="first mb-3">
+  <figure>
+    <a [href]="buildLink(post)">
+      <img [src]="getPostImage(post)" alt="post-title">
+    </a>
+  </figure>
+  <h3 class="entry-title mb-3">
+    <a [href]="buildLink(post)">
+      {{post.attributes?.fields?.Title}}
+    </a>
+  </h3>
+  <div class="entry-excerpt">
+    <p> {{post.attributes?.fields?.Meta_Description}} </p>
+  </div>
+  <app-entry-meta-alpha [post]="post"></app-entry-meta-alpha>
+</article>

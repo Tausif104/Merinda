@@ -24,5 +24,4 @@ export class PostAuthorAlphaComponent implements OnInit {
   getLink(author: UsersPermissionsUserEntity) {
     return `/author/${author.attributes?.firstname}_${author.attributes?.lastname}`.toLowerCase();
   }
-
 }

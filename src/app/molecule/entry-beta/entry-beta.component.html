@@ -1,0 +1,16 @@
+<article class="post-has-bg">
+  <div class="mb-3 d-flex row">
+    <figure class="col-4 col-md-4">
+      <a href="single">
+        <img [src]="getPostImage(post)" alt="post-title">
+      </a>
+    </figure>
+    <div class="entry-content col-8 col-md-8 pl-md-0">
+      <h5 class="entry-title mb-3">
+        <a href="single">{{post.attributes?.fields?.Title}}</a>
+      </h5>
+      <!-- Add date-address-alpha -->
+      <app-entry-meta-alpha [post]="post"></app-entry-meta-alpha>
+    </div>
+  </div>
+</article>

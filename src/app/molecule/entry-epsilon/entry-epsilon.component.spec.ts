@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CultureAlphaComponent } from './culture-alpha.component';
+import { EntryEpsilonComponent } from './entry-epsilon.component';
 
-describe('CultureAlphaComponent', () => {
-  let component: CultureAlphaComponent;
-  let fixture: ComponentFixture<CultureAlphaComponent>;
+describe('EntryEpsilonComponent', () => {
+  let component: EntryEpsilonComponent;
+  let fixture: ComponentFixture<EntryEpsilonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CultureAlphaComponent ]
+      declarations: [ EntryEpsilonComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CultureAlphaComponent);
+    fixture = TestBed.createComponent(EntryEpsilonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
