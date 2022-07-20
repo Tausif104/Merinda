@@ -24,6 +24,6 @@ export class EntryMetaAlphaComponent implements OnInit {
   }
   
   getLink(author: UsersPermissionsUserEntity) {
-    return `/author/${author.attributes?.firstname}_${author.attributes?.lastname}`.toLowerCase();
+    return `/author/${author?.attributes?.firstname}_${author?.attributes?.lastname}`.toLowerCase();
   }
 }
