@@ -8,23 +8,21 @@
           <h2 class="spanborder h4">
             <span>{{"Latest Posts" | translate}}</span>
           </h2>
-          <ng-container *ngFor="let post of posts">
+          <ng-container *ngFor="let post of mostRecentPosts">
             <app-entry-alpha [post]="post"></app-entry-alpha>
           </ng-container>
 
-          <ngb-pagination [collectionSize]="postsSize" (pageChange)="pageChange($event)" [(page)]="page" [maxSize]="5"
-            [rotate]="true" [boundaryLinks]="true">
-          </ngb-pagination>
+          <app-pagination-alpha [pageCount]="pageCount" [page]="page"></app-pagination-alpha>
         </div>
         <!--col-md-8-->
-        <div class="col-md-4 pl-md-5 sticky-sidebar">
-          <div class="sidebar-widget latest-tpl-4">
+        <div class="col-md-4 pl-md-5">
+          <div class="latest-tpl-4">
             <h5 class="spanborder widget-title">
               <span>{{"Hightlight posts" | translate}}</span>
             </h5>
             <!-- Add popular molecule-->
             <ol>
-              <li class="d-flex" *ngFor="let post of trendingPosts; let i = index">
+              <li class="d-flex" *ngFor="let post of hightlightPosts; let i = index">
                 <div class="post-count">{{ i + 1 | number: '2.0-0' }}</div>
                 <div class="post-content">
                   <h5 class="entry-title mb-3">
@@ -35,14 +33,13 @@
               </li>
             </ol>
           </div>
+          <div class="sidebar-widget">
+            <app-ads [itemAd]="[]"></app-ads>
+          </div>
         </div>
         <!--col-md-4-->
       </div>
     </div>
     <!--content-widget-->
   </div>
-
-  <!-- Ads Section -->
-  <app-ads [itemAd]="[]"></app-ads>
-  <!--content-widget-->
 </main>

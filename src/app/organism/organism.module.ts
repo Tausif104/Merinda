@@ -7,6 +7,7 @@ import { CategoryAlphaComponent } from './category-alpha/category-alpha.componen
 import { SearchAlphaComponent } from './search-alpha/search-alpha.component';
 import { ArchiveAlphaComponent } from './archive-alpha/archive-alpha.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { AtomModule } from '../atom/atom.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BrowserModule } from '@angular/platform-browser';
   ],
   imports: [
     BrowserModule,
-    MoleculeModule
+    MoleculeModule,
+    AtomModule
   ],
   providers: [],
   exports: []

@@ -7,6 +7,12 @@ import {
   InMemoryCache,
 } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
+import { environment } from 'src/environments/environment';
+
+const timeStartLink = new ApolloLink((operation, forward) => {
+  operation.setContext({ start: performance.now() })
+  return forward(operation)
+});
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   // add the authorization to the headers
@@ -16,13 +22,20 @@ const authMiddleware = new ApolloLink((operation, forward) => {
     },
   });
 
-  return forward(operation);
+  return forward(operation).map(data => {
+    if (environment.debug) {
+      const time = performance.now() - operation.getContext()['start'];
+      console.log(`operation ${operation.operationName} took ${time / 1000} s to complete`)
+    }
+
+    return data
+  });
 });
 
 // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   return {
-    link: concat(authMiddleware, httpLink.create({ uri: "https://apexyz.de/graphql" })),
+    link: concat(timeStartLink.concat(authMiddleware), httpLink.create({ uri: "https://apexyz.de/graphql" })),
     cache: new InMemoryCache(),
   };
 }

@@ -1,11 +1,6 @@
-fragment CategoryCbEntityResponseCollectionFragment on CategoryCbEntityResponseCollection {
-  data {
-    attributes {
-      popular_post_cbs {
-        data {
-          ...PostCbEntityFragment
-        }
-      }
+fragment CategoryCbEntity on CategoryCbEntity {
+  id
+  attributes {
       Name
       Meta_Description
       Slug
@@ -21,26 +16,16 @@ fragment CategoryCbEntityResponseCollectionFragment on CategoryCbEntityResponseC
         }
       }
     }
+}
+
+fragment CategoryCbEntityResponseCollectionFragment on CategoryCbEntityResponseCollection {
+  data {
+    ...CategoryCbEntity
   }
 }
 
 fragment CategoryCbEntityResponseFragment on CategoryCbEntityResponse {
   data {
-    attributes {
-      Name
-      Meta_Description
-      Slug
-      Image {
-        data {
-          attributes {
-            url
-            name
-            alternativeText
-            size
-            previewUrl
-          }
-        }
-      }
-    }
+    ...CategoryCbEntity
   }
 }

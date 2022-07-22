@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { DOCUMENT } from '@angular/common';
+import { AfterViewInit, Component, HostListener, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
 import { CategoryCbEntity } from 'src/generated/graphql';
 
 @Component({
@@ -7,19 +7,34 @@ import { CategoryCbEntity } from 'src/generated/graphql';
   templateUrl: './header-alpha.component.html',
   styleUrls: ['./header-alpha.component.scss']
 })
-export class HeaderAlphaComponent implements OnInit {
-  language: string | null = 'en';
+export class HeaderAlphaComponent implements OnInit, AfterViewInit {
   @Input() categories: CategoryCbEntity[] = [];
   isSearchBarOpen: boolean | null =  false;
+  headerOffset = 0;
 
-  constructor(public translate: TranslateService) {}
+  constructor(
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
-  ngOnInit(): void {
-    this.language = localStorage.getItem('lang');
-    console.log(this.categories);
+  ngAfterViewInit() {
+    const headerElement = this.document.getElementById("main-menu");
+      if (headerElement) {
+        this.headerOffset = headerElement.offsetTop;
+      }
   }
-  //Switch language
-  translateLanguageTo(lang: string) {
-    this.translate.use(lang);
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const headerElement = this.document.getElementById("main-menu");
+
+    if (headerElement) {
+      if (window.scrollY > this.headerOffset) {
+        headerElement?.classList.add('fixed-header-position');
+      } else {
+        headerElement?.classList.remove('fixed-header-position');
+      }
+    }
   }
+
+  ngOnInit(): void {}
 }

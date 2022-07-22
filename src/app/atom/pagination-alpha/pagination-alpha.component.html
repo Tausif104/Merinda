@@ -1,0 +1,2 @@
+<a *ngIf="page > 1" [routerLink]="['./']" [queryParams]="{page: page - 1}">Prev Page</a>
+<a *ngIf="page < pageCount" [routerLink]="['./']" [queryParams]="{page: page + 1}">Next Page</a>

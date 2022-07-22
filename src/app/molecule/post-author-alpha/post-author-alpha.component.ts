@@ -12,10 +12,7 @@ export class PostAuthorAlphaComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.author);
-    
-  }
+  ngOnInit(): void {}
 
   getImage(author: UsersPermissionsUserEntity) {
     return renderImage([author.attributes?.image?.data] as UploadFileEntity[]);

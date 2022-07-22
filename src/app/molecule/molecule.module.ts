@@ -14,6 +14,7 @@ import { EntryAlphaComponent } from './entry-alpha/entry-alpha.component';
 import { EntryBetaComponent } from './entry-beta/entry-beta.component';
 import { EntryGammaComponent } from './entry-gamma/entry-gamma.component';
 import { EntryEpsilonComponent } from './entry-epsilon/entry-epsilon.component';
+import { AtomModule } from '../atom/atom.module';
 
 const Components = [
   HeaderAlphaComponent, 
@@ -31,7 +32,7 @@ const Components = [
 
 @NgModule({
   declarations: [...Components, ImagePathPipe],
-  imports: [BrowserModule, TranslateModule, NgbModule],
+  imports: [BrowserModule, TranslateModule, NgbModule, AtomModule],
   providers: [ImagePathPipe],
   exports: [...Components, TranslateModule, NgbModule],
 })

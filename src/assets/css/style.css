@@ -33,6 +33,7 @@ TABLE CONTENT
 ***/
 
 /* GENERAL */
+@import url('https://fonts.googleapis.com/css2?family=B612+Mono:wght@400;700&family=Cabin:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
 
 *,
 *::before,
@@ -505,6 +506,10 @@ input.search_field {
   float: left;
 }
 
+.sticky-header .logo-small .logo img {
+  min-width: 100px;
+}
+
 .sticky-header .author-avatar {
   float: right;
   margin-right: 12px;
@@ -710,7 +715,6 @@ header .logo-wrapper {
 
 header {
   position: relative;
-  padding: 1rem 0 0 0;
   width: 100%;
   color: #fff;
   text-align: center;
@@ -723,15 +727,13 @@ header {
 #main-menu {
   width: 100%;
   text-align: justify;
+  background-color: #000000ea;
+  transition: background-color 1s ease-in;
 }
 
-#main-menu.stick {
-  padding: 1.2rem 0;
-}
-
-.archive #main-menu.stick {
-  padding-top: 20px;
-  padding-bottom: 20px;
+#main-menu.fixed-header-position {
+  margin-top: 0rem;
+  background-color: #212529;
 }
 
 .scroll-to-fixed-fixed {
@@ -756,6 +758,10 @@ header {
   z-index: 1;
   position: relative;
   border-bottom: 1px solid #000000;
+}
+
+.logo img {
+  min-width: 60px;
 }
 
 #main-menu .menu-top .logo-wrapper .logo {
@@ -843,7 +849,7 @@ header {
 }
 
 #main-menu .menu-primary {
-  height: 20px;
+  display: grid;
 }
 
 #main-menu .menu-primary ul {
@@ -858,16 +864,20 @@ header {
 #main-menu .menu-primary ul>li {
   display: inline-block;
   position: relative;
-  padding: 0 0 16px 0;
 }
 
 #main-menu .menu-primary ul>li>a {
-  color: rgba(0, 0, 0, .5);
+  color: #FFF;
   text-transform: uppercase;
   display: inline-block;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
+  height: 4rem;
+  align-items: center;
+  line-height: 4rem;
+  font-weight: 500;
+  font-family: 'Cabin';
 }
 
 #main-menu .menu-primary ul>li>a:hover {
@@ -1098,9 +1108,7 @@ header {
   line-height: 1;
 }
 
-.mobi-menu__logo img {
-  display:
-}
+.mobi-menu__logo img {}
 
 .mobi-menu .mobi-menu__socials {
   position: absolute;
@@ -1288,10 +1296,10 @@ blockquote ol:last-child {
 .entry-left-col {
   position: absolute;
   left: -20%;
-  height: 200vh;
   z-index: 2;
   top: 3rem;
   bottom: 0;
+  height: calc(100% - 100px);
 }
 
 .social-sticky {

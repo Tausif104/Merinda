@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { buildLink } from 'src/app/utils/build-link';
 import { PostCbEntity } from 'src/generated/graphql';
 
@@ -119,14 +120,17 @@ export class ArchiveAlphaComponent implements OnInit, OnDestroy {
        }
     },
   ]
-  constructor(private renderer: Renderer2) {}
+  constructor(
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
   
   ngOnInit(): void {
-    this.renderer.addClass(document.body, 'archive');
+    this.renderer.addClass(this.document.body, 'archive');
   }
 
   ngOnDestroy(): void {
-      this.renderer.removeClass(document.body, 'archive');
+    this.renderer.removeClass(this.document.body, 'archive');
   }
 
   buildLink(post: PostCbEntity) {

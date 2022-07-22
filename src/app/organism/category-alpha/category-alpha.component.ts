@@ -1,8 +1,12 @@
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, HostListener, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApolloQueryResult } from '@apollo/client/core';
 import { buildLink } from 'src/app/utils/build-link';
 import { environment } from 'src/environments/environment';
-import { CategoryCbEntity, CategoryCbGQL, PostCbEntity } from 'src/generated/graphql';
+import { CategoryCbEntity, CategoryCbGQL, CategoryCbsGQL, PostCbEntity, PostCbsGQL, PostCbsQuery } from 'src/generated/graphql';
+import { switchMap } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
+import { whenPageScrolled } from 'src/app/utils/scroll';
 
 @Component({
   selector: 'app-category-alpha',
@@ -10,52 +14,97 @@ import { CategoryCbEntity, CategoryCbGQL, PostCbEntity } from 'src/generated/gra
   styleUrls: ['./category-alpha.component.scss']
 })
 export class CategoryAlphaComponent implements OnInit, OnDestroy {
-  posts: PostCbEntity[] = [];
+  mostRecentPosts: PostCbEntity[] = [];
   postsSize: number;
   category: CategoryCbEntity;
   popularInCulturePosts: PostCbEntity[];
-  page: number;
-  categoryId: string;
+  page = 0;
+  pageSize = environment.pageSize;
+  collectionSize = 0;
+  lockScrollFetch = false;
+  pageCount = Infinity;
 
   constructor(
     private renderer: Renderer2,
     private categoryCb: CategoryCbGQL,
-    private route: ActivatedRoute
+    private categoryCbs: CategoryCbsGQL,
+    private postsCbsGQL: PostCbsGQL,
+    private route: ActivatedRoute,
+    private router: Router,
+     @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit(): void {
-    this.renderer.addClass(document.body, 'archive');
+    this.renderer.addClass(this.document.body, 'archive');
     this.route.params.subscribe(params => {
       const slug = params['slug'];
-      if(slug === 'politic') {
-        this.categoryId = "1"
-      } else if (slug === 'publication') {
-        this.categoryId = "2"
-      } else if (slug === 'health') {
-        this.categoryId = "3"
-      }
-    })
-    this.categoryCb.fetch({
-      categoryId: this.categoryId,
-      locale: "en",
-      page: this.page,
-      pageSize: environment.pageSize
-    }).subscribe((response) => {
-      if(response.data.categoryCb?.data) {
-        this.category = response.data.categoryCb.data as CategoryCbEntity
-        this.posts = response.data.postCbs?.data as PostCbEntity[];
-        this.postsSize = response.data.postCbs?.meta.pagination.total || 0;
-      }
+      
+      this.categoryCbs.fetch({
+        locale: "en",
+        categorySlug: slug,        
+      }).subscribe((response) => {
+        if (response.data.categoryCbs?.data.length) {
+          this.category = response.data.categoryCbs.data[0] as CategoryCbEntity;
+          this.mostRecentByParams()
+        }
+      });
     });
   }
 
+  mostRecentByParams() {
+    this.route.queryParams.pipe(
+      switchMap((params) => {
+        this.page = Number.parseInt(params['page']) || this.page;
+        return this.fetchMostrecent();
+      })
+    ).subscribe((response) => {
+      this.setMostRecent(response);
+    });
+  }
+
+  fetchMostrecent() {
+    return this.postsCbsGQL.fetch({
+      locale: 'en',
+      page: this.page,
+      pageSize: environment.pageSize,
+      categoryId: this.category.id,
+    });
+  }
+
+  setMostRecent(response: ApolloQueryResult<PostCbsQuery>) {
+    this.mostRecentPosts = this.mostRecentPosts.concat(response.data.postCbs?.data as PostCbEntity[]);
+    this.collectionSize = response.data.postCbs?.meta.pagination.total as number;
+    this.pageCount = response.data.postCbs?.meta.pagination.pageCount as number;
+  }
+
   ngOnDestroy(): void {
-      this.renderer.removeClass(document.body, 'archive');
+      this.renderer.removeClass(this.document.body, 'archive');
   }
 
   pageChange(page: number) {}
 
   buildLink(post: PostCbEntity) {
     return buildLink(post)
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+     const isScrolled = whenPageScrolled(this.document)
+
+    if (isScrolled && !this.lockScrollFetch) {
+      this.lockScrollFetch = true;
+      
+      this.router.navigate(['category',this.category.attributes?.Slug], {
+        queryParams: {
+          page: this.page + 1
+        }
+      });
+
+      setTimeout(() => {
+        if (this.page < this.pageCount) {
+          this.lockScrollFetch = false
+        }
+      }, 1500);
+    }
   }
 }

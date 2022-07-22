@@ -1,41 +1,13 @@
 <header id="header" class="d-lg-block d-none">
-  <div class="container">
-    <div class="align-items-center w-100">
-      <h1 class="logo float-left navbar-brand"><a href="/" class="logo">{{"Merinda" | translate}}</a></h1>
-      <div class="header-right float-right">
-        <div class="d-inline-flex float-right text-right align-items-center">
-          <ul class="social-network heading navbar-nav d-lg-flex align-items-center">
-            <li><a href="#"><i class="icon-facebook"></i></a></li>
-          </ul>
-          <ul class="top-menu heading navbar-nav w-100 d-lg-flex align-items-center">
-            <li><a href="#" class="btn">{{"Contact" | translate}}</a></li>
-          </ul>
-          <a class="author-avatar" href="#"><img src="/assets/images/author-avata-1.jpg" alt=""></a>
-        </div>
-        <form action="#" method="get" class="search-form d-lg-flex float-right" 
-        [ngClass]="{ 'open-search': isSearchBarOpen }">
-          <a href="javascript:void(0)" class="searh-toggle" (click)="isSearchBarOpen = !isSearchBarOpen">
-            <i class="icon-search"></i>
-          </a>
-          <input type="text" class="search_field" placeholder="Search..." value="" name="s">
-        </form>
-      </div>
-      <div class="align-items-center ml-2 float-right">
-        <select #selLang (change)="translateLanguageTo(selLang.value)">
-          <option *ngFor="let _language of translate.getLangs()" [selected]="_language === language"
-            [value]="_language">
-            {{ _language }}</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="clearfix"></div>
-  </div>
   <nav id="main-menu" class="stick d-lg-block d-none">
     <div class="container">
       <div class="menu-primary">
         <ul>
-          <li class="current-menu-item"><a href="/">{{"Home" | translate}}</a></li>
+          <li class="current-menu-item">
+            <a href="/" class="logo-m">
+              <img src="/assets/images/logo.svg" alt="">
+            </a>
+          </li>
           <li *ngFor="let category of categories" class="current-menu-item">
             <a [href]="'/category/' + category.attributes?.Slug">{{category.attributes?.Name}}</a>
           </li>

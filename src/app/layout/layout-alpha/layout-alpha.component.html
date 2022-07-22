@@ -3,15 +3,14 @@
 <div class="sticky-header fixed d-lg-none d-md-block">
   <div class="text-right">
     <div class="container mobile-menu-fixed pr-5">
-      <h1 class="logo-small navbar-brand"><a href="/" class="logo">Merinda</a></h1>
+      <h1 class="logo-small navbar-brand">
+        <a href="/" class="logo">
+          <img src="/assets/images/logo.svg" alt="">
+        </a>
+      </h1>
 
-      <a class="author-avatar" href="#"><img src="/assets/images/author-avata-1.jpg" alt=""></a>
-
-      <ul class="social-network heading navbar-nav d-lg-flex align-items-center">
-        <li><a href="#"><i class="icon-facebook"></i></a></li>
-      </ul>
-
-      <a href="javascript:void(0)" [ngClass]="isOpenMenu ? 'menu-toggle-icon act' : 'menu-toggle-icon'" (click)="isOpenMenu = !isOpenMenu">
+      <a href="javascript:void(0)" [ngClass]="isOpenMenu ? 'menu-toggle-icon act' : 'menu-toggle-icon'"
+        (click)="isOpenMenu = !isOpenMenu">
         <span class="lines"></span>
       </a>
     </div>
@@ -19,18 +18,26 @@
 
   <div [ngClass]="isOpenMenu ? 'mobi-menu act' : 'mobi-menu'">
     <div class="mobi-menu__logo">
-      <h1 class="logo navbar-brand"><a href="/" class="logo">Merinda</a></h1>
+      <h1 class="logo navbar-brand">
+        <a href="/" class="logo">
+          <img src="/assets/images/logo-v.svg" alt="">
+        </a>
+      </h1>
     </div>
-    <form action="#" method="get" class="menu-search-form d-lg-flex">
+    <!-- <form action="#" method="get" class="menu-search-form d-lg-flex">
       <input type="text" class="search_field" placeholder="Search..." value="" name="s">
-    </form>
+    </form> -->
     <nav>
       <ul>
         <li *ngFor="let category of categories" class="current-menu-item">
-          <a href="/category">{{category.attributes?.Name}}1</a>
+          <a href="/category">{{category.attributes?.Name}}</a>
         </li>
       </ul>
     </nav>
+
+    <div class="divider-2">
+    </div>
+    <app-ads [itemAd]="[]"></app-ads>
   </div>
 </div>
 <!--Mobile navigation-->
@@ -41,5 +48,4 @@
 </div>
 <!--#wrapper-->
 
-<a class="back-to-top heading"><i class="icon-left-open-big"></i><span
-    class="d-lg-inline d-md-none">Top</span></a>
+<a class="back-to-top heading"><i class="icon-left-open-big"></i><span class="d-lg-inline d-md-none">Top</span></a>

@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   baseUrl: "https://apexyz.de",
-  pageSize: 10
+  pageSize: 5,
+  debug: true
 };
 
 /*

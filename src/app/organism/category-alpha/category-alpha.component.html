@@ -1,4 +1,4 @@
-<main id="content" *ngIf="!!posts.length">
+<main id="content" *ngIf="!!mostRecentPosts.length">
   <div class="content-widget">
     <div class="container">
       <div class="row">
@@ -6,26 +6,24 @@
           <h4 class="spanborder">
             <span>{{"Culture" | translate}}</span>
           </h4>
-          <app-entry-gamma [post]="posts[0]"></app-entry-gamma>
+          <app-entry-gamma [post]="mostRecentPosts[0]"></app-entry-gamma>
           <div class="divider"></div>
 
-          <ng-container *ngFor="let post of posts">
+          <ng-container *ngFor="let post of mostRecentPosts">
             <app-entry-alpha [post]="post"></app-entry-alpha>
           </ng-container>
 
-          <ngb-pagination [collectionSize]="postsSize" (pageChange)="pageChange($event)" [(page)]="page" [maxSize]="5"
-            [rotate]="true" [boundaryLinks]="true">
-          </ngb-pagination>
+          <app-pagination-alpha [pageCount]="pageCount" [page]="page"></app-pagination-alpha>
         </div>
         <!--col-md-8-->
-        <div class="col-md-4 pl-md-5 sticky-sidebar">
+        <div class="col-md-4 pl-md-5">
           <div class="sidebar-widget latest-tpl-4">
             <h4 class="spanborder">
               <span>{{"Popular" |translate}}</span>
             </h4>
             <!-- Add popular molecule-->
             <ol>
-              <li class="d-flex" *ngFor="let post of posts; let i = index">
+              <li class="d-flex" *ngFor="let post of mostRecentPosts; let i = index">
                 <div class="post-count">{{i+1 | number: '2.0-0'}}</div>
                 <div class="post-content">
                   <h5 class="entry-title mb-3">

@@ -19,7 +19,6 @@ export class LayoutAlphaComponent implements OnInit {
       locale: 'en'
     }).subscribe((response) => {
       this.categories = response.data.categoryCbs?.data as CategoryCbEntity[];
-      console.log(this.categories);
     });
   }
 }

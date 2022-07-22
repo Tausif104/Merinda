@@ -1,5 +1,12 @@
-query CategoryCbs($locale: I18NLocaleCode) {
-  categoryCbs(locale: $locale) {
+query CategoryCbs(
+  $locale: I18NLocaleCode
+  $categorySlug: String
+  $categoryId: ID
+) {
+  categoryCbs(
+    locale: $locale
+    filters: { Slug: { eq: $categorySlug }, id: { eq: $categoryId } }
+  ) {
     ...CategoryCbEntityResponseCollectionFragment
   }
 }

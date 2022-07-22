@@ -10,7 +10,6 @@ import { LayoutModule } from './layout/layout.module';
 import { OrganismModule } from './organism/organism.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],

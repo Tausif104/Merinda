@@ -41,22 +41,23 @@
                 </div>
               </li>
             </ol>
-            <a class="link-green" href="/category/trendings">{{"See all trending" | translate}}<svg class="svgIcon-use"
+            <!-- <a class="link-green" href="/category/trendings">{{"See all trending" | translate}}<svg class="svgIcon-use"
                 width="19" height="19">
                 <path d="M7.6 5.138L12.03 9.5 7.6 13.862l-.554-.554L10.854 9.5 7.046 5.692" fill-rule="evenodd">
                 </path>
               </svg>
-            </a>
+            </a> -->
           </div>
         </div>
         <!--end trending-->
 
         <!--end row-->
-        <div class="divider"></div>
       </div>
     </div>
     <!--end container-->
   </div>
+
+  <div class="divider"></div>
 
   <!--section-featured-->
   <app-hero-alpha *ngIf="heroPost" [post]="heroPost"></app-hero-alpha>
@@ -95,12 +96,10 @@
             <app-entry-alpha [post]="post"></app-entry-alpha>
           </ng-container>
 
-          <ngb-pagination [collectionSize]="postsSize" (pageChange)="pageChange($event)" [(page)]="page" [maxSize]="5"
-            [rotate]="true" [boundaryLinks]="true">
-          </ngb-pagination>
+          <app-pagination-alpha [pageCount]="pageCount" [page]="page"></app-pagination-alpha>
         </div>
         <!--col-md-8-->
-        <div class="col-md-4 pl-md-5 sticky-sidebar">
+        <div class="col-md-4 pl-md-5">
           <div class="sidebar-widget latest-tpl-4">
             <h4 class="spanborder">
               <span>{{"Popular" | translate}}</span>
@@ -108,7 +107,7 @@
             <!-- Add popular molecule-->
             <ol>
               <li class="d-flex" *ngFor="let post of trendingPosts; let i = index">
-                <div class="post-count">{{i+1 | number: '2.0-0'}}</div>
+                <div class="post-count">{{ i + 1 | number: '2.0-0' }}</div>
                 <div class="post-content">
                   <h5 class="entry-title mb-3">
                     <a [href]="buildLink(post)">{{ post.attributes?.fields?.Title }}</a>
@@ -126,6 +125,6 @@
   </div>
   <!--content-widget-->
   <!-- Ads Section -->
-  <app-ads [itemAd]="[]"></app-ads>
+  <!-- <app-ads [itemAd]="[]"></app-ads> -->
   <!--content-widget-->
 </main>

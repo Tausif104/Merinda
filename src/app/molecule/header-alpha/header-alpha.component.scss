@@ -1,0 +1,30 @@
+header {
+    height: 60px;
+}
+
+.logo-m {
+    img {
+        height: 1.7rem;
+        margin-right: 10px;
+        filter: invert(100%);
+    }
+}
+
+.fixed-header-position {
+    .logo-m {
+        img {
+            height: 1.5rem;
+            transition: all .5s ease;
+        }
+    }
+    ul {
+        li {
+             a {
+                height: 3rem !important;
+                line-height: 3rem !important;
+                transition: all .5s ease;
+                font-size: .8rem !important;
+             }
+        }
+    }
+}

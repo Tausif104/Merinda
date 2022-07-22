@@ -1,7 +1,12 @@
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, HostListener, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ApolloQueryResult } from '@apollo/client/core';
+import { switchMap } from 'rxjs';
 import { buildLink } from 'src/app/utils/build-link';
+import { whenPageScrolled } from 'src/app/utils/scroll';
 import { environment } from 'src/environments/environment';
-import { PostCbEntity, PostCbsGQL } from 'src/generated/graphql';
+import { PostCbEntity, PostCbsGQL, PostCbsQuery } from 'src/generated/graphql';
 
 @Component({
   selector: 'app-home-alpha',
@@ -15,16 +20,33 @@ export class HomeAlphaComponent implements OnInit, OnDestroy {
   heroPost: PostCbEntity;
   referralPosts: PostCbEntity[] = [];
   mostRecentPosts: PostCbEntity[] = [];
-  postsSize: number;
-  page = 0;
+  collectionSize = 0;
+  pageSize = environment.pageSize
+  page = 1;
+  lockScrollFetch = false;
+  pageCount = Infinity;
 
   constructor(
     private renderer: Renderer2,
-    private postsCbsGQL: PostCbsGQL
+    private postsCbsGQL: PostCbsGQL,
+    private router: Router,
+    private route: ActivatedRoute,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
+  getPageParam() {
+    return 
+  }
+
   ngOnInit(): void {
-    this.renderer.addClass(document.body, 'home');
+    this.renderer.addClass(this.document.body, 'home');
+    
+    this.mostRecentByParams();
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.mostRecentByParams()
+      }
+    });
 
     // Editor's Pick Posts
     this.postsCbsGQL.fetch({
@@ -80,12 +102,55 @@ export class HomeAlphaComponent implements OnInit, OnDestroy {
       this.referralPosts = response.data.postCbs?.data as PostCbEntity[]      
     });
   }
-  
-  ngOnDestroy(): void {
-      this.renderer.removeClass(document.body, 'home');
+
+  mostRecentByParams() {
+    this.route.queryParams.pipe(
+      switchMap((params) => {
+        this.page = Number.parseInt(params['page']) || this.page;
+        return this.fetchMostrecent();
+      })
+    ).subscribe((response) => {
+      this.setMostRecent(response);
+    });
   }
 
-  pageChange(page: number) {
+  fetchMostrecent() {
+    return this.postsCbsGQL.fetch({
+      locale: 'en',
+      page: this.page,
+      pageSize: environment.pageSize,
+    });
+  }
+
+  setMostRecent(response: ApolloQueryResult<PostCbsQuery>) {
+    this.mostRecentPosts = this.mostRecentPosts.concat(response.data.postCbs?.data as PostCbEntity[]);
+    this.collectionSize = response.data.postCbs?.meta.pagination.total as number;
+    this.pageCount = response.data.postCbs?.meta.pagination.pageCount as number;
+  }
+  
+  ngOnDestroy(): void {
+      this.renderer.removeClass(this.document.body, 'home');
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const isScrolled = whenPageScrolled(this.document)
+
+    if (isScrolled && !this.lockScrollFetch) {
+      this.lockScrollFetch = true;
+      
+      this.router.navigate(['../'], {
+        queryParams: {
+          page: this.page + 1
+        }
+      });
+
+      setTimeout(() => {
+        if (this.page < this.pageCount) {
+          this.lockScrollFetch = false
+        }
+      }, 1500);
+    }
   }
 
   buildLink(post: PostCbEntity) {
