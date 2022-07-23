@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import {
   ApolloClientOptions,
@@ -8,6 +8,10 @@ import {
 } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
 import { environment } from 'src/environments/environment';
+import { makeStateKey, TransferState } from '@angular/platform-browser';
+
+const APOLLO_CACHE = new InjectionToken<InMemoryCache>('apollo-cache');
+const STATE_KEY = makeStateKey<any>('apollo.state');
 
 const timeStartLink = new ApolloLink((operation, forward) => {
   operation.setContext({ start: performance.now() })
@@ -33,19 +37,41 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 });
 
 // <-- add the URL of the GraphQL server here
-export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
+export function createApollo(
+  httpLink: HttpLink,
+  cache: InMemoryCache,
+  transferState: TransferState
+): ApolloClientOptions<any> {
+
+  const isBrowser = transferState.hasKey<any>(STATE_KEY);
+
+  if (isBrowser) {
+    const state = transferState.get<any>(STATE_KEY, null);
+    cache.restore(state);
+  } else {
+    transferState.onSerialize(STATE_KEY, () => {
+      return cache.extract();
+    });
+    // Reset cache after extraction to avoid sharing between requests
+    cache.reset();
+  }
+  
   return {
     link: concat(timeStartLink.concat(authMiddleware), httpLink.create({ uri: "https://apexyz.de/graphql" })),
-    cache: new InMemoryCache(),
+    cache,
   };
 }
 
 @NgModule({
   providers: [
     {
+      provide: APOLLO_CACHE,
+      useValue: new InMemoryCache(),
+    },
+    {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,
-      deps: [HttpLink],
+      deps: [HttpLink, APOLLO_CACHE, TransferState],
     },
   ],
 })

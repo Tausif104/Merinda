@@ -34,8 +34,23 @@ export function app(): express.Express {
   }));
 
   // All regular routes use the Universal engine
+  const cache: any = {};
   server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+    const url = req.url;
+    const now = new Date();
+
+    if (cache[url] && now < cache[url].expiry) {
+      return res.send(cache[url].html);
+    }
+
+    return res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] }, (err, html) => {
+      // Expire in 1 month
+      const expiry = new Date();
+      expiry.setDate(expiry.getDate() + 30);
+  
+      cache[url] = { expiry, html };
+      res.send(html);
+    });
   });
 
   return server;
