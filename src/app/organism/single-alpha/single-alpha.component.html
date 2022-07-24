@@ -26,7 +26,8 @@
         {{post.attributes?.fields?.Meta_Description}}
       </div>
       <div class="entry-main-content dropcap">
-        <div [innerHTML]="post.attributes?.fields?.Content"></div>
+        <div [innerHTML]="markDownToHTML(post.attributes?.fields?.Content || '')"></div>
+        <!-- <markdown [data]="post.attributes?.fields?.Content"></markdown> -->
         <!--Begin Subcrible-->
         <!-- <div class="border p-5 bg-lightblue mb-5">
           <div class="row justify-content-between">

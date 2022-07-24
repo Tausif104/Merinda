@@ -29,9 +29,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
       }
-    }),
-    
-    ],
+    })
+  ],
   providers: [],
   bootstrap: [AppComponent],
   exports: []

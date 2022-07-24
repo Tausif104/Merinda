@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { ApolloQueryResult } from '@apollo/client/core';
 import { buildLink } from 'src/app/utils/build-link';
 import { DOCUMENT } from '@angular/common';
+import { Converter } from 'showdown';
 
 @Component({
   selector: 'app-single-alpha',
@@ -22,14 +23,18 @@ export class SingleAlphaComponent implements OnInit, OnDestroy {
   lockScrollFetch = false;
   pageCount = Infinity;
   trendingPosts: PostCbEntity[] = [];
+  private converter: Converter;
 
   constructor(
     private renderer: Renderer2,
     private route: ActivatedRoute,
     private router: Router,
     private postsCbsGQL: PostCbsGQL,
-    @Inject(DOCUMENT) private document: Document
-  ) {}
+    @Inject(DOCUMENT) private document: Document,
+    
+  ) {
+    this.converter = new Converter();
+  }
 
   ngOnInit(): void {
     this.renderer.addClass(this.document.body, 'single');
@@ -129,5 +134,9 @@ export class SingleAlphaComponent implements OnInit, OnDestroy {
 
   buildLink(post: PostCbEntity) {
     return buildLink(post)
+  }
+
+  markDownToHTML(markdown: string) {
+    return this.converter.makeHtml(markdown);
   }
 }

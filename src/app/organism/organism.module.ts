@@ -21,9 +21,10 @@ import { AtomModule } from '../atom/atom.module';
   imports: [
     BrowserModule,
     MoleculeModule,
-    AtomModule
+    AtomModule,
   ],
-  providers: [],
+  providers: [
+  ],
   exports: []
 })
 export class OrganismModule {}
