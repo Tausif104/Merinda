@@ -33,7 +33,9 @@ export class SingleAlphaComponent implements OnInit, OnDestroy {
     @Inject(DOCUMENT) private document: Document,
     
   ) {
-    this.converter = new Converter();
+    this.converter = new Converter({
+      openLinksInNewWindow: true
+    });
   }
 
   ngOnInit(): void {
