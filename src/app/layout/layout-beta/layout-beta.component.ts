@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-layout-alpha',
-  templateUrl: './layout-alpha.component.html',
-  styleUrls: ['./layout-alpha.component.scss'],
+  selector: 'app-layout-beta',
+  templateUrl: './layout-beta.component.html',
+  styleUrls: ['./layout-beta.component.scss'],
 })
-export class LayoutAlphaComponent {
+export class LayoutBetaComponent {
   isCollapsed = false;
 
   constructor() {}

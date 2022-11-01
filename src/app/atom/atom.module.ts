@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaginationAlphaComponent } from './pagination-alpha/pagination-alpha.component';
 import { RouterModule } from '@angular/router';
 
-const components = [
-  PaginationAlphaComponent
-];
+const components: any = [];
 
 @NgModule({
   declarations: [

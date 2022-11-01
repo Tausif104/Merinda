@@ -1,51 +1,70 @@
-<div class="top-scroll-bar"></div>
-<!--Mobile navigation-->
-<div class="sticky-header fixed d-lg-none d-md-block">
-  <div class="text-right">
-    <div class="container mobile-menu-fixed pr-5">
-      <h1 class="logo-small navbar-brand">
-        <a href="/" class="logo">
-          <img src="/assets/images/logo.svg" alt="">
-        </a>
-      </h1>
-
-      <a href="javascript:void(0)" [ngClass]="isOpenMenu ? 'menu-toggle-icon act' : 'menu-toggle-icon'"
-        (click)="isOpenMenu = !isOpenMenu">
-        <span class="lines"></span>
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>Ant Design Of Angular</h1>
       </a>
     </div>
-  </div>
-
-  <div [ngClass]="isOpenMenu ? 'mobi-menu act' : 'mobi-menu'">
-    <div class="mobi-menu__logo">
-      <h1 class="logo navbar-brand">
-        <a href="/" class="logo">
-          <img src="/assets/images/logo-v.svg" alt="">
-        </a>
-      </h1>
-    </div>
-    <!-- <form action="#" method="get" class="menu-search-form d-lg-flex">
-      <input type="text" class="search_field" placeholder="Search..." value="" name="s">
-    </form> -->
-    <nav>
-      <ul>
-        <li *ngFor="let category of categories" class="current-menu-item">
-          <a href="/category">{{category.attributes?.Name}}</a>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="divider-2">
-    </div>
-    <app-ads [itemAd]="[]"></app-ads>
-  </div>
-</div>
-<!--Mobile navigation-->
-<div id="wrapper">
-  <app-header-alpha *ngIf="categories.length" [categories]="categories"></app-header-alpha>
-  <router-outlet></router-outlet>
-  <app-footer-alpha></app-footer-alpha>
-</div>
-<!--#wrapper-->
-
-<a class="back-to-top heading"><i class="icon-left-open-big"></i><span class="d-lg-inline d-md-none">Top</span></a>
+    <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nzSelected nz-menu-item nzOpen nzIcon="dashboard">
+        <span nz-icon nzType="read" nzTheme="outline"></span>
+        <span>
+          <a routerLink="/pages" class="menu-item">Pages</a>
+        </span>
+      </li>
+      <li nz-menu-item nzOpen nzIcon="dashboard">
+        <span nz-icon nzType="barcode" nzTheme="outline"></span>
+        <span>
+          <a routerLink="/products" class="menu-item">Products</a>
+        </span>
+      </li>
+      <li nz-menu-item nzOpen nzIcon="dashboard">
+        <span nz-icon nzType="group" nzTheme="outline"></span>
+        <span>
+          <a routerLink="/categories" class="menu-item">Categories</a>
+        </span>
+      </li>
+      <li nz-menu-item nzOpen nzIcon="dashboard">
+        <span nz-icon nzType="deployment-unit" nzTheme="outline"></span>
+        <span>
+          <a routerLink="/graph" class="menu-item">Graph</a>
+        </span>
+      </li>
+      <li nz-menu-item nzOpen nzIcon="dashboard">
+        <span nz-icon nzType="file-text" nzTheme="outline"></span>
+        <span>
+          <a routerLink="/posts" class="menu-item">Posts</a>
+        </span>
+      </li>
+      <li nz-menu-item nzOpen nzIcon="dashboard">
+        <span nz-icon nzType="shopping" nzTheme="outline"></span>
+        <span>
+          <a routerLink="/orders" class="menu-item">Orders</a>
+        </span>
+      </li>
+      <li nz-menu-item nzOpen nzIcon="dashboard">
+        <span nz-icon nzType="message" nzTheme="outline"></span>
+        <span>
+          <a routerLink="/chats" class="menu-item">Chats</a>
+        </span>
+      </li>
+      <li nz-menu-item nzOpen nzIcon="dashboard">
+        <span nz-icon nzType="user" nzTheme="outline"></span>
+        <span>
+          <a routerLink="/clients" class="menu-item">Clients</a>
+        </span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <app-header-alpha (isCollapsedEmitter)="isCollapsedListener($event)"></app-header-alpha>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <app-footer-alpha></app-footer-alpha>
+  </nz-layout>
+</nz-layout>

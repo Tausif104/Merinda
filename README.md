@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Generate Component Eg.
 
-`ng generate component organism/test-alpha -m organism`
+`ng generate component -m organism/organism.module organism/not-found`
 
 
 # Roadmap

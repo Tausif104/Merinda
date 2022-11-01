@@ -1,19 +1,7 @@
-<header id="header" class="d-lg-block d-none">
-  <nav id="main-menu" class="stick d-lg-block d-none">
-    <div class="container">
-      <div class="menu-primary">
-        <ul>
-          <li class="current-menu-item">
-            <a href="/" class="logo-m">
-              <img src="/assets/images/logo.svg" alt="">
-            </a>
-          </li>
-          <li *ngFor="let category of categories" class="current-menu-item">
-            <a [href]="'/category/' + category.attributes?.Slug">{{category.attributes?.Name}}</a>
-          </li>
-        </ul>
-        <span></span>
-      </div>
-    </div>
-  </nav>
-</header>
+<nz-header>
+  <div class="app-header">
+    <span class="header-trigger" (click)="flip()">
+      <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+    </span>
+  </div>
+</nz-header>

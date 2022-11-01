@@ -1,52 +1,63 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LayoutAlphaComponent } from './layout/layout-alpha/layout-alpha.component';
-import { ArchiveAlphaComponent } from './organism/archive-alpha/archive-alpha.component';
-import { AuthorAlphaComponent } from './organism/author-alpha/author-alpha.component';
-import { CategoryAlphaComponent } from './organism/category-alpha/category-alpha.component';
-import { HomeAlphaComponent } from './organism/home-alpha/home-alpha.component';
-import { SearchAlphaComponent } from './organism/search-alpha/search-alpha.component';
-import { SingleAlphaComponent } from './organism/single-alpha/single-alpha.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule, ROUTES } from "@angular/router";
+import { LayoutAlphaComponent } from "./layout/layout-alpha/layout-alpha.component";
+import { LayoutBetaComponent } from "./layout/layout-beta/layout-beta.component";
+import { HomeAlphaComponent } from "./organism/home-alpha/home-alpha.component";
+import { NotFoundAlphaComponent } from "./organism/not-found-alpha/not-found-alpha.component";
+import { PageAlphaComponent } from "./organism/page-alpha/page-alpha.component";
+import { PageListAlphaComponent } from "./organism/page-list-alpha/page-list-alpha.component";
 
-const routes: Routes = [
-  {
-    path: '',
-    component: LayoutAlphaComponent, // this is the component with the <router-outlet> in the template
-    children: [
+const children = [
       {
         path: '',
-        component: HomeAlphaComponent, // child route component that the router renders
+        component: HomeAlphaComponent,
       },
       {
-        path: 'post/:slug',
-        component: SingleAlphaComponent, // child route component that the router renders
+        path: 'pages',
+        component: PageListAlphaComponent,
       },
-      {
-        path: 'author/:slug',
-        component: AuthorAlphaComponent, // child route component that the router renders
-      },
-      {
-        path: 'category/:slug',
-        component: CategoryAlphaComponent, // child route component that the router renders
-      },
-      {
-        path: 'search',
-        component: SearchAlphaComponent, // child route component that the router renders
-      },
-      {
-        path: 'archive',
-        component: ArchiveAlphaComponent, // child route component that the router renders
-      },
-    ],
-  },
-];
+      { path: 'not-found', component: NotFoundAlphaComponent },
+    ]
+
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {
-      initialNavigation: 'enabledBlocking',
-    }),
+    RouterModule.forRoot([]),
   ],
   exports: [RouterModule],
+  providers: [
+    {
+      provide: ROUTES,
+      useFactory: configHandlerRoutes,
+      deps: [],
+      multi: true
+    }
+  ]
 })
 export class AppRoutingModule {}
+
+export function configHandlerRoutes() {
+  let routes: Routes = [];
+
+  if (true) {
+    routes = [
+      {
+        path: '',
+        component: LayoutAlphaComponent,
+        children: children,
+      },
+      { path: '**',   redirectTo: '/not-found', pathMatch: 'full' },
+    ];
+  } else {
+    routes = [
+      {
+        path: '',
+        component: LayoutBetaComponent,
+        children: children,
+      },
+      { path: '**',   redirectTo: '/not-found', pathMatch: 'full' },
+    ];
+  }
+
+  return routes;
+}
