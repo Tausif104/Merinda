@@ -71,7 +71,6 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzResizableModule } from 'ng-zorro-antd/resizable';
 import { NzPipesModule } from 'ng-zorro-antd/pipes';
 import { NzCodeEditorModule } from 'ng-zorro-antd/code-editor';
-import { NzGraphModule } from 'ng-zorro-antd/graph';
 
 @NgModule({
   exports: [
@@ -145,7 +144,6 @@ import { NzGraphModule } from 'ng-zorro-antd/graph';
     NzResizableModule,
     NzPipesModule,
     NzCodeEditorModule,
-    NzGraphModule
   ]
 })
 export class NgZorroAntdModule {

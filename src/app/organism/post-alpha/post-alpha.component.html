@@ -1,0 +1,12 @@
+<div nz-row>
+  <div nz-col nzSpan="20"></div>
+  <div nz-col nzSpan="4">
+    <button *ngIf="this.isUpdate" (click)="remove()" nz-button nzType="dashed" nzDanger>Delete</button>
+    <button *ngIf="!this.isUpdate" (click)="create()" nz-button nzType="primary" class="pull-right">Create</button>
+    <button *ngIf="this.isUpdate" (click)="update()" nz-button nzType="primary" class="pull-right">Update</button>
+  </div>
+</div>
+
+<input class=" title" nz-input placeholder="Title" nzSize="large" [(ngModel)]="post.title" />
+
+<div id="editorjs"></div>

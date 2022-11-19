@@ -6,6 +6,8 @@ import { HomeAlphaComponent } from "./organism/home-alpha/home-alpha.component";
 import { NotFoundAlphaComponent } from "./organism/not-found-alpha/not-found-alpha.component";
 import { PageAlphaComponent } from "./organism/page-alpha/page-alpha.component";
 import { PageListAlphaComponent } from "./organism/page-list-alpha/page-list-alpha.component";
+import { PostAlphaComponent } from "./organism/post-alpha/post-alpha.component";
+import { PostListAlphaComponent } from "./organism/post-list-alpha/post-list-alpha.component";
 
 const children = [
       {
@@ -13,8 +15,16 @@ const children = [
         component: HomeAlphaComponent,
       },
       {
-        path: 'pages',
-        component: PageListAlphaComponent,
+        path: 'posts',
+        component: PostListAlphaComponent,
+      },
+      {
+        path: 'posts/new',
+        component: PostAlphaComponent,
+      },
+      {
+        path: 'posts/:id',
+        component: PostAlphaComponent,
       },
       { path: 'not-found', component: NotFoundAlphaComponent },
     ]

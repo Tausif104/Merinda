@@ -1,18 +1,12 @@
-:host {
-  display: flex;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-.app-layout {
-  height: 100vh;
-}  
 
-.menu-sidebar {
-  position: relative;
-  z-index: 10;
-  min-height: 100vh;
+
+nz-sider {
+  overflow: auto;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  background-color: #FFF;
 }
 
 .header-trigger {
@@ -54,6 +48,14 @@
   vertical-align: middle;
 }
 
+.right-layout {
+  margin-left: 200px;
+}
+    
+.right-layout-full {
+  margin-left: 80px;
+}
+    
 nz-content {
   margin: 24px;
 }
@@ -66,4 +68,22 @@ nz-content {
 
 .menu-item {
   margin-left: 10px
+}
+
+.spinner {
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background: #48484887;
+  transition: all 1s ease-out;
+
+  nz-spin {
+    display: flex;
+  }
 }

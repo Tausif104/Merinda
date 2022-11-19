@@ -1,0 +1,26 @@
+<h1>Posts</h1>
+
+<nz-list nzItemLayout="vertical">
+
+  <div nz-row>
+    <div nz-col nzSpan="20"></div>
+    <div nz-col nzSpan="4">
+      <button routerLink="/posts/new" nz-button nzType="primary" class="pull-right">Create New</button>
+    </div>
+  </div>
+
+  <nz-list-item class="content" *ngFor="let item of data">
+    <nz-list-item-meta>
+      <nz-list-item-meta-avatar [nzSrc]="'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'">
+      </nz-list-item-meta-avatar>
+      <nz-list-item-meta-title>
+        <a routerLink="/posts/{{ item.id }}"> {{ item.title }}</a>
+      </nz-list-item-meta-title>
+      <nz-list-item-meta-description [innerHTML]="getContentText(item)">
+      </nz-list-item-meta-description>
+    </nz-list-item-meta>
+    <nz-list-item-extra>
+      <img width="272" alt="logo" [src]="getContentImage(item)" />
+    </nz-list-item-extra>
+  </nz-list-item>
+</nz-list>

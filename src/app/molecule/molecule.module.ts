@@ -15,7 +15,7 @@ const Components = [
 
 @NgModule({
   declarations: [...Components, ImagePathPipe],
-  imports: [BrowserModule, AtomModule, IconsProviderModule, NzLayoutModule, BrowserAnimationsModule],
+  imports: [BrowserModule, AtomModule, BrowserAnimationsModule],
   providers: [ImagePathPipe],
   exports: [...Components],
 })

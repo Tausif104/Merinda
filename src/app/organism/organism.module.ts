@@ -8,7 +8,12 @@ import { PageAlphaComponent } from './page-alpha/page-alpha.component';
 import { ProductPageAlphaComponent } from './product-page-alpha/product-page-alpha.component';
 import { NotFoundAlphaComponent } from './not-found-alpha/not-found-alpha.component';
 import { PageListAlphaComponent } from './page-list-alpha/page-list-alpha.component';
-import { NzListModule } from 'ng-zorro-antd/list';
+import { NgZorroAntdModule } from '../ng-zorro-ant.module';
+import { PostListAlphaComponent } from './post-list-alpha/post-list-alpha.component';
+import { PostAlphaComponent } from './post-alpha/post-alpha.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,16 +22,20 @@ import { NzListModule } from 'ng-zorro-antd/list';
     PageAlphaComponent,
     ProductPageAlphaComponent,
     NotFoundAlphaComponent,
-    PageListAlphaComponent
-
+    PageListAlphaComponent,
+    PostListAlphaComponent,
+    PostAlphaComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
+    AppRoutingModule,
+    FormsModule,
     MoleculeModule,
-    AtomModule,
-    NzListModule
+    AtomModule
   ],
   providers: [],
-  exports: []
+  exports: [
+  ]
 })
 export class OrganismModule {}

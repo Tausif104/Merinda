@@ -16,12 +16,14 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrganismModule } from './organism/organism.module';
+import { NgZorroAntdModule } from './ng-zorro-ant.module';
 
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent,],
+  declarations: [AppComponent],
   imports: [
     ApolloModule,
     HttpClientModule,
@@ -39,6 +41,7 @@ registerLocaleData(en);
     }),
     FormsModule,
     BrowserAnimationsModule,
+    OrganismModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

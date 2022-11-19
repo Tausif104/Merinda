@@ -1,11 +1,40 @@
-query PostCb(
-  $locale: I18NLocaleCode
-  $postId: ID!
-) {
-  postCb(
-    locale: $locale
-    id: $postId
-  ) {
-  	...PostCbEntityResponseFragment
+
+query FindPost ($findPostInput: FindPostInput!) {
+  findPost(findPostInput: $findPostInput) {
+    title
+    id
+    postStatus
+    content
+  }
+}
+
+query FindOnePost ($findOnePostInput: Int!) {
+  findOnePostById(id: $findOnePostInput) {
+    title
+    id
+    postStatus
+    content
+  }
+}
+
+mutation CreatePost($createPostInput: CreatePostInput!) {
+  createPost(createPostInput: $createPostInput) {
+    title
+    id
+  }
+}
+
+mutation RemovePost($removePostInput: Int!) {
+  removePost(id: $removePostInput) {
+    title
+    id
+  }
+}
+
+mutation UpdatePost($updatePostInput: UpdatePostInput!) {
+  updatePost(updatePostInput: $updatePostInput) {
+    content
+    title
+    id
   }
 }

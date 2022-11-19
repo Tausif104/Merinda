@@ -1,17 +1,29 @@
 <nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
-    [nzTrigger]="null">
+  <div *ngIf="isVisible" class="spinner">
+    <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+  </div>
+
+  <nz-sider class="menu-sidebar" nzCollapsible nzBreakpoint="md" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
         <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
         <h1>Ant Design Of Angular</h1>
       </a>
     </div>
+    <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+      <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+    </span>
     <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <li nzSelected nz-menu-item nzOpen nzIcon="dashboard">
-        <span nz-icon nzType="read" nzTheme="outline"></span>
+        <span nz-icon nzType="deployment-unit" nzTheme="outline"></span>
         <span>
           <a routerLink="/pages" class="menu-item">Pages</a>
+        </span>
+      </li>
+      <li nz-menu-item nzOpen nzIcon="dashboard">
+        <span nz-icon nzType="file-text" nzTheme="outline"></span>
+        <span>
+          <a routerLink="/posts" class="menu-item">Posts</a>
         </span>
       </li>
       <li nz-menu-item nzOpen nzIcon="dashboard">
@@ -30,12 +42,6 @@
         <span nz-icon nzType="deployment-unit" nzTheme="outline"></span>
         <span>
           <a routerLink="/graph" class="menu-item">Graph</a>
-        </span>
-      </li>
-      <li nz-menu-item nzOpen nzIcon="dashboard">
-        <span nz-icon nzType="file-text" nzTheme="outline"></span>
-        <span>
-          <a routerLink="/posts" class="menu-item">Posts</a>
         </span>
       </li>
       <li nz-menu-item nzOpen nzIcon="dashboard">
@@ -58,12 +64,9 @@
       </li>
     </ul>
   </nz-sider>
-  <nz-layout>
-    <app-header-alpha (isCollapsedEmitter)="isCollapsedListener($event)"></app-header-alpha>
+  <nz-layout class="right-layout" [ngClass]="{'right-layout': !isCollapsed, 'right-layout-full': isCollapsed}">
     <nz-content>
-      <div class="inner-content">
-        <router-outlet></router-outlet>
-      </div>
+      <router-outlet></router-outlet>
     </nz-content>
     <app-footer-alpha></app-footer-alpha>
   </nz-layout>
