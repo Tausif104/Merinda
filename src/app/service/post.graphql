@@ -1,10 +1,11 @@
+# Write your query or mutation here
 
 query FindPost ($findPostInput: FindPostInput!) {
   findPost(findPostInput: $findPostInput) {
     title
     id
     postStatus
-    content
+    contentRaw
   }
 }
 
@@ -13,7 +14,7 @@ query FindOnePost ($findOnePostInput: Int!) {
     title
     id
     postStatus
-    content
+    contentRaw
   }
 }
 
@@ -33,7 +34,7 @@ mutation RemovePost($removePostInput: Int!) {
 
 mutation UpdatePost($updatePostInput: UpdatePostInput!) {
   updatePost(updatePostInput: $updatePostInput) {
-    content
+    contentRaw
     title
     id
   }
