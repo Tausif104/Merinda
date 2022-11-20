@@ -1,10 +1,10 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import EditorJS, { OutputData } from '@editorjs/editorjs';
+// import type EditorJS from '@editorjs/editorjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { debounceTime, skip, Observable, switchMap, of, delay } from 'rxjs';
+import { debounceTime, skip, Observable, delay } from 'rxjs';
 import { SpinnerService } from 'src/app/service/spinner.service';
-import { editorjsConfig } from 'src/app/utils/editor.config';
 import { CreatePostGQL, FindOnePostGQL, Post, RemovePostGQL, UpdatePostGQL } from 'src/generated/graphql';
 
 @UntilDestroy()
@@ -17,9 +17,10 @@ export class PostAlphaComponent implements OnInit {
 
   code = ''
   editorData: any;
-  editor: EditorJS;
+  editor: any;
   editorObserver: MutationObserver;
   isUpdate: boolean = false;
+  isBrowser: boolean = false;
   public post: Partial<Post> = {};
 
   constructor(
@@ -29,22 +30,28 @@ export class PostAlphaComponent implements OnInit {
     private createPostGQL: CreatePostGQL,
     private updatePostGQL: UpdatePostGQL,
     private removePostGQL: RemovePostGQL,
-    private spinnerService: SpinnerService
-  ) {}
+    private spinnerService: SpinnerService,
+    @Inject(PLATFORM_ID) private platformId: string,
+    @Inject(DOCUMENT) private document: Document
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   ngOnInit(): void {
     this.spinnerService.show()
-    this.editor = new EditorJS(editorjsConfig)
-    console.log(this.editor);
-    
-    this.detectEditorChanges().pipe(
-      debounceTime(200),
-      skip(1),
-      untilDestroyed(this)
-    ).subscribe(async data => {
-      const outputData = await this.editor.save();
-      this.editorData =  JSON.stringify(outputData, null, 2);
-    });
+    if (this.isBrowser) {
+      const EditorJS = require('@editorjs/editorjs');
+      const { editorjsConfig } = require('src/app/utils/editor.config');
+      this.editor = new EditorJS(editorjsConfig);
+      this.detectEditorChanges().pipe(
+        debounceTime(200),
+        skip(1),
+        untilDestroyed(this)
+      ).subscribe(async data => {
+        const outputData = await this.editor.save();
+        this.editorData =  JSON.stringify(outputData, null, 2);
+      });
+    }
 
     this.route.paramMap.subscribe((params) => {
       const postId = params.get('id');
@@ -60,7 +67,7 @@ export class PostAlphaComponent implements OnInit {
           if (!this.post.content) {
             throw new Error(`Content not found`)
           }
-          const outputData: OutputData = JSON.parse(this.post.content);
+          const outputData: any = JSON.parse(this.post.content);
 
           this.editor.render(outputData);
           this.spinnerService.hide();
@@ -111,7 +118,7 @@ export class PostAlphaComponent implements OnInit {
   }
 
   saveEditorData() : void {
-    this.editor.save().then((outputData) => {
+    this.editor.save().then((outputData: any) => {
       this.editorData =  JSON.stringify(outputData, null, 2);
     })
   }
@@ -122,7 +129,7 @@ export class PostAlphaComponent implements OnInit {
 
   detectEditorChanges(): Observable <any> {
     return new Observable(observer => {
-      const editorDom = document.querySelector('#editorjs');
+      const editorDom = this.document.querySelector('#editorjs');
       if (!editorDom) {
         throw new Error("Test");
       }
