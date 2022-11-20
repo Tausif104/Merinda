@@ -1,0 +1,10 @@
+{
+    "/api/*": {
+      "target": "https://api.dailypartner.de",
+      "secure": false,
+      "logLevel": "debug",
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+}
