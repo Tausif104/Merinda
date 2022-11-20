@@ -21,13 +21,12 @@ WORKDIR /app
 
 # Build project
 RUN pnpm install
-RUN pnpm codegen
 RUN pnpm build:ssr
-RUN pnpm build
+# RUN pnpm build
 # RUN pnpm lint
 # RUN pnpm test
 
 EXPOSE 3000
 WORKDIR /app
 
-CMD ["node", "--inspect", "dist/main"]
+CMD ["node", "dist/blog/server/main.js"]
