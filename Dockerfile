@@ -21,6 +21,7 @@ WORKDIR /app
 
 # Build project
 RUN pnpm install
+RUN pnpm codegen
 RUN pnpm build:ssr
 # RUN pnpm build
 # RUN pnpm lint
