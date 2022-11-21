@@ -1,4 +1,5 @@
 import Header from '@editorjs/header';
+import { environment } from 'src/environments/environment';
 import { FileService } from '../service/file.service';
 const List = require('@editorjs/list');
 const Embed = require('@editorjs/embed');
@@ -23,7 +24,7 @@ export const editorjsConfig = {
               return {
                 success: 1,
                 file: {
-                  url: `http://localhost:3000/static/${data[0]}`
+                  url: `${environment.apiUrl}/static/${data[0]}`
                 }
               };
             });
@@ -49,7 +50,7 @@ export const editorjsConfig = {
     link: {
       class: LinkAutocomplete,
       config: {
-        endpoint: 'http://localhost:4200/api/post-links',
+        endpoint: `/api/post-links`,
         queryParam: 'search'
       }
     }

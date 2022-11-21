@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-  baseUrl: "https://apexyz.de",
+  baseUrl: "https://localhost:4000",
   pageSize: 5,
-  debug: true
+  debug: true,
+  apiUrl: "http://localhost:3000"
 };
 
 /*

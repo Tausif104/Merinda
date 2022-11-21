@@ -80,12 +80,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "blog:build:production",
-              "proxyConfig": "src/proxy-prod.config.json"
+              "browserTarget": "blog:build:production"
+              
             },
             "development": {
-              "browserTarget": "blog:build:development",
-              "proxyConfig": "src/proxy-local.config.json"
+              "browserTarget": "blog:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -143,11 +142,13 @@
           "configurations": {
             "development": {
               "browserTarget": "blog:build:development",
-              "serverTarget": "blog:server:development"
+              "serverTarget": "blog:server:development",
+              "proxyConfig": "src/proxy-prod.config.json"
             },
             "production": {
               "browserTarget": "blog:build:production",
-              "serverTarget": "blog:server:production"
+              "serverTarget": "blog:server:production",
+              "proxyConfig": "src/proxy-local.config.json"
             }
           },
           "defaultConfiguration": "development"

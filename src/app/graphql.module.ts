@@ -57,7 +57,7 @@ export function createApollo(
   }
   
   return {
-    link: concat(timeStartLink.concat(authMiddleware), httpLink.create({ uri: "http://localhost:3000/graphql" })),
+    link: concat(timeStartLink.concat(authMiddleware), httpLink.create({ uri: `${environment.apiUrl}/graphql` })),
     cache,
   };
 }
