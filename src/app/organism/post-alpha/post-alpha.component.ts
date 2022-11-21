@@ -64,10 +64,10 @@ export class PostAlphaComponent implements OnInit {
           delay(2000)
         ).subscribe((response) => {
           this.post = {...response.data.findOnePostById as Post};
-          if (!this.post.content) {
+          if (!this.post.contentRaw) {
             throw new Error(`Content not found`)
           }
-          const outputData: any = JSON.parse(this.post.content);
+          const outputData: any = JSON.parse(this.post.contentRaw);
 
           this.editor.render(outputData);
           this.spinnerService.hide();

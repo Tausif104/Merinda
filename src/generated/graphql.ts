@@ -45,8 +45,14 @@ export type CreateCategoryInput = {
   exampleField: Scalars['Int'];
 };
 
+export type CreatePostBlockInput = {
+  raw: Scalars['String'];
+  type: PostBlockType;
+  value: Scalars['String'];
+};
+
 export type CreatePostInput = {
-  categoryId?: InputMaybe<Scalars['String']>;
+  categoryId?: InputMaybe<Scalars['Float']>;
   content: Scalars['String'];
   title: Scalars['String'];
 };
@@ -67,14 +73,17 @@ export type Mutation = {
   __typename?: 'Mutation';
   createCategory: Category;
   createPost: Post;
+  createPostBlock: PostBlock;
   createUser: User;
   login: Auth;
   register: Auth;
   removeCategory: Category;
   removePost: Array<Post>;
+  removePostBlock: PostBlock;
   removeUser: User;
   updateCategory: Category;
   updatePost: Post;
+  updatePostBlock: PostBlock;
   updateUser: User;
 };
 
@@ -86,6 +95,11 @@ export type MutationCreateCategoryArgs = {
 
 export type MutationCreatePostArgs = {
   createPostInput: CreatePostInput;
+};
+
+
+export type MutationCreatePostBlockArgs = {
+  createPostBlockInput: CreatePostBlockInput;
 };
 
 
@@ -114,6 +128,11 @@ export type MutationRemovePostArgs = {
 };
 
 
+export type MutationRemovePostBlockArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type MutationRemoveUserArgs = {
   id: Scalars['Int'];
 };
@@ -129,6 +148,11 @@ export type MutationUpdatePostArgs = {
 };
 
 
+export type MutationUpdatePostBlockArgs = {
+  updatePostBlockInput: UpdatePostBlockInput;
+};
+
+
 export type MutationUpdateUserArgs = {
   updateUserInput: UpdateUserInput;
 };
@@ -136,8 +160,10 @@ export type MutationUpdateUserArgs = {
 export type Post = {
   __typename?: 'Post';
   author: User;
+  blocks: Array<PostBlock>;
   category: Category;
-  content: Scalars['String'];
+  contentRaw: Scalars['String'];
+  contentText: Scalars['String'];
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   postStatus: Scalars['Boolean'];
@@ -145,11 +171,31 @@ export type Post = {
   updatedAt: Scalars['DateTime'];
 };
 
+export type PostBlock = {
+  __typename?: 'PostBlock';
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  index: Scalars['Float'];
+  post: Post;
+  raw: Scalars['String'];
+  type: PostBlockType;
+  updatedAt: Scalars['DateTime'];
+  value: Scalars['String'];
+};
+
+export enum PostBlockType {
+  Header = 'HEADER',
+  Image = 'IMAGE',
+  List = 'LIST',
+  Paragraph = 'PARAGRAPH'
+}
+
 export type Query = {
   __typename?: 'Query';
   category: Category;
   findOnePostById: Post;
   findPost: Array<Post>;
+  postBlock: PostBlock;
   user: User;
 };
 
@@ -169,6 +215,11 @@ export type QueryFindPostArgs = {
 };
 
 
+export type QueryPostBlockArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type QueryUserArgs = {
   id: Scalars['Int'];
 };
@@ -179,8 +230,15 @@ export type UpdateCategoryInput = {
   id: Scalars['Int'];
 };
 
+export type UpdatePostBlockInput = {
+  id: Scalars['Int'];
+  raw?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<PostBlockType>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
 export type UpdatePostInput = {
-  categoryId?: InputMaybe<Scalars['String']>;
+  categoryId?: InputMaybe<Scalars['Float']>;
   content?: InputMaybe<Scalars['String']>;
   id: Scalars['Int'];
   title?: InputMaybe<Scalars['String']>;
@@ -205,14 +263,14 @@ export type FindPostQueryVariables = Exact<{
 }>;
 
 
-export type FindPostQuery = { __typename?: 'Query', findPost: Array<{ __typename?: 'Post', title: string, id: string, postStatus: boolean, content: string }> };
+export type FindPostQuery = { __typename?: 'Query', findPost: Array<{ __typename?: 'Post', title: string, id: string, postStatus: boolean, contentRaw: string }> };
 
 export type FindOnePostQueryVariables = Exact<{
   findOnePostInput: Scalars['Int'];
 }>;
 
 
-export type FindOnePostQuery = { __typename?: 'Query', findOnePostById: { __typename?: 'Post', title: string, id: string, postStatus: boolean, content: string } };
+export type FindOnePostQuery = { __typename?: 'Query', findOnePostById: { __typename?: 'Post', title: string, id: string, postStatus: boolean, contentRaw: string } };
 
 export type CreatePostMutationVariables = Exact<{
   createPostInput: CreatePostInput;
@@ -233,7 +291,7 @@ export type UpdatePostMutationVariables = Exact<{
 }>;
 
 
-export type UpdatePostMutation = { __typename?: 'Mutation', updatePost: { __typename?: 'Post', content: string, title: string, id: string } };
+export type UpdatePostMutation = { __typename?: 'Mutation', updatePost: { __typename?: 'Post', contentRaw: string, title: string, id: string } };
 
 export const FindPostDocument = gql`
     query FindPost($findPostInput: FindPostInput!) {
@@ -241,7 +299,7 @@ export const FindPostDocument = gql`
     title
     id
     postStatus
-    content
+    contentRaw
   }
 }
     `;
@@ -262,7 +320,7 @@ export const FindOnePostDocument = gql`
     title
     id
     postStatus
-    content
+    contentRaw
   }
 }
     `;
@@ -318,7 +376,7 @@ export const RemovePostDocument = gql`
 export const UpdatePostDocument = gql`
     mutation UpdatePost($updatePostInput: UpdatePostInput!) {
   updatePost(updatePostInput: $updatePostInput) {
-    content
+    contentRaw
     title
     id
   }
