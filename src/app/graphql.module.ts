@@ -20,9 +20,12 @@ const timeStartLink = new ApolloLink((operation, forward) => {
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   // add the authorization to the headers
+  console.log('HEADER');
+
+  const token = localStorage.getItem('AUTH_TOKEN');
   operation.setContext({
     headers: {
-      authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhZ2hhbmd1bmF5QGdtYWlsLmNvbSIsImlhdCI6MTY2ODE2NjcxMSwiZXhwIjoxNjY4MjAyNzExfQ.6cXrQWKMcAuEq870pAFhYVVosZaCR4B3SPvQ5Ss_dAU`,
+      authorization: `Bearer ${token}`,
     },
   });
 
@@ -55,10 +58,10 @@ export function createApollo(
     // Reset cache after extraction to avoid sharing between requests
     cache.reset();
   }
-  
+
   return {
     link: concat(timeStartLink.concat(authMiddleware), httpLink.create({ uri: `${environment.apiUrl}/graphql` })),
-    cache,
+    cache
   };
 }
 

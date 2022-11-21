@@ -1,73 +1,56 @@
 import { NgModule } from "@angular/core";
-import { Routes, RouterModule, ROUTES } from "@angular/router";
+import { RouterModule } from "@angular/router";
+import { AdminGuard } from "./guard/admin.guard";
 import { LayoutAlphaComponent } from "./layout/layout-alpha/layout-alpha.component";
 import { LayoutBetaComponent } from "./layout/layout-beta/layout-beta.component";
 import { HomeAlphaComponent } from "./organism/home-alpha/home-alpha.component";
+import { LoginAlphaComponent } from "./organism/login-alpha/login-alpha.component";
 import { NotFoundAlphaComponent } from "./organism/not-found-alpha/not-found-alpha.component";
-import { PageAlphaComponent } from "./organism/page-alpha/page-alpha.component";
-import { PageListAlphaComponent } from "./organism/page-list-alpha/page-list-alpha.component";
 import { PostAlphaComponent } from "./organism/post-alpha/post-alpha.component";
 import { PostListAlphaComponent } from "./organism/post-list-alpha/post-list-alpha.component";
 
-const children = [
-      {
-        path: '',
-        component: HomeAlphaComponent,
-      },
-      {
-        path: 'posts',
-        component: PostListAlphaComponent,
-      },
-      {
-        path: 'posts/new',
-        component: PostAlphaComponent,
-      },
-      {
-        path: 'posts/:id',
-        component: PostAlphaComponent,
-      },
-      { path: 'not-found', component: NotFoundAlphaComponent },
-    ]
-
-
 @NgModule({
   imports: [
-    RouterModule.forRoot([]),
-  ],
-  exports: [RouterModule],
-  providers: [
-    {
-      provide: ROUTES,
-      useFactory: configHandlerRoutes,
-      deps: [],
-      multi: true
-    }
-  ]
-})
-export class AppRoutingModule {}
-
-export function configHandlerRoutes() {
-  let routes: Routes = [];
-
-  if (true) {
-    routes = [
-      {
-        path: '',
-        component: LayoutAlphaComponent,
-        children: children,
-      },
-      { path: '**',   redirectTo: '/not-found', pathMatch: 'full' },
-    ];
-  } else {
-    routes = [
+    RouterModule.forRoot([
       {
         path: '',
         component: LayoutBetaComponent,
-        children: children,
+        children: [
+            {
+              path: '',
+              component: HomeAlphaComponent,
+            },
+            {
+              path: 'login',
+              component: LoginAlphaComponent,
+            },
+        ],
       },
+      {
+        path: 'admin',
+        component: LayoutAlphaComponent,
+        canActivate: [AdminGuard],
+        children: [
+          {
+              path: 'posts/new',
+              component: PostAlphaComponent,
+            },
+            {
+              path: 'posts/:id',
+              component: PostAlphaComponent,
+            },{
+              path: 'posts',
+              component: PostListAlphaComponent,
+            },
+        ],
+      },
+      { path: 'not-found', component: NotFoundAlphaComponent },
       { path: '**',   redirectTo: '/not-found', pathMatch: 'full' },
-    ];
-  }
-
-  return routes;
-}
+    ]),
+  ],
+  exports: [RouterModule],
+  providers: [
+    
+  ]
+})
+export class AppRoutingModule {}

@@ -61,3 +61,21 @@ nz-sider {
   left: 0;
   background-color: #FFF;
 }
+
+.spinner {
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background: #48484887;
+  transition: all 1s ease-out;
+
+  nz-spin {
+    display: flex;
+  }
+}

@@ -1,0 +1,24 @@
+mutation Register ($createAuthInput: CreateAuthInput!) {
+  register(createAuthInput: $createAuthInput) {
+    user {
+      email
+    }
+    token
+  }
+}
+
+mutation Login ($createAuthInput: CreateAuthInput!) {
+  login(createAuthInput: $createAuthInput) {
+    token
+    user {
+      email
+    }
+  }
+}
+
+query Me {
+  me {
+    token
+    createdAt
+  }
+}

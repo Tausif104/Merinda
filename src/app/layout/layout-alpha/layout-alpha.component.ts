@@ -20,7 +20,6 @@ export class LayoutAlphaComponent implements AfterViewChecked {
   
   ngAfterViewChecked(): void {
     this.spinnerService.$spinner.pipe(
-      // debounceTime(200),
       skip(1),
       untilDestroyed(this)
     ).subscribe((status) =>{

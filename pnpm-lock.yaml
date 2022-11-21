@@ -32,8 +32,6 @@ specifiers:
   '@nguniversal/builders': ^13.1.0
   '@nguniversal/common': ^15.0.0
   '@nguniversal/express-engine': ^13.1.0
-  '@ngx-translate/core': ^13.0.0
-  '@ngx-translate/http-loader': ^6.0.0
   '@popperjs/core': ^2.10.2
   '@son_xx/editor-js-parser': ^1.0.7
   '@types/editorjs__header': ^2.6.0
@@ -88,8 +86,6 @@ dependencies:
   '@ngneat/until-destroy': 9.2.2_uy53qhpasvlwv6vuvytbz77w54
   '@nguniversal/common': 15.0.0_dcxxffpvqqhrfjsspuh7kfjz4y
   '@nguniversal/express-engine': 13.1.1_l3wugvsxvbswrb7gw43awwnpfq
-  '@ngx-translate/core': 13.0.0_uy53qhpasvlwv6vuvytbz77w54
-  '@ngx-translate/http-loader': 6.0.0_cyhycb4jw2weqodqgfyip4kb74
   '@popperjs/core': 2.11.6
   '@son_xx/editor-js-parser': 1.0.7
   '@types/editorjs__header': 2.6.0
@@ -2895,30 +2891,6 @@ packages:
       - canvas
       - supports-color
       - utf-8-validate
-    dev: false
-
-  /@ngx-translate/core/13.0.0_uy53qhpasvlwv6vuvytbz77w54:
-    resolution: {integrity: sha512-+tzEp8wlqEnw0Gc7jtVRAJ6RteUjXw6JJR4O65KlnxOmJrCGPI0xjV/lKRnQeU0w4i96PQs/jtpL921Wrb7PWg==}
-    peerDependencies:
-      '@angular/core': '>=10.0.0'
-      rxjs: '>=6.5.3'
-    dependencies:
-      '@angular/core': 14.2.8_rxjs@7.5.6+zone.js@0.11.6
-      rxjs: 7.5.6
-      tslib: 2.4.0
-    dev: false
-
-  /@ngx-translate/http-loader/6.0.0_cyhycb4jw2weqodqgfyip4kb74:
-    resolution: {integrity: sha512-LCekn6qCbeXWlhESCxU1rAbZz33WzDG0lI7Ig0pYC1o5YxJWrkU9y3Y4tNi+jakQ7R6YhTR2D3ox6APxDtA0wA==}
-    peerDependencies:
-      '@angular/common': '>=10.0.0'
-      '@ngx-translate/core': '>=13.0.0'
-      rxjs: '>=6.5.3'
-    dependencies:
-      '@angular/common': 14.2.8_uy53qhpasvlwv6vuvytbz77w54
-      '@ngx-translate/core': 13.0.0_uy53qhpasvlwv6vuvytbz77w54
-      rxjs: 7.5.6
-      tslib: 2.4.0
     dev: false
 
   /@nodelib/fs.scandir/2.1.5:

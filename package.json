@@ -38,8 +38,6 @@
     "@ngneat/until-destroy": "^9.2.2",
     "@nguniversal/common": "^15.0.0",
     "@nguniversal/express-engine": "^13.1.0",
-    "@ngx-translate/core": "^13.0.0",
-    "@ngx-translate/http-loader": "^6.0.0",
     "@popperjs/core": "^2.10.2",
     "@son_xx/editor-js-parser": "^1.0.7",
     "@types/editorjs__header": "^2.6.0",

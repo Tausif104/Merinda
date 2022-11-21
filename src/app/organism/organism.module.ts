@@ -11,9 +11,11 @@ import { PageListAlphaComponent } from './page-list-alpha/page-list-alpha.compon
 import { NgZorroAntdModule } from '../ng-zorro-ant.module';
 import { PostListAlphaComponent } from './post-list-alpha/post-list-alpha.component';
 import { PostAlphaComponent } from './post-alpha/post-alpha.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
+import { LoginAlphaComponent } from './login-alpha/login-alpha.component';
+import { PostBetaComponent } from './post-beta/post-beta.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,16 @@ import { AppRoutingModule } from '../app-routing.module';
     NotFoundAlphaComponent,
     PageListAlphaComponent,
     PostListAlphaComponent,
-    PostAlphaComponent
+    PostAlphaComponent,
+    LoginAlphaComponent,
+    PostBetaComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MoleculeModule,
     AtomModule
   ],

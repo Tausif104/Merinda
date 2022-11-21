@@ -142,13 +142,11 @@
           "configurations": {
             "development": {
               "browserTarget": "blog:build:development",
-              "serverTarget": "blog:server:development",
-              "proxyConfig": "src/proxy-prod.config.json"
+              "serverTarget": "blog:server:development"
             },
             "production": {
               "browserTarget": "blog:build:production",
-              "serverTarget": "blog:server:production",
-              "proxyConfig": "src/proxy-local.config.json"
+              "serverTarget": "blog:server:production"
             }
           },
           "defaultConfiguration": "development"

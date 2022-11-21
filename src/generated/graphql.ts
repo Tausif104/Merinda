@@ -195,6 +195,7 @@ export type Query = {
   category: Category;
   findOnePostById: Post;
   findPost: Array<Post>;
+  me: Auth;
   postBlock: PostBlock;
   user: User;
 };
@@ -258,6 +259,25 @@ export type User = {
   updatedAt: Scalars['DateTime'];
 };
 
+export type RegisterMutationVariables = Exact<{
+  createAuthInput: CreateAuthInput;
+}>;
+
+
+export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'Auth', token: string, user: { __typename?: 'User', email: string } } };
+
+export type LoginMutationVariables = Exact<{
+  createAuthInput: CreateAuthInput;
+}>;
+
+
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Auth', token: string, user: { __typename?: 'User', email: string } } };
+
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MeQuery = { __typename?: 'Query', me: { __typename?: 'Auth', token: string, createdAt: any } };
+
 export type FindPostQueryVariables = Exact<{
   findPostInput: FindPostInput;
 }>;
@@ -293,6 +313,67 @@ export type UpdatePostMutationVariables = Exact<{
 
 export type UpdatePostMutation = { __typename?: 'Mutation', updatePost: { __typename?: 'Post', contentRaw: string, title: string, id: string } };
 
+export const RegisterDocument = gql`
+    mutation Register($createAuthInput: CreateAuthInput!) {
+  register(createAuthInput: $createAuthInput) {
+    user {
+      email
+    }
+    token
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RegisterGQL extends Apollo.Mutation<RegisterMutation, RegisterMutationVariables> {
+    document = RegisterDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const LoginDocument = gql`
+    mutation Login($createAuthInput: CreateAuthInput!) {
+  login(createAuthInput: $createAuthInput) {
+    token
+    user {
+      email
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class LoginGQL extends Apollo.Mutation<LoginMutation, LoginMutationVariables> {
+    document = LoginDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const MeDocument = gql`
+    query Me {
+  me {
+    token
+    createdAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MeGQL extends Apollo.Query<MeQuery, MeQueryVariables> {
+    document = MeDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const FindPostDocument = gql`
     query FindPost($findPostInput: FindPostInput!) {
   findPost(findPostInput: $findPostInput) {
