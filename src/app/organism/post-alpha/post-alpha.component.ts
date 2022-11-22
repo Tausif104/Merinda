@@ -100,7 +100,7 @@ export class PostAlphaComponent implements OnInit {
         title: this.post.title || ''
       }
     }).subscribe((response) => {
-      this.router.navigate([`/admin/posts/${response.data?.createPost.id}`])
+      this.router.navigate([`/admin/posts/${response.data?.createPost.id}`]);
       console.log({response});
       this.spinnerService.hide();
     })

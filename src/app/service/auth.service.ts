@@ -1,6 +1,5 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { Apollo } from "apollo-angular";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { catchError, map, of } from "rxjs";
 import { CreateAuthInput, LoginGQL, MeGQL } from "src/generated/graphql";
@@ -18,7 +17,6 @@ export class AuthService {
         private meGQL: MeGQL,
         private spinnerService: SpinnerService,
         private message: NzMessageService,
-        private apollo: Apollo,
         private router: Router
     ) {}
 
@@ -32,39 +30,30 @@ export class AuthService {
                 this.transferStateService.set('LOGIN', true)
                 return true;
             }),
-            catchError((e) => {
-                localStorage.removeItem('AUTH_TOKEN');
-                this.message.create('error', `${e}`);
-                this.spinnerService.hide();
-                console.error(e);
-                return of(false);
-            })
+            catchError(this.catchError.bind(this))
         );
+    }
+
+    catchError(e: any) {
+        localStorage.removeItem('AUTH_TOKEN');
+        this.message.create('error', `${e}`);
+        this.spinnerService.hide();
+        this.router.navigate(['/login']);
+        return of(false);
     }
 
     login(createAuthInput: CreateAuthInput) {
         this.spinnerService.show();
         return this.loginGQL.mutate({
             createAuthInput
-        }).subscribe({
-            next: (response) => {
+        }).pipe(
+            map((response) => {
                 localStorage.setItem('AUTH_TOKEN', response.data?.login.token || '');
                 this.transferStateService.set('AUTH_TOKEN', response.data?.login.token)
                 this.transferStateService.set('LOGIN', true);
-                const token = this.transferStateService.get('LOGIN');
-                console.log({token});
-                
-                console.log(`Login set`);
-                
-                this.router.navigate(['/admin/posts/new']);
                 this.spinnerService.hide();
-            },
-            error: (e) => {
-                this.message.create('error', `${e}`);
-                this.spinnerService.hide();
-                console.error(e);
-            },
-            complete: () => console.info('complete') 
-        });
+            }),
+            catchError(this.catchError.bind(this))
+        )
     }
 }

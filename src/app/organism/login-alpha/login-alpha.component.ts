@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -12,16 +13,18 @@ export class LoginAlphaComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
+    private router: Router,
   ) {}
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
       const { email, password } = this.validateForm.value
       this.authService.login({
         email,
         password
+      }).subscribe(() => {
+        this.router.navigate(['/admin/posts/new']);
       })
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -34,6 +37,10 @@ export class LoginAlphaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.me().subscribe((response) => {
+      this.router.navigate(['/admin/posts/new']);
+    });
+
     this.validateForm = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]],
