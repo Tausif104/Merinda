@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { debounceTime, skip } from 'rxjs';
+import { skip } from 'rxjs';
 import { SpinnerService } from 'src/app/service/spinner.service';
 
 @UntilDestroy()
@@ -17,7 +17,6 @@ export class LayoutAlphaComponent implements AfterViewChecked {
     private spinnerService: SpinnerService
   ) {}
 
-  
   ngAfterViewChecked(): void {
     this.spinnerService.$spinner.pipe(
       skip(1),

@@ -1,14 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getImageFromPostContent, getTextFromPostContent } from 'src/app/utils/editor.util';
-import { CreatePostGQL, FindPostGQL, FindPostQuery, Post } from 'src/generated/graphql';
-
-interface ItemData {
-  href: string;
-  title: string;
-  avatar: string;
-  description: string;
-  content: string;
-}
+import { FindPostGQL, Post } from 'src/generated/graphql';
 
 @Component({
   selector: 'app-post-list-alpha',

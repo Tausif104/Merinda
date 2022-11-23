@@ -3,23 +3,32 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgZorroAntdModule } from '../ng-zorro-ant.module';
 import { IconsProviderModule } from '../icons-provider.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ImagePathPipe } from '../pipe/image.pipe';
 
-const components: any = [];
+const components: any = [ImagePathPipe];
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
   ],
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule,
     IconsProviderModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports: [
     ...components,
     NgZorroAntdModule,
-    IconsProviderModule
+    IconsProviderModule,
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class AtomModule { }
