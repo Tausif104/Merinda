@@ -144,8 +144,6 @@ import { NzCodeEditorModule } from 'ng-zorro-antd/code-editor';
     NzResizableModule,
     NzPipesModule,
     NzCodeEditorModule,
-  ]
+  ],
 })
-export class NgZorroAntdModule {
-
-}
+export class NgZorroAntdModule {}

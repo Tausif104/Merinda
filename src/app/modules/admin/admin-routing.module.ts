@@ -21,6 +21,7 @@ import { PostListAlphaComponent } from "src/app/organism/post-list-alpha/post-li
             {
               path: 'posts/:id',
               component: PostAlphaComponent,
+              
             },
             {
               path: 'posts',

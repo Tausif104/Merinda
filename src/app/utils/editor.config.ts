@@ -7,8 +7,8 @@ const Marker = require('@editorjs/marker');
 const Image = require('@editorjs/image');
 const LinkAutocomplete = require('@editorjs/link-autocomplete');
 
-export const editorjsConfig = {
 
+export const editorjsConfig = {
   holder: 'editorjs',
   tools: {
     Image :{

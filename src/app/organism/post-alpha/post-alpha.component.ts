@@ -1,11 +1,10 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-// import type EditorJS from '@editorjs/editorjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { debounceTime, skip, Observable, delay } from 'rxjs';
 import { SpinnerService } from 'src/app/service/spinner.service';
-import { CreatePostGQL, FindOnePostGQL, Post, RemovePostGQL, UpdatePostGQL } from 'src/generated/graphql';
+import { CreatePostGQL, FindOnePostGQL, Meta, Post, RemovePostGQL, UpdatePostGQL } from 'src/generated/graphql';
 
 @UntilDestroy()
 @Component({
@@ -22,6 +21,8 @@ export class PostAlphaComponent implements OnInit {
   isUpdate: boolean = false;
   isBrowser: boolean = false;
   public post: Partial<Post> = {};
+  public meta: Partial<Meta> = {};
+  editorDataHistory: any = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -37,14 +38,43 @@ export class PostAlphaComponent implements OnInit {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
-  ngOnInit(): void {
-    this.spinnerService.show()
+
+  @HostListener('window:keydown',['$event'])
+  onKeyPress($event: KeyboardEvent) {
+      const undoCondition = ($event.ctrlKey || $event.metaKey) && $event.keyCode == 90
+      if (undoCondition) {
+        console.log('CTRL + Z');
+      }
+
+      if(($event.ctrlKey || $event.metaKey) && $event.keyCode == 89) {
+        console.log('CTRL +  Y');
+      }
+  }
+
+  async ngOnInit() {
+    console.log(this.router);
+    
+    if (!window.location.pathname.includes('content')) {
+      await this.router.navigate([window.location.pathname], {
+        queryParams: {
+          tab: 'content'
+        }
+      });
+    }
+
+    this.spinnerService.show();
     if (this.isBrowser) {
       const EditorJS = require('@editorjs/editorjs');
       const { editorjsConfig } = require('src/app/utils/editor.config');
       this.editor = new EditorJS(editorjsConfig);
+      await this.editor.isReady
+      const DragDrop = require('editorjs-drag-drop');
+      // const Undo = require('editorjs-undo');
+      // new Undo({editor: this.editor});
+      new DragDrop(this.editor);
+      
       this.detectEditorChanges().pipe(
-        debounceTime(200),
+        debounceTime(500),
         skip(1),
         untilDestroyed(this)
       ).subscribe(async data => {
@@ -64,16 +94,20 @@ export class PostAlphaComponent implements OnInit {
           delay(2000)
         ).subscribe((response) => {
           this.post = {...response.data.findOnePostById as Post};
-          if (!this.post.contentRaw) {
+          this.meta = { ...response.data.findOnePostById.meta as Meta};
+          
+          if (!this.post.raw) {
             throw new Error(`Content not found`)
           }
-          const outputData: any = JSON.parse(this.post.contentRaw);
+          const outputData: any = JSON.parse(this.post.raw);
 
           this.editor.render(outputData);
           this.spinnerService.hide();
         });
       } else {
-        this.spinnerService.hide();
+        setTimeout(() => {
+          this.spinnerService.hide();
+        }, 4000);
       }
     })
   }
@@ -84,10 +118,15 @@ export class PostAlphaComponent implements OnInit {
       updatePostInput: {
         id: Number(this.post.id),
         title: this.post.title || "",
-        content: this.editorData
+        content: this.editorData,
+        meta: {
+          description: this.meta.description || '',
+          image: this.meta.image || '',
+          title: this.meta.title || '',
+          url: this.meta.url || '',
+        }
       }
     }).subscribe((response) => {
-      console.log({response});
       this.spinnerService.hide();
     })
   }
@@ -97,11 +136,16 @@ export class PostAlphaComponent implements OnInit {
     this.createPostGQL.mutate({
       createPostInput: {
         content: this.editorData,
-        title: this.post.title || ''
+        title: this.post.title || '',
+        meta: {
+          description: this.meta.description || '',
+          image: this.meta.image || '',
+          title: this.meta.title || '',
+          url: this.meta.url || '',
+        }
       }
     }).subscribe((response) => {
       this.router.navigate([`/admin/posts/${response.data?.createPost.id}`]);
-      console.log({response});
       this.spinnerService.hide();
     })
   }
@@ -111,7 +155,6 @@ export class PostAlphaComponent implements OnInit {
     this.removePostGQL.mutate({
       removePostInput: Number(this.post.id)
     }).subscribe((response) => {
-      console.log({response});
       this.router.navigate(['/posts']);
       this.spinnerService.hide();
     })
@@ -124,7 +167,7 @@ export class PostAlphaComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.editorObserver.disconnect();
+    this.editorObserver && this.editorObserver.disconnect();
   }
 
   detectEditorChanges(): Observable <any> {
@@ -142,5 +185,13 @@ export class PostAlphaComponent implements OnInit {
 
       this.editorObserver.observe(editorDom, config);
     });
+  }
+
+  getMetaTitle() {
+    if (!this.meta.title) {
+      return 'Dailypartner | ' + this.post.title;
+    }
+
+    return this.meta.title;
   }
 }

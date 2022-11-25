@@ -45,6 +45,13 @@ export type CreateCategoryInput = {
   exampleField: Scalars['Int'];
 };
 
+export type CreateMetaInput = {
+  description: Scalars['String'];
+  image: Scalars['String'];
+  title: Scalars['String'];
+  url: Scalars['String'];
+};
+
 export type CreatePostBlockInput = {
   raw: Scalars['String'];
   type: PostBlockType;
@@ -54,12 +61,17 @@ export type CreatePostBlockInput = {
 export type CreatePostInput = {
   categoryId?: InputMaybe<Scalars['Float']>;
   content: Scalars['String'];
+  meta: CreateMetaInput;
   title: Scalars['String'];
 };
 
 export type CreateUserInput = {
   email: Scalars['String'];
   password: Scalars['String'];
+};
+
+export type FindOneByMetaUrlInput = {
+  url: Scalars['String'];
 };
 
 export type FindPostInput = {
@@ -69,19 +81,38 @@ export type FindPostInput = {
   take?: InputMaybe<Scalars['Int']>;
 };
 
+export type Meta = {
+  __typename?: 'Meta';
+  createdAt: Scalars['DateTime'];
+  /** A short description or summary of the object. [Between 2 and 4 sentences.] [Maximum 200 characters.] */
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  /** The URL of the image for your object. It should be at least 600×315 pixels, but 1200×630 or larger is preferred (up to 5MB). Stay close to a 1.91:1 aspect ratio to avoid cropping. */
+  image: Scalars['String'];
+  post: Post;
+  /** Follow this guide https://developers.google.com/search/docs/appearance/title-link#page-titles [Maximum 70 characters.] */
+  title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  /** Keep it simple follow this guide: https://developers.google.com/search/docs/crawling-indexing/url-structure */
+  url: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createCategory: Category;
   createPost: Post;
   createPostBlock: PostBlock;
   createUser: User;
+  findOneByMetaUrl: Post;
   login: Auth;
   register: Auth;
   removeCategory: Category;
+  removeMeta: Meta;
   removePost: Array<Post>;
   removePostBlock: PostBlock;
   removeUser: User;
   updateCategory: Category;
+  updateMeta: Meta;
   updatePost: Post;
   updatePostBlock: PostBlock;
   updateUser: User;
@@ -108,6 +139,11 @@ export type MutationCreateUserArgs = {
 };
 
 
+export type MutationFindOneByMetaUrlArgs = {
+  findOneByMetaUrlInput: FindOneByMetaUrlInput;
+};
+
+
 export type MutationLoginArgs = {
   createAuthInput: CreateAuthInput;
 };
@@ -119,6 +155,11 @@ export type MutationRegisterArgs = {
 
 
 export type MutationRemoveCategoryArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationRemoveMetaArgs = {
   id: Scalars['Int'];
 };
 
@@ -143,6 +184,11 @@ export type MutationUpdateCategoryArgs = {
 };
 
 
+export type MutationUpdateMetaArgs = {
+  updateMetaInput: UpdateMetaInput;
+};
+
+
 export type MutationUpdatePostArgs = {
   updatePostInput: UpdatePostInput;
 };
@@ -162,11 +208,12 @@ export type Post = {
   author: User;
   blocks: Array<PostBlock>;
   category: Category;
-  contentRaw: Scalars['String'];
-  contentText: Scalars['String'];
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
-  postStatus: Scalars['Boolean'];
+  meta: Meta;
+  raw: Scalars['String'];
+  status: Scalars['Boolean'];
+  text: Scalars['String'];
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 };
@@ -196,6 +243,7 @@ export type Query = {
   findOnePostById: Post;
   findPost: Array<Post>;
   me: Auth;
+  meta: Meta;
   postBlock: PostBlock;
   user: User;
 };
@@ -216,6 +264,11 @@ export type QueryFindPostArgs = {
 };
 
 
+export type QueryMetaArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type QueryPostBlockArgs = {
   id: Scalars['Int'];
 };
@@ -231,6 +284,14 @@ export type UpdateCategoryInput = {
   id: Scalars['Int'];
 };
 
+export type UpdateMetaInput = {
+  description?: InputMaybe<Scalars['String']>;
+  id: Scalars['Int'];
+  image?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
 export type UpdatePostBlockInput = {
   id: Scalars['Int'];
   raw?: InputMaybe<Scalars['String']>;
@@ -242,6 +303,7 @@ export type UpdatePostInput = {
   categoryId?: InputMaybe<Scalars['Float']>;
   content?: InputMaybe<Scalars['String']>;
   id: Scalars['Int'];
+  meta?: InputMaybe<CreateMetaInput>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -283,14 +345,14 @@ export type FindPostQueryVariables = Exact<{
 }>;
 
 
-export type FindPostQuery = { __typename?: 'Query', findPost: Array<{ __typename?: 'Post', title: string, id: string, postStatus: boolean, contentRaw: string }> };
+export type FindPostQuery = { __typename?: 'Query', findPost: Array<{ __typename?: 'Post', title: string, id: string, status: boolean, raw: string }> };
 
 export type FindOnePostQueryVariables = Exact<{
   findOnePostInput: Scalars['Int'];
 }>;
 
 
-export type FindOnePostQuery = { __typename?: 'Query', findOnePostById: { __typename?: 'Post', title: string, id: string, postStatus: boolean, contentRaw: string } };
+export type FindOnePostQuery = { __typename?: 'Query', findOnePostById: { __typename?: 'Post', title: string, id: string, status: boolean, raw: string, meta: { __typename?: 'Meta', image: string, url: string, title: string, description: string } } };
 
 export type CreatePostMutationVariables = Exact<{
   createPostInput: CreatePostInput;
@@ -311,7 +373,7 @@ export type UpdatePostMutationVariables = Exact<{
 }>;
 
 
-export type UpdatePostMutation = { __typename?: 'Mutation', updatePost: { __typename?: 'Post', contentRaw: string, title: string, id: string } };
+export type UpdatePostMutation = { __typename?: 'Mutation', updatePost: { __typename?: 'Post', raw: string, title: string, id: string } };
 
 export const RegisterDocument = gql`
     mutation Register($createAuthInput: CreateAuthInput!) {
@@ -379,8 +441,8 @@ export const FindPostDocument = gql`
   findPost(findPostInput: $findPostInput) {
     title
     id
-    postStatus
-    contentRaw
+    status
+    raw
   }
 }
     `;
@@ -400,8 +462,14 @@ export const FindOnePostDocument = gql`
   findOnePostById(id: $findOnePostInput) {
     title
     id
-    postStatus
-    contentRaw
+    status
+    raw
+    meta {
+      image
+      url
+      title
+      description
+    }
   }
 }
     `;
@@ -457,7 +525,7 @@ export const RemovePostDocument = gql`
 export const UpdatePostDocument = gql`
     mutation UpdatePost($updatePostInput: UpdatePostInput!) {
   updatePost(updatePostInput: $updatePostInput) {
-    contentRaw
+    raw
     title
     id
   }

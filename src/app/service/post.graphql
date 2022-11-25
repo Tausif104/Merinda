@@ -2,8 +2,8 @@ query FindPost ($findPostInput: FindPostInput!) {
   findPost(findPostInput: $findPostInput) {
     title
     id
-    postStatus
-    contentRaw
+    status
+    raw
   }
 }
 
@@ -11,8 +11,14 @@ query FindOnePost ($findOnePostInput: Int!) {
   findOnePostById(id: $findOnePostInput) {
     title
     id
-    postStatus
-    contentRaw
+    status
+    raw
+    meta {
+      image
+      url
+      title
+      description
+    }
   }
 }
 
@@ -32,7 +38,7 @@ mutation RemovePost($removePostInput: Int!) {
 
 mutation UpdatePost($updatePostInput: UpdatePostInput!) {
   updatePost(updatePostInput: $updatePostInput) {
-    contentRaw
+    raw
     title
     id
   }
