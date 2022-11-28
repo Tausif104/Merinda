@@ -70,6 +70,22 @@ export type CreateUserInput = {
   password: Scalars['String'];
 };
 
+export type File = {
+  __typename?: 'File';
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  url: Scalars['String'];
+};
+
+export type FindFileInput = {
+  /** Example field (placeholder) */
+  skip?: InputMaybe<Scalars['Int']>;
+  /** Example field (placeholder) */
+  take?: InputMaybe<Scalars['Int']>;
+};
+
 export type FindOneByMetaUrlInput = {
   url: Scalars['String'];
 };
@@ -240,6 +256,8 @@ export enum PostBlockType {
 export type Query = {
   __typename?: 'Query';
   category: Category;
+  file: Array<File>;
+  fileById: File;
   findOnePostById: Post;
   findPost: Array<Post>;
   me: Auth;
@@ -250,6 +268,16 @@ export type Query = {
 
 
 export type QueryCategoryArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryFileArgs = {
+  findFileInput: FindFileInput;
+};
+
+
+export type QueryFileByIdArgs = {
   id: Scalars['Int'];
 };
 
@@ -339,6 +367,13 @@ export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MeQuery = { __typename?: 'Query', me: { __typename?: 'Auth', token: string, createdAt: any } };
+
+export type FileQueryVariables = Exact<{
+  findFileInput: FindFileInput;
+}>;
+
+
+export type FileQuery = { __typename?: 'Query', file: Array<{ __typename?: 'File', url: string, name: string }> };
 
 export type FindPostQueryVariables = Exact<{
   findPostInput: FindPostInput;
@@ -431,6 +466,25 @@ export const MeDocument = gql`
   })
   export class MeGQL extends Apollo.Query<MeQuery, MeQueryVariables> {
     document = MeDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FileDocument = gql`
+    query File($findFileInput: FindFileInput!) {
+  file(findFileInput: $findFileInput) {
+    url
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FileGQL extends Apollo.Query<FileQuery, FileQueryVariables> {
+    document = FileDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

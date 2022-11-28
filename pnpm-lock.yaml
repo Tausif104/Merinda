@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@angular-devkit/build-angular': ^14.2.7
   '@angular/animations': ^14.2.8
+  '@angular/cdk': ^14.2.7
   '@angular/cli': ^14.2.7
   '@angular/common': ^14.2.8
   '@angular/compiler': ^14.2.8
@@ -65,6 +66,7 @@ specifiers:
 
 dependencies:
   '@angular/animations': 14.2.8_@angular+core@14.2.8
+  '@angular/cdk': 14.2.7_ntswlvo5ioslzuha6w2hyfhcwm
   '@angular/common': 14.2.8_uy53qhpasvlwv6vuvytbz77w54
   '@angular/compiler': 14.2.8_@angular+core@14.2.8
   '@angular/core': 14.2.8_rxjs@7.5.6+zone.js@0.11.6
@@ -342,8 +344,8 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@angular/cdk/14.2.6_ntswlvo5ioslzuha6w2hyfhcwm:
-    resolution: {integrity: sha512-sihrwk/0emYbE2X+DOIlan7mohED9pKiH2gQh2hk3Ud8jjeW6VmbaGtTCkjs+HRbFc9/44uDHasizxrKnjseyw==}
+  /@angular/cdk/14.2.7_ntswlvo5ioslzuha6w2hyfhcwm:
+    resolution: {integrity: sha512-/tEsYaUbDSnfEmKVvAMramIptmhI67O+9STjOV0i+74XR2NospeK0fkbywIANu1n3w6AHGMotvRWJrjmbCElFg==}
     peerDependencies:
       '@angular/common': ^14.0.0 || ^15.0.0
       '@angular/core': ^14.0.0 || ^15.0.0
@@ -7164,7 +7166,7 @@ packages:
       '@angular/router': ^14.1.0
     dependencies:
       '@angular/animations': 14.2.8_@angular+core@14.2.8
-      '@angular/cdk': 14.2.6_ntswlvo5ioslzuha6w2hyfhcwm
+      '@angular/cdk': 14.2.7_ntswlvo5ioslzuha6w2hyfhcwm
       '@angular/common': 14.2.8_uy53qhpasvlwv6vuvytbz77w54
       '@angular/core': 14.2.8_rxjs@7.5.6+zone.js@0.11.6
       '@angular/forms': 14.2.8_ueh4h3acaixxom2eko5ckbmxie

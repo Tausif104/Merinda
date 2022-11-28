@@ -1,0 +1,16 @@
+<nz-modal [nzStyle]="{ 'width': '100%' }"  [(nzVisible)]="isVisible" nzTitle="Gallery" (nzOnCancel)="modalCancel()">
+    <ng-container *nzModalContent>
+    <div nz-row>
+        <div nz-col *ngFor="let item of images" nzSpan="6">
+            <img
+                width="100%"
+                [src]="item.url"
+                [cdkCopyToClipboard]="item.url"
+                (cdkCopyToClipboardCopied)="copy()"
+                class="image"
+            />
+        </div>
+    </div>
+    </ng-container>
+    <div *nzModalFooter></div>
+</nz-modal>

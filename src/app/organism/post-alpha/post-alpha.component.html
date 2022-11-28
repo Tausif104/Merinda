@@ -9,6 +9,8 @@
   </div>
 </div>
 
+<app-image-gallery [isVisible]="metaGalleryStatus"></app-image-gallery>
+
 <nz-tabset nzType="card" nzLinkRouter>
   <nz-tab>
     <a *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'content' }" queryParamsHandling="merge">
@@ -25,6 +27,7 @@
     
     <input class="title" nz-input placeholder="Description" nzSize="large" [(ngModel)]="meta.description" />
     <input class="title" nz-input placeholder="Url" nzSize="large" [(ngModel)]="meta.url" />
+    <button (click)="metaGalleryStatus = true"> Gallery </button>
     <input class="title" nz-input placeholder="Title" nzSize="large" [(ngModel)]="meta.title" [value]="getMetaTitle()" />
   </nz-tab>
 </nz-tabset>

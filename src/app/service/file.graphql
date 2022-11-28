@@ -1,0 +1,6 @@
+query File($findFileInput: FindFileInput!) {
+  file(findFileInput: $findFileInput) {
+    url
+    name
+  }
+}

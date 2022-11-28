@@ -3,6 +3,7 @@ import { Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/c
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { debounceTime, skip, Observable, delay } from 'rxjs';
+import { FileService } from 'src/app/service/file.service';
 import { SpinnerService } from 'src/app/service/spinner.service';
 import { CreatePostGQL, FindOnePostGQL, Meta, Post, RemovePostGQL, UpdatePostGQL } from 'src/generated/graphql';
 
@@ -23,6 +24,7 @@ export class PostAlphaComponent implements OnInit {
   public post: Partial<Post> = {};
   public meta: Partial<Meta> = {};
   editorDataHistory: any = [];
+  metaGalleryStatus = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +34,7 @@ export class PostAlphaComponent implements OnInit {
     private updatePostGQL: UpdatePostGQL,
     private removePostGQL: RemovePostGQL,
     private spinnerService: SpinnerService,
+    private fileService: FileService,
     @Inject(PLATFORM_ID) private platformId: string,
     @Inject(DOCUMENT) private document: Document
   ) {
@@ -66,7 +69,7 @@ export class PostAlphaComponent implements OnInit {
     if (this.isBrowser) {
       const EditorJS = require('@editorjs/editorjs');
       const { editorjsConfig } = require('src/app/utils/editor.config');
-      this.editor = new EditorJS(editorjsConfig);
+      this.editor = new EditorJS(editorjsConfig(this.fileService));
       await this.editor.isReady
       const DragDrop = require('editorjs-drag-drop');
       // const Undo = require('editorjs-undo');
