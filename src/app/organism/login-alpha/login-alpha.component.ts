@@ -24,7 +24,7 @@ export class LoginAlphaComponent implements OnInit {
         email,
         password
       }).subscribe(() => {
-        this.router.navigate(['/admin/posts/new']);
+        this.router.navigate(['/admin/posts']);
       })
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -38,7 +38,7 @@ export class LoginAlphaComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.me().subscribe((response) => {
-      this.router.navigate(['/admin/posts/new']);
+      this.router.navigate(['/admin/posts']);
     });
 
     this.validateForm = this.fb.group({

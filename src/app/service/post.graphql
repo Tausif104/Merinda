@@ -4,6 +4,7 @@ query FindPost ($findPostInput: FindPostInput!) {
     id
     status
     raw
+    schedule
   }
 }
 
@@ -19,6 +20,7 @@ query FindOnePost ($findOnePostInput: Int!) {
       title
       description
     }
+    schedule
   }
 }
 

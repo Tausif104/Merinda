@@ -7,7 +7,8 @@ export const environment = {
   baseUrl: "https://localhost:4000",
   pageSize: 5,
   debug: true,
-  apiUrl: "http://localhost:3000"
+  apiUrl: "http://localhost:3000",
+  apiWSUrl: "ws://localhost:3000"
 };
 
 /*

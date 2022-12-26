@@ -16,3 +16,20 @@ h2{
 .title {
     margin-top: 10px
 }
+
+.calendar-container {
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px
+}
+
+.meta-container {
+    .ant-row {
+        margin-bottom: 10px;
+    }
+}
+
+.post-version-select {
+    width: 250px;
+    margin-left: 25px;
+}

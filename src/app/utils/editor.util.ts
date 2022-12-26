@@ -1,6 +1,6 @@
 import { Post } from "src/generated/graphql";
 
-export const getImageFromPostContent = (post: Post) => {
+export const getFirstImageFromPostContent = (post: Post) => {
     const content = JSON.parse(post.raw);
 
     if (!content.blocks) {
@@ -20,7 +20,7 @@ export const getImageFromPostContent = (post: Post) => {
     return block.data.file.url;
 };
 
-export const getTextFromPostContent = (post: Post) => {
+export const getFirstTextFromPostContent = (post: Post) => {
     const content = JSON.parse(post.raw);
 
     if (!content.blocks) {

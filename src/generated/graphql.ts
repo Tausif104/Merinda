@@ -62,7 +62,14 @@ export type CreatePostInput = {
   categoryId?: InputMaybe<Scalars['Float']>;
   content: Scalars['String'];
   meta: CreateMetaInput;
+  schedule?: InputMaybe<Scalars['Float']>;
+  status?: InputMaybe<Scalars['Boolean']>;
   title: Scalars['String'];
+};
+
+export type CreatePostVersionInput = {
+  postId: Scalars['Float'];
+  raw: Scalars['String'];
 };
 
 export type CreateUserInput = {
@@ -97,6 +104,13 @@ export type FindPostInput = {
   take?: InputMaybe<Scalars['Int']>;
 };
 
+export type FindPostVersionInput = {
+  /** Example field (placeholder) */
+  skip?: InputMaybe<Scalars['Int']>;
+  /** Example field (placeholder) */
+  take?: InputMaybe<Scalars['Int']>;
+};
+
 export type Meta = {
   __typename?: 'Meta';
   createdAt: Scalars['DateTime'];
@@ -118,6 +132,7 @@ export type Mutation = {
   createCategory: Category;
   createPost: Post;
   createPostBlock: PostBlock;
+  createPostVersion: PostVersion;
   createUser: User;
   findOneByMetaUrl: Post;
   login: Auth;
@@ -126,11 +141,13 @@ export type Mutation = {
   removeMeta: Meta;
   removePost: Array<Post>;
   removePostBlock: PostBlock;
+  removePostVersion: PostVersion;
   removeUser: User;
   updateCategory: Category;
   updateMeta: Meta;
   updatePost: Post;
   updatePostBlock: PostBlock;
+  updatePostVersion: PostVersion;
   updateUser: User;
 };
 
@@ -147,6 +164,11 @@ export type MutationCreatePostArgs = {
 
 export type MutationCreatePostBlockArgs = {
   createPostBlockInput: CreatePostBlockInput;
+};
+
+
+export type MutationCreatePostVersionArgs = {
+  createPostVersionInput: CreatePostVersionInput;
 };
 
 
@@ -190,6 +212,11 @@ export type MutationRemovePostBlockArgs = {
 };
 
 
+export type MutationRemovePostVersionArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type MutationRemoveUserArgs = {
   id: Scalars['Int'];
 };
@@ -215,6 +242,11 @@ export type MutationUpdatePostBlockArgs = {
 };
 
 
+export type MutationUpdatePostVersionArgs = {
+  updatePostVersionInput: UpdatePostVersionInput;
+};
+
+
 export type MutationUpdateUserArgs = {
   updateUserInput: UpdateUserInput;
 };
@@ -228,6 +260,7 @@ export type Post = {
   id: Scalars['ID'];
   meta: Meta;
   raw: Scalars['String'];
+  schedule?: Maybe<Scalars['Float']>;
   status: Scalars['Boolean'];
   text: Scalars['String'];
   title: Scalars['String'];
@@ -253,6 +286,15 @@ export enum PostBlockType {
   Paragraph = 'PARAGRAPH'
 }
 
+export type PostVersion = {
+  __typename?: 'PostVersion';
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  post: Post;
+  raw: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+};
+
 export type Query = {
   __typename?: 'Query';
   category: Category;
@@ -260,9 +302,11 @@ export type Query = {
   fileById: File;
   findOnePostById: Post;
   findPost: Array<Post>;
+  findPostVersion: Array<PostVersion>;
   me: Auth;
   meta: Meta;
   postBlock: PostBlock;
+  postVersion: PostVersion;
   user: User;
 };
 
@@ -292,12 +336,22 @@ export type QueryFindPostArgs = {
 };
 
 
+export type QueryFindPostVersionArgs = {
+  findPostVersionInput: FindPostVersionInput;
+};
+
+
 export type QueryMetaArgs = {
   id: Scalars['Int'];
 };
 
 
 export type QueryPostBlockArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryPostVersionArgs = {
   id: Scalars['Int'];
 };
 
@@ -332,7 +386,15 @@ export type UpdatePostInput = {
   content?: InputMaybe<Scalars['String']>;
   id: Scalars['Int'];
   meta?: InputMaybe<CreateMetaInput>;
+  schedule?: InputMaybe<Scalars['Float']>;
+  status?: InputMaybe<Scalars['Boolean']>;
   title?: InputMaybe<Scalars['String']>;
+};
+
+export type UpdatePostVersionInput = {
+  id: Scalars['Int'];
+  postId?: InputMaybe<Scalars['Float']>;
+  raw?: InputMaybe<Scalars['String']>;
 };
 
 export type UpdateUserInput = {
@@ -375,19 +437,33 @@ export type FileQueryVariables = Exact<{
 
 export type FileQuery = { __typename?: 'Query', file: Array<{ __typename?: 'File', url: string, name: string }> };
 
+export type CreatePostVersionMutationVariables = Exact<{
+  createPostVersionInput: CreatePostVersionInput;
+}>;
+
+
+export type CreatePostVersionMutation = { __typename?: 'Mutation', createPostVersion: { __typename?: 'PostVersion', raw: string, createdAt: any } };
+
+export type FindPostVersionQueryVariables = Exact<{
+  findPostVersionInput: FindPostVersionInput;
+}>;
+
+
+export type FindPostVersionQuery = { __typename?: 'Query', findPostVersion: Array<{ __typename?: 'PostVersion', raw: string, createdAt: any }> };
+
 export type FindPostQueryVariables = Exact<{
   findPostInput: FindPostInput;
 }>;
 
 
-export type FindPostQuery = { __typename?: 'Query', findPost: Array<{ __typename?: 'Post', title: string, id: string, status: boolean, raw: string }> };
+export type FindPostQuery = { __typename?: 'Query', findPost: Array<{ __typename?: 'Post', title: string, id: string, status: boolean, raw: string, schedule?: number | null }> };
 
 export type FindOnePostQueryVariables = Exact<{
   findOnePostInput: Scalars['Int'];
 }>;
 
 
-export type FindOnePostQuery = { __typename?: 'Query', findOnePostById: { __typename?: 'Post', title: string, id: string, status: boolean, raw: string, meta: { __typename?: 'Meta', image: string, url: string, title: string, description: string } } };
+export type FindOnePostQuery = { __typename?: 'Query', findOnePostById: { __typename?: 'Post', title: string, id: string, status: boolean, raw: string, schedule?: number | null, meta: { __typename?: 'Meta', image: string, url: string, title: string, description: string } } };
 
 export type CreatePostMutationVariables = Exact<{
   createPostInput: CreatePostInput;
@@ -490,6 +566,44 @@ export const FileDocument = gql`
       super(apollo);
     }
   }
+export const CreatePostVersionDocument = gql`
+    mutation CreatePostVersion($createPostVersionInput: CreatePostVersionInput!) {
+  createPostVersion(createPostVersionInput: $createPostVersionInput) {
+    raw
+    createdAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreatePostVersionGQL extends Apollo.Mutation<CreatePostVersionMutation, CreatePostVersionMutationVariables> {
+    document = CreatePostVersionDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FindPostVersionDocument = gql`
+    query FindPostVersion($findPostVersionInput: FindPostVersionInput!) {
+  findPostVersion(findPostVersionInput: $findPostVersionInput) {
+    raw
+    createdAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FindPostVersionGQL extends Apollo.Query<FindPostVersionQuery, FindPostVersionQueryVariables> {
+    document = FindPostVersionDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const FindPostDocument = gql`
     query FindPost($findPostInput: FindPostInput!) {
   findPost(findPostInput: $findPostInput) {
@@ -497,6 +611,7 @@ export const FindPostDocument = gql`
     id
     status
     raw
+    schedule
   }
 }
     `;
@@ -524,6 +639,7 @@ export const FindOnePostDocument = gql`
       title
       description
     }
+    schedule
   }
 }
     `;

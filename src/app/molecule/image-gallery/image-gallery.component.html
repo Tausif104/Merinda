@@ -1,16 +1,18 @@
-<nz-modal [nzStyle]="{ 'width': '100%' }"  [(nzVisible)]="isVisible" nzTitle="Gallery" (nzOnCancel)="modalCancel()">
-    <ng-container *nzModalContent>
-    <div nz-row>
-        <div nz-col *ngFor="let item of images" nzSpan="6">
-            <img
-                width="100%"
-                [src]="item.url"
-                [cdkCopyToClipboard]="item.url"
-                (cdkCopyToClipboardCopied)="copy()"
-                class="image"
-            />
-        </div>
+<div nz-row [nzGutter]="[16,24]" #container>
+    <div nz-col *ngFor="let item of images" nzSpan="6">
+        <img
+            nz-image
+            width="100%"
+            [nzSrc]="item.url"
+            (click)="onSelect.emit(item.url)"
+            class="image"
+            [nzDisablePreview]="disablePreview"
+        />
     </div>
-    </ng-container>
-    <div *nzModalFooter></div>
-</nz-modal>
+
+</div>
+<div nz-row>
+    <div nz-col nzXs="24">
+        <button class="show-more" nz-button nzType="text" *ngIf="hasMore && showLoadMore" (click)="loadMore()"> Load more </button>
+    </div>
+</div>

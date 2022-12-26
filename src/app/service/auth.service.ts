@@ -3,11 +3,13 @@ import { Router } from "@angular/router";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { catchError, map, of } from "rxjs";
 import { CreateAuthInput, LoginGQL, MeGQL } from "src/generated/graphql";
+import { ws } from "../graphql.module";
+import { queryHasError } from "../utils/graphql";
 import { SpinnerService } from "./spinner.service";
 import { TransferStateService } from "./transfer-state.service";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
     $loginStatus = new EventEmitter<boolean>(false);
@@ -18,7 +20,7 @@ export class AuthService {
         private spinnerService: SpinnerService,
         private message: NzMessageService,
         private router: Router
-    ) {}
+    ) { }
 
     me() {
         this.spinnerService.show();
@@ -27,6 +29,10 @@ export class AuthService {
 
         return this.meGQL.fetch().pipe(
             map((response) => {
+                if (queryHasError(response)) {
+                    throw Error(`Not Authorized`);
+                }
+
                 this.transferStateService.set('LOGIN', true)
                 return true;
             }),
@@ -48,9 +54,16 @@ export class AuthService {
             createAuthInput
         }).pipe(
             map((response) => {
-                localStorage.setItem('AUTH_TOKEN', response.data?.login.token || '');
+                const token = response.data?.login.token;
+                if (!token) {
+                    throw Error(`Token not found`);
+                }
+
+                localStorage.setItem('AUTH_TOKEN', token);
                 this.transferStateService.set('AUTH_TOKEN', response.data?.login.token)
                 this.transferStateService.set('LOGIN', true);
+                ws.close(true);
+                // ws.connect();
                 this.spinnerService.hide();
             }),
             catchError(this.catchError.bind(this))

@@ -12,14 +12,14 @@ import { LoginAlphaComponent } from "src/app/organism/login-alpha/login-alpha.co
         path: '',
         component: LayoutBetaComponent,
         children: [
-            {
-              path: '',
-              component: HomeAlphaComponent,
-            },
-            {
-              path: 'login',
-              component: LoginAlphaComponent,
-            },
+          {
+            path: '',
+            component: HomeAlphaComponent,
+          },
+          {
+            path: 'login',
+            component: LoginAlphaComponent,
+          },
         ],
       },
     ]),
@@ -27,4 +27,4 @@ import { LoginAlphaComponent } from "src/app/organism/login-alpha/login-alpha.co
   exports: [],
   providers: []
 })
-export class DefaultRoutingModule {}
+export class DefaultRoutingModule { }

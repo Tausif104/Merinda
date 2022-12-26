@@ -5,6 +5,7 @@ import { CategoryAlphaComponent } from 'src/app/organism/category-alpha/category
 import { HomeAlphaComponent } from 'src/app/organism/home-alpha/home-alpha.component';
 import { LoginAlphaComponent } from 'src/app/organism/login-alpha/login-alpha.component';
 import { NotFoundAlphaComponent } from 'src/app/organism/not-found-alpha/not-found-alpha.component';
+import { OrganismModule } from 'src/app/organism/organism.module';
 import { PageAlphaComponent } from 'src/app/organism/page-alpha/page-alpha.component';
 import { PageListAlphaComponent } from 'src/app/organism/page-list-alpha/page-list-alpha.component';
 import { PostAlphaComponent } from 'src/app/organism/post-alpha/post-alpha.component';
@@ -14,19 +15,10 @@ import { AdminRoutingModule } from './admin-routing.module';
 
 
 @NgModule({
-  declarations: [
-    HomeAlphaComponent,
-    CategoryAlphaComponent,
-    PageAlphaComponent,
-    ProductPageAlphaComponent,
-    NotFoundAlphaComponent,
-    PageListAlphaComponent,
-    PostListAlphaComponent,
-    PostAlphaComponent,
-    LoginAlphaComponent,
-  ],
+  declarations: [],
   imports: [
     MoleculeModule,
+    OrganismModule,
     AdminRoutingModule
   ],
   providers: [],

@@ -1,0 +1,20 @@
+<h1>Medias</h1>
+
+<div nz-row>
+  <div nz-col nzXs="24">
+    <nz-upload
+      nzType="drag"
+      [nzMultiple]="true"
+      nzAction="/api/files"
+      [nzShowUploadList]="false"
+      (nzChange)="handleChange($event)"
+      class="uploader"
+    >
+      <p class="ant-upload-drag-icon">
+        <span nz-icon nzType="inbox"></span>
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+    </nz-upload>
+    <app-image-gallery [disablePreview]="disablePreview" [showLoadMore]="showLoadMore" [reloadSubject]="reloadGallery" (onSelect)="onSelect.emit($event)"></app-image-gallery>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MoleculeModule } from '../molecule/molecule.module';
 import { HomeAlphaComponent } from './home-alpha/home-alpha.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { AtomModule } from '../atom/atom.module';
 import { CategoryAlphaComponent } from './category-alpha/category-alpha.component';
 import { PageAlphaComponent } from './page-alpha/page-alpha.component';
@@ -12,9 +11,9 @@ import { PostListAlphaComponent } from './post-list-alpha/post-list-alpha.compon
 import { PostAlphaComponent } from './post-alpha/post-alpha.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AppRoutingModule } from '../app-routing.module';
 import { LoginAlphaComponent } from './login-alpha/login-alpha.component';
 import { PostBetaComponent } from './post-beta/post-beta.component';
+import { MediaAlphaComponent } from './media-alpha/media-alpha.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +27,10 @@ import { PostBetaComponent } from './post-beta/post-beta.component';
     PostAlphaComponent,
     LoginAlphaComponent,
     PostBetaComponent,
+    MediaAlphaComponent,
   ],
   imports: [
     CommonModule,
-    BrowserModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     MoleculeModule,
@@ -42,4 +40,4 @@ import { PostBetaComponent } from './post-beta/post-beta.component';
   exports: [
   ]
 })
-export class OrganismModule {}
+export class OrganismModule { }

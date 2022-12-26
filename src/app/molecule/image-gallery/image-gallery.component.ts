@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { map } from 'rxjs';
+import { interval, Subject, tap, throttle } from 'rxjs';
 import { FileService } from 'src/app/service/file.service';
+import { SpinnerService } from 'src/app/service/spinner.service';
 import { File } from 'src/generated/graphql';
 
 @Component({
@@ -15,47 +16,79 @@ export class ImageGalleryComponent implements OnInit {
   page = 0;
   size = 10;
   hasMore = true;
-  @Input() isVisible = false;
+  @Output() onSelect = new EventEmitter();
+  @Input() reloadSubject: Subject<void>;
+  @Input() showLoadMore = false;
+  @Input() disablePreview = false;
+  fetchImages$ = new Subject<void>();
+
+  @ViewChild('container')
+  containerRef: ElementRef;
 
   constructor(
     private fileService: FileService,
-    private messageService: NzMessageService
-  ) {}
-
-  // ngOnChanges() {
-  //   this.fetchImages();
-  // }
+    private messageService: NzMessageService,
+    private spinnerService: SpinnerService
+  ) { }
 
   ngOnInit(): void {
-    this.fetchImages();
+    if (this.reloadSubject) {
+      this.reloadSubject.subscribe(() => {
+        this.restart();
+      });
+    }
+    this.fetchImageListener();
+    this.fetchImages$.next();
   }
 
-  fetchImages() {
-    this.fileService.find({
-      skip: this.page,
-      take: this.size
-    }).subscribe((response) => {
-      const files = response.data.file as File[];
+  restart() {
+    this.images = [];
+    this.page = 0;
+    this.hasMore = true;
+    this.fetchImages$.next();
+  }
 
-      if (files.length < this.size) {
-        this.hasMore = false;
+  fetchImageListener() {
+    this.fetchImages$.pipe(
+      throttle(() => interval(1000))
+    ).pipe(tap(() => {
+      this.spinnerService.show();
+    })).subscribe(() => {
+      if (!this.hasMore) {
+        return;
       }
 
-      this.images = [...this.images, ...files];
-      this.page += this.size;
-    });
+      this.fileService.find({
+        skip: this.page,
+        take: this.size
+      }).subscribe((response) => {
+        const files = response.data.file as File[];
+
+        this.images = [...this.images, ...files];
+
+        if (files.length < this.size) {
+          this.hasMore = false;
+        }
+
+        if (this.hasMore) {
+          this.page += this.size;
+        }
+
+        this.spinnerService.hide();
+      });
+    })
   }
 
-  copy() {
-    this.messageService.success('Link has coppied');
-    this.isVisible = false;
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: any) {
+    if (window.pageYOffset + this.containerRef.nativeElement.clientHeight > this.containerRef.nativeElement.offsetHeight * 0.7) {
+      if (this.hasMore) {
+        this.fetchImages$.next();
+      }
+    }
   }
 
-  modalOk() {
-    this.isVisible = false;
-  }
-
-  modalCancel() {
-    this.isVisible = false;
+  loadMore() {
+    this.fetchImages$.next();
   }
 }

@@ -15,7 +15,7 @@ import { NotFoundAlphaComponent } from "./organism/not-found-alpha/not-found-alp
         loadChildren: () => import('./modules/default/default.module').then(m => m.DefaultModule)
       },
       { path: 'not-found', component: NotFoundAlphaComponent },
-      { path: '**',   redirectTo: '/admin/posts/new', pathMatch: 'full' },
+      { path: '**',   redirectTo: '/admin/posts', pathMatch: 'full' },
     ]),
   ],
   exports: [RouterModule],

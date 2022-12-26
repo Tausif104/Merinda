@@ -11,7 +11,15 @@ export class TransferStateService {
   constructor(
     @Inject(PLATFORM_ID) private readonly platformId: string,
     private readonly transferState: TransferState
-  ) {}
+  ) { }
+
+  public isServer() {
+    console.log(this.platformId);
+    const isServer = isPlatformServer(this.platformId);
+    console.log({ isServer });
+
+    return isServer;
+  }
 
   get<T>(
     key: string,
@@ -50,11 +58,11 @@ export class TransferStateService {
 
   private getStateKey(key: string): StateKey<string> {
     if (this.keys.has(key)) {
-      return <StateKey<string>> this.keys.get(key);
+      return <StateKey<string>>this.keys.get(key);
     }
 
     this.keys.set(key, makeStateKey(key));
 
-    return <StateKey<string>> this.keys.get(key);
+    return <StateKey<string>>this.keys.get(key);
   }
 }

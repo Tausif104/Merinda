@@ -1,15 +1,30 @@
 <div nz-row>
-  <div nz-col nzSpan="20">
+  <div nz-col nzXs="24" nzMd="12">
 
   </div>
-  <div nz-col nzSpan="4">
-    <button *ngIf="this.isUpdate" (click)="remove()" nz-button nzType="dashed" nzDanger>Delete</button>
-    <button *ngIf="!this.isUpdate" (click)="create()" nz-button nzType="primary" class="pull-right">Create</button>
-    <button *ngIf="this.isUpdate" (click)="update()" nz-button nzType="primary" class="pull-right">Update</button>
+  <div nz-col nzXs="24" nzMd="12">
+    <button *ngIf="this.isUpdate" (click)="remove()" nz-button nzType="dashed" nzDanger class="pull-right mr-10">Delete</button>
+    <button *ngIf="!this.isUpdate" (click)="create()" nz-button nzType="primary" class="pull-right mr-10">Create</button>
+    <button *ngIf="this.isUpdate" (click)="update()" nz-button nzType="primary" class="pull-right mr-10">Update</button>
   </div>
 </div>
 
-<app-image-gallery [isVisible]="metaGalleryStatus"></app-image-gallery>
+<nz-modal [nzStyle]="{ 'width': '100%' }"  [(nzVisible)]="metaGalleryStatus" (nzOnCancel)="metaGalleryStatus = false">
+    <ng-container *nzModalContent>
+      <app-media-alpha [showLoadMore]="true" [disablePreview]="true" (onSelect)="imageOnselect($event)"></app-media-alpha>
+        <!-- <app-image-gallery (onSelect)="imageOnselect($event)"></app-image-gallery> -->
+    </ng-container>
+    <div *nzModalFooter></div>
+</nz-modal>
+
+<nz-modal
+      [(nzVisible)]="showPostVersionConfirm"
+      nzTitle="Modal Title"
+      (nzOnCancel)="postVersionConfirmOnCancel()"
+      (nzOnOk)="postVersionConfirmOnOk()"
+    >
+  <p *nzModalContent>Modal Content</p>
+</nz-modal>
 
 <nz-tabset nzType="card" nzLinkRouter>
   <nz-tab>
@@ -17,6 +32,20 @@
       Content
       <nz-badge nzDot></nz-badge>
     </a>
+    
+    <nz-tag *ngIf="isUpdate && post.status == true" nzColor="success">Published</nz-tag>
+    <nz-tag *ngIf="schedule" nzColor="processing">Scheduled</nz-tag>
+
+    <nz-select (ngModelChange)="postVersionOnChange($event)" [(ngModel)]="selectedPostVersion" class="pull-right post-version-select" nzSize="small" nzPlaceHolder="Choose Version">
+      <nz-option *ngFor="let postVersion of postVersions" [nzValue]="postVersion" [nzLabel]="fromNow(postVersion.createdAt)"></nz-option>
+    </nz-select>
+
+    <nz-select *ngIf="!post.schedule" [(ngModel)]="post.status" class="pull-right" nzSize="small">
+      <nz-option [nzValue]="true" nzLabel="Published"></nz-option>
+      <nz-option [nzValue]="false" nzLabel="Not Published"></nz-option>
+      <nz-option [nzValue]="" nzLabel="Disabled" nzDisabled></nz-option>
+    </nz-select>
+
     <input class="title" nz-input placeholder="Title" nzSize="large" [(ngModel)]="post.title" />
     <div id="editorjs"></div>
   </nz-tab>
@@ -24,12 +53,54 @@
     <a *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'meta' }" queryParamsHandling="merge">
       Meta
     </a>
-    
-    <input class="title" nz-input placeholder="Description" nzSize="large" [(ngModel)]="meta.description" />
-    <input class="title" nz-input placeholder="Url" nzSize="large" [(ngModel)]="meta.url" />
-    <button (click)="metaGalleryStatus = true"> Gallery </button>
-    <input class="title" nz-input placeholder="Title" nzSize="large" [(ngModel)]="meta.title" [value]="getMetaTitle()" />
+    <div class="meta-container">
+      <div nz-row>
+        <input class="title" nz-input placeholder="Description" nzSize="large" [(ngModel)]="meta.description" />
+      </div>
+      <div nz-row>
+        <input class="title" nz-input placeholder="Url" nzSize="large" [(ngModel)]="meta.url" />
+      </div>
+      <div nz-row>
+        <img
+          *ngIf="meta.image"
+          nz-image
+          width="200px"
+          [nzSrc]="meta.image"
+          alt=""
+        />
+      </div>
+      <div nz-row>
+        <button (click)="metaGalleryStatus = true" nz-button nzType="primary"> Choose Image </button>
+      </div>
+      <div nz-row>
+        <input class="title" nz-input placeholder="Title" nzSize="large" [(ngModel)]="meta.title" [value]="getMetaTitle()" />
+      </div>
+    </div>
   </nz-tab>
+  <nz-tab>
+    <a *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'schedule' }" queryParamsHandling="merge">
+      Schedule
+    </a>
+    
+    <label nz-checkbox [(ngModel)]="hasSchedule">Schedule This Post</label>
+
+    <div nz-row *ngIf="hasSchedule" [nzGutter]="[32, 32]">
+      <div nz-col nzXs="24" nzSm="24" nzMd="12" nzSpan="12">
+        <div class="calendar-container">
+          <nz-calendar
+            [(ngModel)]="schedule"
+            [nzFullscreen]="false"
+            (nzSelectChange)="calendarOnValueChange($event)"
+          ></nz-calendar>
+        </div>
+      </div>
+      <div *ngIf="schedule" nz-col [nzXs]="{span:22, offset: 2}" [nzMd]="{span:11, offset: 1}" nzSpan="8" nzOffset = "4">
+        This post will published {{getDistance()}}
+      </div>
+    </div>
+  </nz-tab>
+
+  
 </nz-tabset>
 
 

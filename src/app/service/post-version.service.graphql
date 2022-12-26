@@ -1,0 +1,13 @@
+mutation CreatePostVersion($createPostVersionInput: CreatePostVersionInput!) {
+  createPostVersion(createPostVersionInput: $createPostVersionInput) {
+    raw
+    createdAt
+  }
+}
+
+query FindPostVersion($findPostVersionInput: FindPostVersionInput!) {
+  findPostVersion(findPostVersionInput: $findPostVersionInput) {
+    raw
+    createdAt
+  }
+}
