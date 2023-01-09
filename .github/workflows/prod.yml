@@ -37,7 +37,7 @@ jobs:
       with:
         registry: ghcr.io
         username: r03t
-        password: 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
+        password: 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
 
     - name: Build and push
       id: docker_build_ui
