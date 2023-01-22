@@ -1,0 +1,8 @@
+@import 'src/mixin';
+
+.home {
+    display: block;
+    @include respond-to(md) {
+        width: 767px;
+    }
+}
