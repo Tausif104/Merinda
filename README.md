@@ -44,30 +44,6 @@ post-detail -> /post/${slug-name}
 
 author      -> /author/${author-name}
 
-## Common page setup
-
-- Updating meta tags with related data
-- Updating page title with related data
-- Updating meta robot tags with related data
-- Updating canonical link tag with related data
-
-
 ## Setup GraphQL with Codegen
 
 To generate services after editing or creating the graphql files under `src/app/service` just hit `npm run codegen`
-
-## Strapi Data Models
-
-We have two main variables to define contents
- - Locale: To define language
- - Channel: To define the source of the contents. Seperate different website contents.
-
-Main models;
-
-- Locale
-- Post
-- Category
-- Author
-
-
-
