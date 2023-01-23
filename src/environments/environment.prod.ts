@@ -4,5 +4,5 @@ export const environment = {
   pageSize: 5,
   debug: true,
   apiUrl: "https://api.dailypartner.de",
-  apiWSUrl: "ws://api.dailypartner.de"
+  apiWSUrl: "wss://api.dailypartner.de"
 };
