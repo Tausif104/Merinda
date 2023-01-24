@@ -8,6 +8,7 @@ import { SpinnerService } from 'src/app/service/spinner.service';
 import { CreatePostGQL, CreatePostVersionGQL, FindOnePostGQL, FindPostVersionGQL, Meta, Post, PostVersion, RemovePostGQL, UpdatePostGQL } from 'src/generated/graphql';
 import * as moment from 'moment';
 import { differenceWith, isEqual } from 'lodash';
+import slugify from 'slugify';
 
 @UntilDestroy()
 @Component({
@@ -17,7 +18,7 @@ import { differenceWith, isEqual } from 'lodash';
 })
 export class PostAlphaComponent implements OnInit {
 
-  id: number;
+  id: string | null;
   code = ''
   editorData: any;
   editor: any;
@@ -29,7 +30,7 @@ export class PostAlphaComponent implements OnInit {
   editorDataHistory: any = [];
   metaGalleryStatus = false;
   public postVersions: PostVersion[];
-  selectedPostVersion: PostVersion; 
+  selectedPostVersion: PostVersion;
   showConvertButton = false;
 
   hasSchedule = false;
@@ -120,7 +121,7 @@ export class PostAlphaComponent implements OnInit {
 
   postParamListener() {
     this.route.paramMap.subscribe((params) => {
-      this.id = Number(params.get('id'));
+      this.id = params.get('id');
 
       if (this.id) {
         this.isUpdate = true;
@@ -165,7 +166,10 @@ export class PostAlphaComponent implements OnInit {
 
   createPostVersion() {
     console.log(this.editorData);
-    
+    if (!this.id) {
+      throw new Error('Cannot create version. Post not exist.');
+    }
+
     this.createPostVersionGQL.mutate({
       createPostVersionInput: {
         postId: this.id,
@@ -192,6 +196,10 @@ export class PostAlphaComponent implements OnInit {
   }
 
   update() {
+    if (!this.post.id) {
+      throw new Error('Cannot update post not exist.');
+    }
+
     this.spinnerService.show();
     let schedule = null;
     if (this.hasSchedule) {
@@ -200,7 +208,7 @@ export class PostAlphaComponent implements OnInit {
 
     this.updatePostGQL.mutate({
       updatePostInput: {
-        id: Number(this.post.id),
+        id: this.post.id,
         title: this.post.title || "",
         content: this.editorData,
         meta: {
@@ -244,9 +252,13 @@ export class PostAlphaComponent implements OnInit {
   }
 
   remove() {
+    if (!this.post.id) {
+      throw new Error(`Cannot remove. Post not exist.`);
+    }
+
     this.spinnerService.show();
     this.removePostGQL.mutate({
-      removePostInput: Number(this.post.id)
+      removePostInput: this.post.id
     }).subscribe((response) => {
       this.router.navigate(['/posts']);
       this.spinnerService.hide();
@@ -280,12 +292,9 @@ export class PostAlphaComponent implements OnInit {
     });
   }
 
-  getMetaTitle() {
-    if (!this.meta.title) {
-      return 'Dailypartner | ' + this.post.title;
-    }
-
-    return this.meta.title;
+  onTitleChange(value: string) {
+    this.meta.title = 'Dailypartner | ' + value;
+    this.meta.url = slugify(value).toLowerCase();
   }
 
   calendarOnValueChange(value: Date) {

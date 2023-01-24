@@ -46,7 +46,7 @@
       <nz-option [nzValue]="" nzLabel="Disabled" nzDisabled></nz-option>
     </nz-select>
 
-    <input class="title" nz-input placeholder="Title" nzSize="large" [(ngModel)]="post.title" />
+    <input class="title" nz-input placeholder="Title" nzSize="large" [(ngModel)]="post.title" (ngModelChange)="onTitleChange($event)" />
     <div id="editorjs"></div>
   </nz-tab>
   <nz-tab>
@@ -73,7 +73,7 @@
         <button (click)="metaGalleryStatus = true" nz-button nzType="primary"> Choose Image </button>
       </div>
       <div nz-row>
-        <input class="title" nz-input placeholder="Title" nzSize="large" [(ngModel)]="meta.title" [value]="getMetaTitle()" />
+        <input class="title" nz-input placeholder="Title" nzSize="large" [(ngModel)]="meta.title" />
       </div>
     </div>
   </nz-tab>

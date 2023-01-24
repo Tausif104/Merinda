@@ -20,7 +20,8 @@ export type Scalars = {
 export type Auth = {
   __typename?: 'Auth';
   createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  deletedAt: Scalars['DateTime'];
+  id: Scalars['String'];
   token: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   user: User;
@@ -29,9 +30,10 @@ export type Auth = {
 export type Category = {
   __typename?: 'Category';
   createdAt: Scalars['DateTime'];
+  deletedAt: Scalars['DateTime'];
   /** Example 2 field (placeholder) */
   exampleField: Scalars['Int'];
-  id: Scalars['ID'];
+  id: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 };
 
@@ -59,7 +61,7 @@ export type CreatePostBlockInput = {
 };
 
 export type CreatePostInput = {
-  categoryId?: InputMaybe<Scalars['Float']>;
+  categoryId?: InputMaybe<Scalars['String']>;
   content: Scalars['String'];
   meta: CreateMetaInput;
   schedule?: InputMaybe<Scalars['Float']>;
@@ -68,7 +70,7 @@ export type CreatePostInput = {
 };
 
 export type CreatePostVersionInput = {
-  postId: Scalars['Float'];
+  postId: Scalars['String'];
   raw: Scalars['String'];
 };
 
@@ -80,16 +82,15 @@ export type CreateUserInput = {
 export type File = {
   __typename?: 'File';
   createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  deletedAt: Scalars['DateTime'];
+  id: Scalars['String'];
   name: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   url: Scalars['String'];
 };
 
 export type FindFileInput = {
-  /** Example field (placeholder) */
   skip?: InputMaybe<Scalars['Int']>;
-  /** Example field (placeholder) */
   take?: InputMaybe<Scalars['Int']>;
 };
 
@@ -98,25 +99,27 @@ export type FindOneByMetaUrlInput = {
 };
 
 export type FindPostInput = {
-  /** Example field (placeholder) */
   skip?: InputMaybe<Scalars['Int']>;
-  /** Example field (placeholder) */
   take?: InputMaybe<Scalars['Int']>;
 };
 
 export type FindPostVersionInput = {
-  /** Example field (placeholder) */
   skip?: InputMaybe<Scalars['Int']>;
-  /** Example field (placeholder) */
   take?: InputMaybe<Scalars['Int']>;
+};
+
+export type HtmlObject = {
+  __typename?: 'HTMLObject';
+  html: Scalars['String'];
 };
 
 export type Meta = {
   __typename?: 'Meta';
   createdAt: Scalars['DateTime'];
+  deletedAt: Scalars['DateTime'];
   /** A short description or summary of the object. [Between 2 and 4 sentences.] [Maximum 200 characters.] */
   description: Scalars['String'];
-  id: Scalars['ID'];
+  id: Scalars['String'];
   /** The URL of the image for your object. It should be at least 600×315 pixels, but 1200×630 or larger is preferred (up to 5MB). Stay close to a 1.91:1 aspect ratio to avoid cropping. */
   image: Scalars['String'];
   post: Post;
@@ -139,7 +142,7 @@ export type Mutation = {
   register: Auth;
   removeCategory: Category;
   removeMeta: Meta;
-  removePost: Array<Post>;
+  removePost: UpdateResultInput;
   removePostBlock: PostBlock;
   removePostVersion: PostVersion;
   removeUser: User;
@@ -203,12 +206,12 @@ export type MutationRemoveMetaArgs = {
 
 
 export type MutationRemovePostArgs = {
-  id: Scalars['Int'];
+  id: Scalars['String'];
 };
 
 
 export type MutationRemovePostBlockArgs = {
-  id: Scalars['Int'];
+  id: Scalars['String'];
 };
 
 
@@ -218,7 +221,7 @@ export type MutationRemovePostVersionArgs = {
 
 
 export type MutationRemoveUserArgs = {
-  id: Scalars['Int'];
+  id: Scalars['String'];
 };
 
 
@@ -257,7 +260,8 @@ export type Post = {
   blocks: Array<PostBlock>;
   category: Category;
   createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  deletedAt: Scalars['DateTime'];
+  id: Scalars['String'];
   meta: Meta;
   raw: Scalars['String'];
   schedule?: Maybe<Scalars['Float']>;
@@ -270,7 +274,8 @@ export type Post = {
 export type PostBlock = {
   __typename?: 'PostBlock';
   createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  deletedAt: Scalars['DateTime'];
+  id: Scalars['String'];
   index: Scalars['Float'];
   post: Post;
   raw: Scalars['String'];
@@ -289,7 +294,8 @@ export enum PostBlockType {
 export type PostVersion = {
   __typename?: 'PostVersion';
   createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  deletedAt: Scalars['DateTime'];
+  id: Scalars['String'];
   post: Post;
   raw: Scalars['String'];
   updatedAt: Scalars['DateTime'];
@@ -306,6 +312,8 @@ export type Query = {
   me: Auth;
   meta: Meta;
   postBlock: PostBlock;
+  postHTMLById: HtmlObject;
+  postHTMLByMetaURL: HtmlObject;
   postVersion: PostVersion;
   user: User;
 };
@@ -327,7 +335,7 @@ export type QueryFileByIdArgs = {
 
 
 export type QueryFindOnePostByIdArgs = {
-  id: Scalars['Int'];
+  id: Scalars['String'];
 };
 
 
@@ -347,7 +355,17 @@ export type QueryMetaArgs = {
 
 
 export type QueryPostBlockArgs = {
-  id: Scalars['Int'];
+  id: Scalars['String'];
+};
+
+
+export type QueryPostHtmlByIdArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryPostHtmlByMetaUrlArgs = {
+  url: Scalars['String'];
 };
 
 
@@ -357,7 +375,7 @@ export type QueryPostVersionArgs = {
 
 
 export type QueryUserArgs = {
-  id: Scalars['Int'];
+  id: Scalars['String'];
 };
 
 export type UpdateCategoryInput = {
@@ -375,16 +393,16 @@ export type UpdateMetaInput = {
 };
 
 export type UpdatePostBlockInput = {
-  id: Scalars['Int'];
+  id: Scalars['String'];
   raw?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<PostBlockType>;
   value?: InputMaybe<Scalars['String']>;
 };
 
 export type UpdatePostInput = {
-  categoryId?: InputMaybe<Scalars['Float']>;
+  categoryId?: InputMaybe<Scalars['String']>;
   content?: InputMaybe<Scalars['String']>;
-  id: Scalars['Int'];
+  id: Scalars['String'];
   meta?: InputMaybe<CreateMetaInput>;
   schedule?: InputMaybe<Scalars['Float']>;
   status?: InputMaybe<Scalars['Boolean']>;
@@ -393,21 +411,29 @@ export type UpdatePostInput = {
 
 export type UpdatePostVersionInput = {
   id: Scalars['Int'];
-  postId?: InputMaybe<Scalars['Float']>;
+  postId?: InputMaybe<Scalars['String']>;
   raw?: InputMaybe<Scalars['String']>;
+};
+
+export type UpdateResultInput = {
+  __typename?: 'UpdateResultInput';
+  affected: Scalars['Int'];
+  generatedMaps: Scalars['String'];
+  raw: Scalars['String'];
 };
 
 export type UpdateUserInput = {
   email?: InputMaybe<Scalars['String']>;
-  id: Scalars['Int'];
+  id: Scalars['String'];
   password?: InputMaybe<Scalars['String']>;
 };
 
 export type User = {
   __typename?: 'User';
   createdAt: Scalars['DateTime'];
+  deletedAt: Scalars['DateTime'];
   email: Scalars['String'];
-  id: Scalars['ID'];
+  id: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 };
 
@@ -456,10 +482,10 @@ export type FindPostQueryVariables = Exact<{
 }>;
 
 
-export type FindPostQuery = { __typename?: 'Query', findPost: Array<{ __typename?: 'Post', title: string, id: string, status: boolean, raw: string, schedule?: number | null }> };
+export type FindPostQuery = { __typename?: 'Query', findPost: Array<{ __typename?: 'Post', title: string, id: string, status: boolean, raw: string, schedule?: number | null, meta: { __typename?: 'Meta', image: string, url: string, title: string, description: string } }> };
 
 export type FindOnePostQueryVariables = Exact<{
-  findOnePostInput: Scalars['Int'];
+  findOnePostInput: Scalars['String'];
 }>;
 
 
@@ -473,11 +499,11 @@ export type CreatePostMutationVariables = Exact<{
 export type CreatePostMutation = { __typename?: 'Mutation', createPost: { __typename?: 'Post', title: string, id: string } };
 
 export type RemovePostMutationVariables = Exact<{
-  removePostInput: Scalars['Int'];
+  removePostInput: Scalars['String'];
 }>;
 
 
-export type RemovePostMutation = { __typename?: 'Mutation', removePost: Array<{ __typename?: 'Post', title: string, id: string }> };
+export type RemovePostMutation = { __typename?: 'Mutation', removePost: { __typename?: 'UpdateResultInput', affected: number } };
 
 export type UpdatePostMutationVariables = Exact<{
   updatePostInput: UpdatePostInput;
@@ -485,6 +511,20 @@ export type UpdatePostMutationVariables = Exact<{
 
 
 export type UpdatePostMutation = { __typename?: 'Mutation', updatePost: { __typename?: 'Post', raw: string, title: string, id: string } };
+
+export type PostHtmlByIdQueryVariables = Exact<{
+  postHTMLById: Scalars['String'];
+}>;
+
+
+export type PostHtmlByIdQuery = { __typename?: 'Query', postHTMLById: { __typename?: 'HTMLObject', html: string } };
+
+export type PostHtmlByMetaUrlQueryVariables = Exact<{
+  postHTMLByMetaURL: Scalars['String'];
+}>;
+
+
+export type PostHtmlByMetaUrlQuery = { __typename?: 'Query', postHTMLByMetaURL: { __typename?: 'HTMLObject', html: string } };
 
 export const RegisterDocument = gql`
     mutation Register($createAuthInput: CreateAuthInput!) {
@@ -612,6 +652,12 @@ export const FindPostDocument = gql`
     status
     raw
     schedule
+    meta {
+      image
+      url
+      title
+      description
+    }
   }
 }
     `;
@@ -627,7 +673,7 @@ export const FindPostDocument = gql`
     }
   }
 export const FindOnePostDocument = gql`
-    query FindOnePost($findOnePostInput: Int!) {
+    query FindOnePost($findOnePostInput: String!) {
   findOnePostById(id: $findOnePostInput) {
     title
     id
@@ -674,10 +720,9 @@ export const CreatePostDocument = gql`
     }
   }
 export const RemovePostDocument = gql`
-    mutation RemovePost($removePostInput: Int!) {
+    mutation RemovePost($removePostInput: String!) {
   removePost(id: $removePostInput) {
-    title
-    id
+    affected
   }
 }
     `;
@@ -707,6 +752,42 @@ export const UpdatePostDocument = gql`
   })
   export class UpdatePostGQL extends Apollo.Mutation<UpdatePostMutation, UpdatePostMutationVariables> {
     document = UpdatePostDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PostHtmlByIdDocument = gql`
+    query PostHTMLById($postHTMLById: String!) {
+  postHTMLById(id: $postHTMLById) {
+    html
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PostHtmlByIdGQL extends Apollo.Query<PostHtmlByIdQuery, PostHtmlByIdQueryVariables> {
+    document = PostHtmlByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PostHtmlByMetaUrlDocument = gql`
+    query PostHTMLByMetaURL($postHTMLByMetaURL: String!) {
+  postHTMLByMetaURL(url: $postHTMLByMetaURL) {
+    html
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PostHtmlByMetaUrlGQL extends Apollo.Query<PostHtmlByMetaUrlQuery, PostHtmlByMetaUrlQueryVariables> {
+    document = PostHtmlByMetaUrlDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

@@ -75,6 +75,10 @@ export class PostListAlphaComponent implements OnInit {
     return getFirstImageFromPostContent(post);
   }
 
+  getMetaImage(post: Post) {
+    return post.meta.image;
+  }
+
   getContentText(post: Post) {
     return getFirstTextFromPostContent(post);
   }

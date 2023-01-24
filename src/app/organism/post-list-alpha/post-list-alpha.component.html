@@ -10,20 +10,22 @@
     </div>
   </div>
 
-  <nz-list-item class="content" *ngFor="let item of data">
-    <nz-list-item-meta>
-      <nz-list-item-meta-avatar [nzSrc]="'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'">
-      </nz-list-item-meta-avatar>
-      <nz-list-item-meta-title>
-        <a routerLink="/admin/posts/{{ item.id }}"> {{ item.title }}</a>
-      </nz-list-item-meta-title>
-      <nz-list-item-meta-description [innerHTML]="getContentText(item)">
-      </nz-list-item-meta-description>
-    </nz-list-item-meta>
-    <nz-list-item-extra>
-      <img width="272" alt="logo" [src]="getContentImage(item)" />
-    </nz-list-item-extra>
-  </nz-list-item>
+  <div *ngFor="let item of data">
+    <a routerLink="/admin/posts/{{ item.id }}">
+      <nz-list-item class="content">
+          <nz-list-item-meta>
+            <nz-list-item-meta-title>
+              {{ item.title }}
+            </nz-list-item-meta-title>
+            <nz-list-item-meta-description [innerHTML]="getContentText(item)">
+            </nz-list-item-meta-description>
+          </nz-list-item-meta>
+          <nz-list-item-extra>
+            <img width="272" alt="logo" [src]="getMetaImage(item)" />
+          </nz-list-item-extra>
+      </nz-list-item>
+    </a>
+  </div>
 </nz-list>
 
 </div>

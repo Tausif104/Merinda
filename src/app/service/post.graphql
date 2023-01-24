@@ -5,10 +5,16 @@ query FindPost ($findPostInput: FindPostInput!) {
     status
     raw
     schedule
+    meta {
+      image
+      url
+      title
+      description
+    }
   }
 }
 
-query FindOnePost ($findOnePostInput: Int!) {
+query FindOnePost ($findOnePostInput: String!) {
   findOnePostById(id: $findOnePostInput) {
     title
     id
@@ -31,10 +37,9 @@ mutation CreatePost($createPostInput: CreatePostInput!) {
   }
 }
 
-mutation RemovePost($removePostInput: Int!) {
+mutation RemovePost($removePostInput: String!) {
   removePost(id: $removePostInput) {
-    title
-    id
+    affected
   }
 }
 
@@ -43,5 +48,17 @@ mutation UpdatePost($updatePostInput: UpdatePostInput!) {
     raw
     title
     id
+  }
+}
+
+query PostHTMLById($postHTMLById: String!) {
+  postHTMLById(id: $postHTMLById) {
+    html
+  }
+}
+
+query PostHTMLByMetaURL($postHTMLByMetaURL: String!) {
+  postHTMLByMetaURL(url: $postHTMLByMetaURL) {
+    html
   }
 }
