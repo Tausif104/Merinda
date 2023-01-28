@@ -14,12 +14,12 @@ import en from '@angular/common/locales/en';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminGuard } from './guard/admin.guard';
 import { NzMessageModule } from 'ng-zorro-antd/message';
-
+import { HeaderComponent } from './components/header/header.component';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     ApolloModule,
     HttpClientModule,
@@ -28,10 +28,10 @@ registerLocaleData(en);
     AppRoutingModule,
     GraphQLModule,
     BrowserAnimationsModule,
-    NzMessageModule
+    NzMessageModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }, AdminGuard],
   bootstrap: [AppComponent],
-  exports: [AppRoutingModule]
+  exports: [AppRoutingModule],
 })
 export class AppModule {}
