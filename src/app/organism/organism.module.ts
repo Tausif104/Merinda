@@ -14,6 +14,14 @@ import { CommonModule } from '@angular/common';
 import { LoginAlphaComponent } from './login-alpha/login-alpha.component';
 import { PostBetaComponent } from './post-beta/post-beta.component';
 import { MediaAlphaComponent } from './media-alpha/media-alpha.component';
+import { BannerComponent } from './banner/banner.component';
+import { HeaderComponent } from './header/header.component';
+import { FeatureLeftComponent } from './feature-left/feature-left.component';
+import { FeatureRightComponent } from './feature-right/feature-right.component';
+import { PromoSectionComponent } from './promo-section/promo-section.component';
+import { NewsletterComponent } from './newsletter/newsletter.component';
+import { PostItemComponent } from './post-item/post-item.component';
+import { PostItemListsComponent } from './post-item-lists/post-item-lists.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +36,14 @@ import { MediaAlphaComponent } from './media-alpha/media-alpha.component';
     LoginAlphaComponent,
     PostBetaComponent,
     MediaAlphaComponent,
+    BannerComponent,
+    HeaderComponent,
+    FeatureLeftComponent,
+    FeatureRightComponent,
+    PromoSectionComponent,
+    NewsletterComponent,
+    PostItemComponent,
+    PostItemListsComponent,
   ],
   imports: [
     CommonModule,
