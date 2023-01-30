@@ -22,6 +22,7 @@ import { PromoSectionComponent } from './promo-section/promo-section.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
 import { PostItemComponent } from './post-item/post-item.component';
 import { PostItemListsComponent } from './post-item-lists/post-item-lists.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { PostItemListsComponent } from './post-item-lists/post-item-lists.compon
     NewsletterComponent,
     PostItemComponent,
     PostItemListsComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
