@@ -23,6 +23,11 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
 import { PostItemComponent } from './post-item/post-item.component';
 import { PostItemListsComponent } from './post-item-lists/post-item-lists.component';
 import { FooterComponent } from './footer/footer.component';
+import { SubpageBannerComponent } from './subpage-banner/subpage-banner.component';
+import { BlogDetailsComponent } from './blog-details/blog-details.component';
+import { AdvertiseComponent } from './advertise/advertise.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarSecondComponent } from './sidebar-second/sidebar-second.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +51,11 @@ import { FooterComponent } from './footer/footer.component';
     PostItemComponent,
     PostItemListsComponent,
     FooterComponent,
+    SubpageBannerComponent,
+    BlogDetailsComponent,
+    AdvertiseComponent,
+    SidebarComponent,
+    SidebarSecondComponent,
   ],
   imports: [
     CommonModule,

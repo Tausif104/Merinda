@@ -1,11 +1,11 @@
-import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { LayoutBetaComponent } from "src/app/layout/layout-beta/layout-beta.component";
-import { CategoryAlphaComponent } from "src/app/organism/category-alpha/category-alpha.component";
-import { HomeAlphaComponent } from "src/app/organism/home-alpha/home-alpha.component";
-import { LoginAlphaComponent } from "src/app/organism/login-alpha/login-alpha.component";
-import { PostBetaComponent } from "src/app/organism/post-beta/post-beta.component";
-
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { LayoutBetaComponent } from 'src/app/layout/layout-beta/layout-beta.component';
+import { BlogDetailsComponent } from 'src/app/organism/blog-details/blog-details.component';
+import { CategoryAlphaComponent } from 'src/app/organism/category-alpha/category-alpha.component';
+import { HomeAlphaComponent } from 'src/app/organism/home-alpha/home-alpha.component';
+import { LoginAlphaComponent } from 'src/app/organism/login-alpha/login-alpha.component';
+import { PostBetaComponent } from 'src/app/organism/post-beta/post-beta.component';
 
 @NgModule({
   imports: [
@@ -30,11 +30,15 @@ import { PostBetaComponent } from "src/app/organism/post-beta/post-beta.componen
             path: 'login',
             component: LoginAlphaComponent,
           },
+          {
+            path: 'blog-details',
+            component: BlogDetailsComponent,
+          },
         ],
       },
     ]),
   ],
   exports: [],
-  providers: []
+  providers: [],
 })
-export class DefaultRoutingModule { }
+export class DefaultRoutingModule {}
