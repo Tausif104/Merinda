@@ -1,0 +1,17 @@
+.featured-section-right {
+    position: relative;
+    z-index: 1;
+    padding: 200px 0;
+    .featured-thumbnail {
+        margin-left: 10%;
+    }
+    .featured-content {
+        h2 {
+            font-size: 50px;
+            word-break: break-all;
+        }
+        p {
+            margin-bottom: 30px;
+        }
+    }
+}

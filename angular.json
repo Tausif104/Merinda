@@ -43,7 +43,7 @@
             "styles": [
               "src/theme.less",
               "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -171,5 +171,8 @@
       }
     }
   },
-  "defaultProject": "blog"
+  "defaultProject": "blog",
+  "cli": {
+    "analytics": false
+  }
 }

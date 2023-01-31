@@ -1,0 +1,124 @@
+/* Start Header area style
+============================================================================================ */
+.sticky-wrapper {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    &.is-sticky {
+        .header-area {
+            background: #E2F3E5;
+            padding: 10px 0;
+            .navbar {
+                .navbar-brand {
+                    img {
+                        max-width: 100px;
+                    }
+                }
+                .header-btns {
+                    .primary-btn {
+                        padding: 7px 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.header-area {
+    position: absolute;
+    z-index: 999;
+    transition: .3s;
+    background: transparent;
+    width: 100%;
+    padding: 30px 0;
+    top: 0;
+    .navbar-brand {
+        margin-bottom: 0;
+        margin-right: 70px;
+        img {
+            transition: .3s;
+        }
+    }
+    &.active {
+        box-shadow: 0 5px 10px #dddddd1a;
+    }
+    .navbar {
+        background: transparent;
+        padding: 0px;
+        border: 0px;
+        border-radius: 0px;
+        .navbar-brand {
+            display: block;
+            transition: .3s;
+            img {
+                max-width: 150px;
+            }
+        }
+        .navbar-nav {
+            .nav-item {
+                margin-right: 50px;
+                a {
+                    position: relative;
+                    font-size: 20px;
+                    color: #004848;
+                    padding: 0px;
+                    transition: .3s;
+                    z-index: 1;
+                    line-height: 40px;
+                }
+            }
+            .nav-item:hover>a, .nav-item.active a {
+                color: #EEB55B;
+                border-color: #EEB55B;
+                &:before {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+        .header-btns {
+            display: flex;
+            align-items: center;
+            li {
+                &:first-child {
+                    margin-right: 30px;
+                }
+            }
+            .primary-btn {
+                padding: 11px 20px;
+                border: 2px solid #EEB55B;
+                font-size: 16px;
+                border-radius: 0;
+                box-shadow: 0 0 8px #faee3a;
+            }
+        }
+    }
+}
+
+.offcanvas-wraper {
+    position: fixed;
+    width: 300px;
+    background: #0C003D;
+    height: 100%;
+    top: 0;
+    padding-top: 90px;
+    z-index: 99;
+    left: -300px;
+    transition: .3s;
+    &.active {
+        left: 0;
+    }
+}
+
+.menu-overlay {
+    position: fixed;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    opacity: .5;
+    display: none;
+    &.show {
+        display: block;
+    }
+}

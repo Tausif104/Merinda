@@ -1,0 +1,22 @@
+.banner-section {
+    position: relative;
+    z-index: 1;
+    padding: 150px 0 500px;
+    background-position: bottom center;
+    background-size: cover;
+    .pattern {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+    }
+    .banner-content {
+        h1 {
+            font-size: 65px;
+        }
+    }
+    
+}
+
+
+
