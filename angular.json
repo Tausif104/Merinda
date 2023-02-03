@@ -45,11 +45,7 @@
                 "output": "/"
               }
             ],
-            "styles": [
-              "src/theme.less",
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
-            ],
+            "styles": ["src/theme.less", "src/styles.scss"],
             "scripts": []
           },
           "configurations": {
