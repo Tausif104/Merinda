@@ -6,12 +6,21 @@
     transition: .3s;
     background: transparent;
     width: 100%;
-    padding: 30px 0;
+    padding: 15px 0;
     top: 0;
+    @media(min-width: 1200px) {
+        padding: 30px 0;
+    }
     .container {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        &.custom-container{
+            max-width: 100%;
+            @media(min-width: 1880px) {
+                max-width: 1815px;
+            }
+        }
     }
     .navbar {
         background: transparent;
@@ -39,6 +48,9 @@
             width: 38px;
             border-radius: 50%;
             box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+            @media(min-width: 1200px) {
+                display: none;
+            }
             span {
                 display: block;
                 width: 15px;
@@ -57,9 +69,26 @@
         .navbar-toggler span:nth-child(2) {
             width: 20px;
         }
+        .navbar-toggler.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .navbar-toggler.active span:first-child {
+            transform: rotate(-45deg);
+            position: relative;
+            top: 7.5px;
+        }
+        .navbar-toggler.active span:last-child {
+            transform: rotate(45deg);
+            bottom: 7px;
+            position: relative;
+        }
         .navbar-collapse {
             display: none;
+            @media(min-width: 1200px) {
+                display: block;
+            }
             .navbar-nav {
+                display: flex;
                 .nav-item {
                     margin-right: 50px;
                     a {
@@ -89,27 +118,31 @@
 .offcanvas-wraper {
     position: fixed;
     width: 300px;
-    background: #0C003D;
+    background: #fff;
     height: 100%;
     top: 0;
     padding-top: 90px;
     z-index: 99;
     left: -300px;
     transition: .3s;
+    @media(min-width: 1200px) {
+        display: none;
+    }
     &.active {
         left: 0;
     }
-}
-
-.menu-overlay {
-    position: fixed;
-    z-index: 2;
-    height: 100%;
-    width: 100%;
-    background: #000;
-    opacity: .5;
-    display: none;
-    &.show {
-        display: block;
+    .offcanvas-menu {
+        li {
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+            a {
+                color: #004848;
+                transition: .3s;
+                &:hover {
+                    color: #EEB55B;
+                }
+            }
+        }
     }
 }

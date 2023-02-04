@@ -1,0 +1,38 @@
+.sidebar {
+    background: #E2F2E5;
+    padding: 40px 20px 10px;
+    .related-blogs {
+        h4 {
+            font-size: 25px;
+            color: #000;
+            @media(min-width: 1440px) {
+                font-size: 30px;
+            }
+        }
+        .single-related {
+            margin-bottom: 15px;
+            display: flex;
+            .related-thumb {
+                width: 90px;
+                min-width: 90px;
+                margin-right: 15px;
+            }
+            h4 {
+                font-size: 18px;
+                color: #004848;
+                margin-bottom: 5px;
+                @media(min-width: 1440px) {
+                    font-size: 20px;
+                }
+            }
+            a {
+                color: #86C996;
+                text-decoration: underline;
+                font-size: 13px;
+                @media(min-width: 1440px) {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}

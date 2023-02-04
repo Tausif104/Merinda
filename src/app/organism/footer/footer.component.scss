@@ -3,20 +3,42 @@
     background-size: cover;
     background-repeat: no-repeat;
     padding-top: 200px;
+    @media(min-width: 1200px) {
+        background: url(/assets/images/bg/footer-bg-desktop.png) top center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding-top: 200px;
+    }
     .newsletter-footer {
         background: #FFFFFF;
         box-shadow: 0px 15px 100px rgba(0, 0, 0, 0.08);
         padding: 30px 17px;
         margin-top: -200px;
         margin-bottom: 50px;
+        @media(min-width: 992px) {
+            padding: 50px 100px;
+            text-align: center;
+        }
         h2 {
             font-size: 24px;
+            @media(min-width: 1200px) {
+                font-size: 50px;
+                margin-bottom: 5px;
+            }
         }
         p {
             font-size: 14px;
+            @media(min-width: 1200px) {
+                font-size: 24px;
+                font-weight: 500;
+            }
         }
         .form-group {
             position: relative;
+            @media(min-width: 992px) {
+                width: 70%;
+                margin: 0 auto;
+            }
             input {
                 background: #FFFFFF;
                 box-shadow: 0px 15px 60px rgba(0, 0, 0, 0.05);
@@ -27,11 +49,21 @@
                 width: 100%;
                 margin-bottom: 15px;
                 border: 1px solid #CCCCCC;
+                border-radius: 0;
+                @media(min-width: 992px) {
+                    line-height: 60px;
+                }
             }
             .primary-btn {
                 font-size: 14px;
                 text-transform: uppercase;
                 padding: 11px 19px;
+                border-radius: 0;
+                @media(min-width: 992px) {
+                    position: absolute;
+                    right: 8px;
+                    top: 8px;
+                }
             }
         }
     }
@@ -67,6 +99,11 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px 30px;
+            @media(min-width: 768px) {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
             li {
                 text-align: left;
                 a {
@@ -81,10 +118,16 @@
     padding: 50px 0;
     border-top: 1px solid #fff;
     .footer-copyright {
+        @media(min-width: 768px) {
+            text-align: center;
+        }
         p {
             font-size: 16px;
             color: #004848;
             margin-bottom: 20px;
+            @media(min-width: 768px) {
+                font-size: 18px;
+            }
         }
     }
     .footer-privacy-policy {
@@ -92,11 +135,17 @@
         grid-template-columns: repeat(2, 1fr);
         justify-content: center;
         gap: 10px 30px;
+        @media(min-width: 768px) {
+            display: flex;
+            justify-content: center;
+        }
         li {
             a {
-                
                 color: #004848;
                 font-size: 16px;
+                @media(min-width: 992px) {
+                    font-size: 18px;
+                }
             }
         }
     }

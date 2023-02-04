@@ -9,4 +9,14 @@ export class HeaderComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  check:boolean=false;
+
+  myfunction(){
+    if(this.check==false){
+      this.check=true;
+    }else{
+      this.check=false;
+    }
+  }
 }

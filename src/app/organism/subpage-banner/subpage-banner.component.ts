@@ -13,4 +13,5 @@ export class SubpageBannerComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
 }

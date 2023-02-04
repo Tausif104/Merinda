@@ -1,6 +1,14 @@
 .featured-section-left {
     position: relative;
     z-index: 1;
+    .grid {
+        @media(min-width: 992px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+    }
     .featured-thumbnail {
         margin-bottom: 50px;
     }
@@ -8,13 +16,13 @@
         h2 {
             font-size: 30px;
             word-break: break-all;
+            @media(min-width: 1400px) {
+                font-size: 50px;
+                line-height: 1.1;
+            }
         }
         p {
             margin-bottom: 30px;
         }
     }
-}
-
-@media (max-width: 991px) {
-
 }
