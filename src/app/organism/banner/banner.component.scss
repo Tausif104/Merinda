@@ -1,8 +1,9 @@
 .banner-section {
     position: relative;
     z-index: 1;
-    padding: 150px 0 500px;
-    background-position: bottom center;
+    padding: 130px 0;
+    background: url(/assets/images/bg/banner-bg-mobile.png) bottom center;
+    background-repeat: no-repeat;
     background-size: cover;
     .pattern {
         position: absolute;
@@ -11,8 +12,9 @@
         z-index: -1;
     }
     .banner-content {
+        margin-bottom: 60px;
         h1 {
-            font-size: 65px;
+            font-size: 36px;
         }
     }
     

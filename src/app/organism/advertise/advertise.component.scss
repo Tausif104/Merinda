@@ -1,0 +1,19 @@
+.advertisement {
+    background: #FFFFFF;
+    border: 1px solid #D5D5D5;
+    height: 245px;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 30px;
+    p {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 0;
+        color: #000000;
+        line-height: 1.2;
+    }
+}

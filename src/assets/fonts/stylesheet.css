@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'FONTSPRING DEMO - All Round Gothic';
+    src: url('FONTSPRINGDEMO-AllRoundGothicBoldRegular.eot');
+    src: url('FONTSPRINGDEMO-AllRoundGothicBoldRegular.eot?#iefix') format('embedded-opentype'),
+        url('FONTSPRINGDEMO-AllRoundGothicBoldRegular.woff2') format('woff2'),
+        url('FONTSPRINGDEMO-AllRoundGothicBoldRegular.woff') format('woff'),
+        url('FONTSPRINGDEMO-AllRoundGothicBoldRegular.ttf') format('truetype'),
+        url('FONTSPRINGDEMO-AllRoundGothicBoldRegular.svg#FONTSPRINGDEMO-AllRoundGothicBoldRegular') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+

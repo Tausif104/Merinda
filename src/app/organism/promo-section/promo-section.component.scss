@@ -1,0 +1,30 @@
+.promo-section {
+    padding: 80px 0;
+    .promo-thumb {
+        margin-bottom: 50px;
+    }
+    .promo-content {
+        h2 {
+            font-size: 30px;
+        }
+        p {
+            margin-bottom: 30px;
+        }
+        ul {
+            li {
+                position: relative;
+                z-index: 1;
+                box-shadow: 0px 15px 60px rgba(0, 0, 0, 0.08);
+                border-radius: 10px;
+                margin-bottom: 30px;
+                padding: 10px 30px 10px 35px;
+                font-size: 16px;
+                img {
+                    position: absolute;
+                    left: 10px;
+                    top: 15px;
+                }
+            }
+        }
+    }
+}

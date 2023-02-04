@@ -1,29 +1,5 @@
 /* Start Header area style
 ============================================================================================ */
-.sticky-wrapper {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    &.is-sticky {
-        .header-area {
-            background: #E2F3E5;
-            padding: 10px 0;
-            .navbar {
-                .navbar-brand {
-                    img {
-                        max-width: 100px;
-                    }
-                }
-                .header-btns {
-                    .primary-btn {
-                        padding: 7px 20px;
-                    }
-                }
-            }
-        }
-    }
-}
-
 .header-area {
     position: absolute;
     z-index: 999;
@@ -32,15 +8,10 @@
     width: 100%;
     padding: 30px 0;
     top: 0;
-    .navbar-brand {
-        margin-bottom: 0;
-        margin-right: 70px;
-        img {
-            transition: .3s;
-        }
-    }
-    &.active {
-        box-shadow: 0 5px 10px #dddddd1a;
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
     .navbar {
         background: transparent;
@@ -50,48 +21,68 @@
         .navbar-brand {
             display: block;
             transition: .3s;
+            margin-right: 70px;
             img {
                 max-width: 150px;
             }
         }
-        .navbar-nav {
-            .nav-item {
-                margin-right: 50px;
-                a {
-                    position: relative;
-                    font-size: 20px;
-                    color: #004848;
-                    padding: 0px;
-                    transition: .3s;
-                    z-index: 1;
-                    line-height: 40px;
-                }
-            }
-            .nav-item:hover>a, .nav-item.active a {
-                color: #EEB55B;
-                border-color: #EEB55B;
-                &:before {
-                    opacity: 1;
-                    visibility: visible;
+        .navbar-toggler[aria-expanded=true] span:nth-child(2) {
+            width: 20px;
+        }
+        .navbar-toggler {
+            border: none;
+            border-radius: 0px;
+            padding: 0px;
+            cursor: pointer;
+            background: #fff;
+            height: 38px;
+            width: 38px;
+            border-radius: 50%;
+            box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+            span {
+                display: block;
+                width: 15px;
+                height: 3px;
+                background: #00072D;
+                margin: auto;
+                margin-bottom: 4px;
+                transition: all 400ms linear;
+                cursor: pointer;
+                border-radius: 100px;
+                &:last-child {
+                    margin-bottom: 0;
                 }
             }
         }
-        .header-btns {
-            display: flex;
-            align-items: center;
-            li {
-                &:first-child {
-                    margin-right: 30px;
+        .navbar-toggler span:nth-child(2) {
+            width: 20px;
+        }
+        .navbar-collapse {
+            display: none;
+            .navbar-nav {
+                .nav-item {
+                    margin-right: 50px;
+                    a {
+                        position: relative;
+                        font-size: 20px;
+                        color: #004848;
+                        padding: 0px;
+                        transition: .3s;
+                        z-index: 1;
+                        line-height: 40px;
+                    }
+                }
+                .nav-item:hover>a, .nav-item.active a {
+                    color: #EEB55B;
+                    border-color: #EEB55B;
+                    &:before {
+                        opacity: 1;
+                        visibility: visible;
+                    }
                 }
             }
-            .primary-btn {
-                padding: 11px 20px;
-                border: 2px solid #EEB55B;
-                font-size: 16px;
-                border-radius: 0;
-                box-shadow: 0 0 8px #faee3a;
-            }
         }
+        
     }
 }
 
