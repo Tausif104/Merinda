@@ -18,13 +18,21 @@
         @media(min-width: 992px) {
             order: 2;
         }
+        @media(min-width: 1400px) {
+            text-align: right;
+        }
+        img {
+            @media(min-width: 1400px) {
+                max-width: 400px;
+            }
+        }
     }
     .featured-content {
         h2 {
             font-size: 30px;
             word-break: break-all;
             @media(min-width: 1400px) {
-                font-size: 42px;
+                font-size: 36px;
                 line-height: 1.1;
             }
         }

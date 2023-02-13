@@ -18,7 +18,14 @@
         }
     }
     .newsletter-thumb {
-        
+        @media(min-width: 1400px) {
+            text-align: right;
+        }
+        img {
+            @media(min-width: 1400px) {
+                max-width: 400px;
+            }
+        }
     }
     .newsletter-content {
         margin-bottom: 50px;
@@ -26,7 +33,7 @@
             font-size: 30px;
             line-height: 1.2;
             @media(min-width: 1400px) {
-                font-size: 42px;
+                font-size: 36px;
                 line-height: 1.1;
             }
         }

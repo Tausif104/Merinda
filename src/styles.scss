@@ -35,9 +35,6 @@ body {
     font-family: 'Work Sans', sans-serif;
     color: #255F5F;
     background: #fff;
-    @media(min-width: 1400px) {
-        font-size: 18px;
-    }
 }
 
 html {
@@ -156,10 +153,6 @@ app-header-alpha {
     padding: 13px 19px;
     text-decoration: none!important;
     font-size: 16px;
-    @media(min-width: 1400px) {
-        font-size: 18px;
-        padding: 15px 19px;
-    }
 }
 
 .primary-btn:hover {
