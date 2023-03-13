@@ -59,7 +59,7 @@
     "moment": "^2.29.4",
     "monaco-editor": "^0.34.1",
     "ng-zorro-antd": "^14.1.1",
-    "node-fetch": "^3.2.6",
+    "node-fetch": "^3.3.1",
     "rxjs": "~7.5.0",
     "scriptjs": "^2.5.9",
     "showdown": "^2.1.0",
